@@ -1,10 +1,7 @@
 class CreateMerchants < ActiveRecord::Migration
   def change
     create_table :merchants do |t|
-
       t.timestamps null: false
-
-      t.integer :userid, null: false
 	  t.string :name
 	  t.string :website
 	  t.string :email
@@ -17,9 +14,7 @@ class CreateMerchants < ActiveRecord::Migration
 	  t.integer :ownershiptype
 	  t.decimal :revenueseachmonth
 	  t.decimal :creditcardpaymentratio
+	  t.string :registrationlink
     end
-
-    add_index "merchants", ["userid"], name: "index_merchants_on_userid", unique: true, using: :btree
-
   end
 end
