@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+5.times do |i|
+  ChannelType.create(category: "Test Channel", name: "Product ##{i}", charge: "Rp 500/transaksi")
+end
