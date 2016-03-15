@@ -1,7 +1,8 @@
 class Merchant < ActiveRecord::Base
 	belongs_to(:user)
-	has_one(:MerchantCustomerSupport)
-	has_one(:MerchantOperational)
-	has_one(:MerchantOwner)
-	has_one(:MerchantPic)
+	has_many(:agreements)
+	has_one(:merchant_customer_support)
+	has_one(:merchant_operational)
+	has_one(:merchant_owner)
+	has_one(:merchant_pic)
 end
