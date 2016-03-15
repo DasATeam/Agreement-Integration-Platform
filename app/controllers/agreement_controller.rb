@@ -1,40 +1,67 @@
 class AgreementController < ApplicationController
 	def new
-		@channels = ChannelType.all
+		@channels = ChannelType.all()
 	end
 
 	def create
-		@user
-		@merchant
+		#Create merchant and his account
 		if  @user = User.create(user_params())
 			if @merchant = Merchant.create(merchant_params())
-				require 'digest/md5'
-				
 				@user.merchant = @merchant
 				@user.role = 'merchant'
 				@user.save()
 				
+				require 'digest/md5'
 				link = Digest::MD5.hexdigest(@user.email)
 				@merchant.registrationlink = link
 				@merchant.save()
 
-				# selectedChannel = channel_params()
-				# selectedChannel.each do |key, id|
-				# 	if id == "1"
-				# 		AgreementChannel.create()
-				# 	end
-				# end
-					
+				# Create channel
+				date = Date.today
+				if date.mon / 10 == 1
+					month = "#{date.year}-#{date.mon}%"
+				else
+					month = "#{date.year}-0#{date.mon}%"
+				end
+				agreementsThisMonth = Agreement.where("created_at LIKE (?)", month)
+				@agreement = Agreement.create(PKSNumber: "#{agreementsThisMonth.size + 1}/PKS-M/VT/#{to_roman(date.mon)}/#{date.year}")
+				@agreement.merchant = @merchant
+				@agreement.save()
 
-				redirect_to(action: "info", id: @user.id)
+				selectedChannels = channel_params()
+				@channels = ChannelType.all()
+				@channels.each do |channel|
+					if selectedChannels[channel.id.to_s()] == "1"
+						agreementChannel = AgreementChannel.create()
+						agreementChannel.agreement = @agreement
+						agreementChannel.channel_type = channel
+						agreementChannel.save()
+					end
+				end
+				
+				render "info"
 			end
 		end
 	end
 
-	def info
-
-	end
-
+	private 
+		def to_roman(number)
+			roman_numbers = {
+				12 => "XII",  
+				11 => "XI",  
+				10 => "X",  
+				9 => "IX",  
+				8 => "VIII",  
+				7 => "VII",  
+				6 => "VI",  
+				5 => "V",
+				4 => "IV",
+				3 => "III",
+				2 => "II",
+				1 => "I"
+			}
+			return roman_numbers[number]
+		end
 
 	private 
 		def user_params 
@@ -48,7 +75,7 @@ class AgreementController < ApplicationController
 
 	private 
 		def channel_params 
-			params.require(:form).permit('6','7','8','9','10') 
+			params.require(:form).permit!
 		end
 
 end

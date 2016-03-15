@@ -1,0 +1,10 @@
+PKS Number: <br/>
+<%= @agreement.PKSNumber %> <br/>
+Merchant's Name: <br/>
+<%= @merchant.name %> <br/>
+Website: <br/>
+<%= @merchant.website %> <br/>
+Merchant Contact Email: <br/>
+<%= @user.email %> <br/>
+Registration link: <br/>
+<a href="<%= request.base_url + "/sales/new/" + @merchant.registrationlink %>"><%= request.base_url + "/sales/new/" + @merchant.registrationlink %></a> <br/>
