@@ -1,4 +1,4 @@
 class AgreementChannel < ActiveRecord::Base
 	belongs_to(:agreement)
-	belongs_to(:channeltype)
+	belongs_to(:channel_type)
 end

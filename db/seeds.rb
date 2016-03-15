@@ -7,5 +7,5 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 5.times do |i|
-  ChannelType.create(category: "Test Channel", name: "Product ##{i}", charge: "Rp 500/transaksi")
+  ChannelType.create(category: "Test Channel", name: "Channel ##{i}", charge: "Rp 500/transaksi")
 end
