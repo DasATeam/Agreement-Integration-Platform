@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get 'sales/agreement/new' => 'agreement#new'
   post'sales/agreement/new' => 'agreement#create'
 
-  get 'sales/new/:hash' => 'user#merchant_new'
+  get 'merchant/new/:hash' => 'user#merchant_new'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
