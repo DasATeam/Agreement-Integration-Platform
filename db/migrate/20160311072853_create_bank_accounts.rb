@@ -6,6 +6,7 @@ class CreateBankAccounts < ActiveRecord::Migration
       t.string :name
       t.string :accholder
       t.string :acctype
+      t.references(:merchant, foreign_key: true)
     end
   end
 end

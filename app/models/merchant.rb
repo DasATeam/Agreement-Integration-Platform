@@ -5,4 +5,5 @@ class Merchant < ActiveRecord::Base
 	has_one(:merchant_operational)
 	has_one(:merchant_owner)
 	has_one(:merchant_pic)
+	has_one(:bank_account)
 end
