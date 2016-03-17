@@ -1,4 +1,5 @@
 class Agreement < ActiveRecord::Base
 	belongs_to(:merchant)
-	has_one(:agreementchannel)
+	has_many(:agreement_channels)
+	has_many(:merchant_documents)
 end

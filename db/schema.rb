@@ -59,9 +59,16 @@ ActiveRecord::Schema.define(version: 20160316100209) do
   end
 
   create_table "merchant_documents", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "merchant_id"
+    t.integer  "agreement_id"
+    t.integer  "document_type_id"
+    t.string   "path"
   end
+
+  add_index "merchant_documents", ["agreement_id"], name: "index_merchant_documents_on_agreement_id"
+  add_index "merchant_documents", ["merchant_id"], name: "index_merchant_documents_on_merchant_id"
 
   create_table "merchant_operationals", force: :cascade do |t|
     t.string  "email",       null: false
