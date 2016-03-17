@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160316100209) do
+ActiveRecord::Schema.define(version: 20160317142356) do
 
   create_table "agreement_channels", force: :cascade do |t|
     t.datetime "created_at",      null: false
@@ -111,6 +111,21 @@ ActiveRecord::Schema.define(version: 20160316100209) do
     t.string   "registrationlink"
     t.integer  "user_id"
   end
+
+  create_table "pasals", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "poins", force: :cascade do |t|
+    t.string   "isi_poin"
+    t.string   "nomor_poin"
+    t.integer  "poin_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "poins", ["poin_id"], name: "index_poins_on_poin_id"
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
