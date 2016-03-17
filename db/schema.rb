@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160313194245) do
+ActiveRecord::Schema.define(version: 20160316100209) do
 
   create_table "agreement_channels", force: :cascade do |t|
     t.datetime "created_at",      null: false
@@ -39,11 +39,28 @@ ActiveRecord::Schema.define(version: 20160313194245) do
     t.string   "charge"
   end
 
+  create_table "channel_types_document_types", force: :cascade do |t|
+    t.integer "document_type_id"
+    t.integer "channel_type_id"
+  end
+
+  add_index "channel_types_document_types", ["channel_type_id"], name: "index_channel_types_document_types_on_channel_type_id"
+  add_index "channel_types_document_types", ["document_type_id"], name: "index_channel_types_document_types_on_document_type_id"
+
+  create_table "document_types", force: :cascade do |t|
+    t.string "name"
+  end
+
   create_table "merchant_customer_supports", force: :cascade do |t|
     t.string  "email",       null: false
     t.string  "telephone"
     t.string  "emergency"
     t.integer "merchant_id"
+  end
+
+  create_table "merchant_documents", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "merchant_operationals", force: :cascade do |t|
