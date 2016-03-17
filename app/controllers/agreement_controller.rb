@@ -11,12 +11,13 @@ class AgreementController < ApplicationController
 				@user.role = 'merchant'
 				@user.save()
 				
+				#generate hash of regist link
 				require 'digest/md5'
 				link = Digest::MD5.hexdigest(@user.email)
 				@merchant.registrationlink = link
 				@merchant.save()
 
-				# Create channel
+				# Create Agreement
 				date = Date.today
 				if date.mon / 10 == 1
 					month = "#{date.year}-#{date.mon}%"
@@ -28,15 +29,36 @@ class AgreementController < ApplicationController
 				@agreement.merchant = @merchant
 				@agreement.save()
 
+				#listing needed document
 				selectedChannels = channel_params()
 				@channels = ChannelType.all()
+				neededDocuments = Hash.new()
+				#creating each selected channel
 				@channels.each do |channel|
 					if selectedChannels[channel.id.to_s()] == "1"
 						agreementChannel = AgreementChannel.create()
 						agreementChannel.agreement = @agreement
 						agreementChannel.channel_type = channel
 						agreementChannel.save()
+
+						#listing needed documents
+						channel.documents.each do |doc|
+							puts doc
+							puts doc.class
+							if !neededDocuments.has_key?(doc.id)
+								neededDocuments[doc.id]=doc
+							end
+						end
 					end
+				end
+
+				# creating each needed document ot database
+				neededDocuments.each_value do |doc|
+					merchantDocument = MerchantDocument.new()
+					merchantDocument.merchant = @merchant
+					merchantDocument.agreement = @agreement
+					merchantDocument.document_type = doc
+					merchantDocument.save()
 				end
 				
 				render "info"
