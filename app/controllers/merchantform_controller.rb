@@ -1,46 +1,48 @@
 class MerchantformController < ApplicationController
 
 	def edit
-
+		
 	end
 
 	def update
+	   check = true
 	   @merchant = Merchant.find(session[:user_id])
 	   @merchant.update(merchant_params)
-	   @merchant.save
+	   puts merchant_params
+	   check = @merchant.save and check
 
-	   @merchantcs = MerchantCustomerSupport.new()
+	   @merchantcs = MerchantCustomerSupport.new(merchantcustomersupport_params)
 	   @merchantcs.merchant = @merchant
-	   @merchantcs.save
+	   check = @merchantcs.save and check
 
-	   @merchantop = MerchantOperational.new()
+	   @merchantop = MerchantOperational.new(merchantoperational_params)
 	   @merchantop.merchant = @merchant
-	   @merchantop.save
+	   check = @merchantop.save and check
 
-	   @merchantpic = MerchantPic.new()
+	   @merchantpic = MerchantPic.new(merchantpic_params)
 	   @merchantpic.merchant = @merchant
-	   @merchantpic.save	   
+	   check = @merchantpic.save and check
 
-	   @merchantowner = MerchantOwner.new()
+	   @merchantowner = MerchantOwner.new(merchantowner_params)
 	   @merchantowner.merchant = @merchant
-	   @merchantowner.save
+	   check = @merchantowner.save and check
 
-	   @bankacc = BankAccount.new()
+	   @bankacc = BankAccount.new(bankaccount_params)
 	   @bankacc.merchant = @merchant
-	   @bankacc.save
+	   check = @bankacc.save and check
 
 	   
-	   #if elsenya msh error, sisanya fine
-	   # 	if @merchant.save
-	   #      redirect_to @merchant, alert: "Merchant created successfully."
-	   #  else
-	   #      redirect_to new_merchant_path, alert: "Error creating merchant."
-	   #  end
+	   #uncomment if want to handle error
+    	 if check
+	          redirect_to action: "edit", alert: "Merchant created successfully."
+	     else
+	          redirect_to action: "edit", alert: "Error creating merchant."
+	      end
 
 	end
 
 	def merchant_params
-	   params.require(:merchant).permit(:userid, :name, :website, :email, :city, :address, :officestatus, :typeofproduct, :pricerange, :timesincestarted, :ownershiptype, :revenueseachmonth, :creditcardpaymentratio)
+	   params.require(:merchant).permit(:name, :website, :email, :city, :address, :officestatus, :typeofproduct, :pricerange, :timesincestarted, :ownershiptype, :revenueseachmonth, :creditcardpaymentratio)
 	end
 
 	def merchantcustomersupport_params

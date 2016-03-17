@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :merchant
+  # resources :merchant
   
   get 'merchant/form' => 'merchantform#edit'
   post 'merchant/form' => 'merchantform#update'
