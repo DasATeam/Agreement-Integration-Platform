@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   get 'sales/agreement/new' => 'agreement#new'
   post'sales/agreement/new' => 'agreement#create'
+  get 'sales/agreement/channel'=> 'agreement#newchannel'
+  post 'sales/agreement/channel' => 'agreement#channeling'
 
   get 'merchant/new/:hash' => 'user#merchant_new'
   get 'merchant/document' => 'document#upload'
