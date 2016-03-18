@@ -112,20 +112,15 @@ ActiveRecord::Schema.define(version: 20160317142356) do
     t.integer  "user_id"
   end
 
-  create_table "pasals", force: :cascade do |t|
+  create_table "points", force: :cascade do |t|
+    t.string   "isi"
+    t.string   "nomor"
+    t.integer  "point_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "poins", force: :cascade do |t|
-    t.string   "isi_poin"
-    t.string   "nomor_poin"
-    t.integer  "poin_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "poins", ["poin_id"], name: "index_poins_on_poin_id"
+  add_index "points", ["point_id"], name: "index_points_on_point_id"
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
