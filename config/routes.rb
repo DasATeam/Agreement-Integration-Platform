@@ -4,8 +4,18 @@ Rails.application.routes.draw do
   post'sales/agreement/new' => 'agreement#create'
 
   get 'merchant/new/:hash' => 'user#merchant_new'
-  get 'merchant/document' => 'document#upload'
-  
+
+  get 'merchant/document' => 'document#index'
+  post 'merchant/document' => 'document#upload'
+
+  # namespace :merchant do
+  #   resources :document, only: [:index] do
+  #     collection do
+  #       post :upload # POST merchant/document/upload
+  #     end
+  #   end
+  # end
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
