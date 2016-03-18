@@ -10,7 +10,7 @@ class AgreementController < ApplicationController
 				@user.merchant = @merchant
 				@user.role = 'merchant'
 				@user.save()
-				
+
 				#generate hash of regist link
 				require 'digest/md5'
 				link = Digest::MD5.hexdigest(@user.email)
@@ -60,22 +60,22 @@ class AgreementController < ApplicationController
 					merchantDocument.document_type = doc
 					merchantDocument.save()
 				end
-				
+
 				render "info"
 			end
 		end
 	end
 
-	private 
+	private
 		def to_roman(number)
 			roman_numbers = {
-				12 => "XII",  
-				11 => "XI",  
-				10 => "X",  
-				9 => "IX",  
-				8 => "VIII",  
-				7 => "VII",  
-				6 => "VI",  
+				12 => "XII",
+				11 => "XI",
+				10 => "X",
+				9 => "IX",
+				8 => "VIII",
+				7 => "VII",
+				6 => "VI",
 				5 => "V",
 				4 => "IV",
 				3 => "III",
@@ -85,18 +85,18 @@ class AgreementController < ApplicationController
 			return roman_numbers[number]
 		end
 
-	private 
-		def user_params 
-			params.require(:form).permit(:email) 
+	private
+		def user_params
+			params.require(:form).permit(:email)
 		end
 
-	private 
-		def merchant_params 
-			params.require(:form).permit(:name, :website) 
+	private
+		def merchant_params
+			params.require(:form).permit(:name, :website)
 		end
 
-	private 
-		def channel_params 
+	private
+		def channel_params
 			params.require(:form).permit!
 		end
 
