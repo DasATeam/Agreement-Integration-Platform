@@ -34,7 +34,7 @@ class MerchantformController < ApplicationController
 	   
 	   #uncomment if want to handle error
     	 if check
-	          redirect_to action: "edit", alert: "Merchant created successfully."
+	          render "success"
 	     else
 	          redirect_to action: "edit", alert: "Error creating merchant."
 	      end

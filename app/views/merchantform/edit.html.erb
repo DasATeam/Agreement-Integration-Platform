@@ -5,53 +5,54 @@
 	</head>
 	<body>
 
+	<p>General Merchant Info</p>
 		<%= form_for :merchant do |f| %>
 		  <p>
-		    <%= f.label :name %><br>
+		    <%= f.label "Name" %><br>
 		    <%= f.text_field :name%>
 		  </p>
 		  <p>
-		    <%= f.label :website %><br>
+		    <%= f.label "Website" %><br>
 		    <%= f.text_field :website%>
 		  </p>
 		  <p>
-		    <%= f.label :email %><br>
+		    <%= f.label "Email" %><br>
 		    <%= f.text_field :email%>
 		  </p>
 		  <p>
-		    <%= f.label :city %><br>
+		    <%= f.label "City" %><br>
 		    <%= f.text_field :city%>
 		  </p>
 		  <p>
-		    <%= f.label :address %><br>
+		    <%= f.label "Address" %><br>
 		    <%= f.text_field :address%>
 		  </p>
 		  <p>
-		    <%= f.label :officestatus %><br>
+		    <%= f.label "Office Status" %><br>
 		    <%= select_tag(:officestatus, options_for_select([['Milik Sendiri', 1], ['Milik Keluarga', 2], ['Kontrak', 3]], 1) ) %>
 		  </p>
 		  <p>
-		    <%= f.label :typeofproduct %><br>
+		    <%= f.label "Type of Product" %><br>
 		    <%= f.text_area :typeofproduct %>
 		  </p>
 		  <p>
-		    <%= f.label :pricerange %><br>
+		    <%= f.label "Price Range" %><br>
 		    <%= f.text_area :pricerange %>
 		  </p>
 		  <p>
-		    <%= f.label :timesincestarted %><br>
+		    <%= f.label "Time Since Started" %><br>
 		    <%= f.text_area :timesincestarted %>
 		  </p>
 		  <p>
-		    <%= f.label :ownershiptype %><br>
+		    <%= f.label "Ownership Type" %><br>
 		    <%= select_tag(:ownershiptype, options_for_select([['Pemilik', 1], ['Perusahaan', 2], ['Partnership', 3]], 1)) %>
 		  </p>
 		  <p>
-		    <%= f.label :revenueseachmonth %><br>
+		    <%= f.label "Revenues Per-month" %><br>
 		    <%= f.text_field :revenueseachmonth%>
 		  </p>
 		  <p>
-		    <%= f.label :creditcardpaymentratio %><br>
+		    <%= f.label "Credit Card Payment Ratio" %><br>
 		    <%= f.text_field :creditcardpaymentratio%>
 		  </p>
 
@@ -59,19 +60,19 @@
 
   		  <%= fields_for :merchantpic do |p|%>
 	  		  <p>
-			    <%= p.label :name %><br>
+			    <%= p.label "Name" %><br>
 			    <%= p.text_field :name%>
 			  </p>
 			  <p>
-			    <%= p.label :address %><br>
+			    <%= p.label "Address" %><br>
 			    <%= p.text_field :address%>
 			  </p>
 			  <p>
-			    <%= p.label :email %><br>
+			    <%= p.label "Email" %><br>
 			    <%= p.text_field :email%>
 			  </p>
 			  <p>
-			    <%= p.label :emergency %><br>
+			    <%= p.label "Emergency Telephone" %><br>
 			    <%= p.text_field :emergency%>
 			  </p>
   		  <% end %>
@@ -82,19 +83,19 @@
 
 		  <%= fields_for :merchantowner do |ow|%>
 			  <p>
-			    <%= ow.label :name %><br>
+			    <%= ow.label "Name" %><br>
 			    <%= ow.text_field :name%>
 			  </p>
 			  <p>
-			    <%= ow.label :address %><br>
+			    <%= ow.label "Address" %><br>
 			    <%= ow.text_field :address%>
 			  </p>
 			  <p>
-			    <%= ow.label :email %><br>
+			    <%= ow.label "Email" %><br>
 			    <%= ow.text_field :email%>
 			  </p>
 			  <p>
-			    <%= ow.label :telephone %><br>
+			    <%= ow.label "Telephone" %><br>
 			    <%= ow.text_field :telephone%>
 			  </p>
 		  <% end %>		  
@@ -104,15 +105,15 @@
 		  <%= fields_for :merchantcustomersupport do |cs|%>
 			  
 			  <p>
-			    <%= cs.label :email %><br>
+			    <%= cs.label "Email" %><br>
 			    <%= cs.text_field :email%>
 			  </p>
 			  <p>
-			    <%= cs.label :telephone %><br>
+			    <%= cs.label "Telephone" %><br>
 			    <%= cs.text_field :telephone%>
 			  </p>
 			  <p>
-			    <%= cs.label :emergency %><br>
+			    <%= cs.label "Emergency Telephone" %><br>
 			    <%= cs.text_field :emergency%>
 			  </p>
 			  
@@ -123,15 +124,15 @@
 		  <%= fields_for :merchantoperational do |op|%>
 			  
 			  <p>
-			    <%= op.label :email %><br>
+			    <%= op.label "Email" %><br>
 			    <%= op.text_field :email%>
 			  </p>
 			  <p>
-			    <%= op.label :telephone %><br>
+			    <%= op.label "Telephone" %><br>
 			    <%= op.text_field :telephone%>
 			  </p>
 			  <p>
-			    <%= op.label :emergency %><br>
+			    <%= op.label "Emergency Telephone" %><br>
 			    <%= op.text_field :emergency%>
 			  </p>
 			  
@@ -141,19 +142,19 @@
 
 		  <%= fields_for :bankaccount do |b|%>
 			  <p>
-			    <%= b.label :name %><br>
+			    <%= b.label "Bank Name" %><br>
 			    <%= b.text_field :name%>
 			  </p>
 			  <p>
-			    <%= b.label :accnumber %><br>
+			    <%= b.label "Account Number" %><br>
 			    <%= b.text_field :accnumber%>
 			  </p>
 			  <p>
-			    <%= b.label :accholder %><br>
+			    <%= b.label "Account Holder" %><br>
 			    <%= b.text_field :accholder%>
 			  </p>
 			  <p>
-			    <%= b.label :acctype %><br>
+			    <%= b.label "Account Type" %><br>
 			    <%= b.text_field :acctype%>
 			  </p>
 		  <% end %>
