@@ -5,7 +5,8 @@ Rails.application.routes.draw do
 
   get 'merchant/new/:hash' => 'user#merchant_new'
   get 'merchant/document' => 'document#upload'
-  
+
+  get 'merchant/terms' => 'term#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
