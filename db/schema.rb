@@ -39,6 +39,16 @@ ActiveRecord::Schema.define(version: 20160318112357) do
     t.integer "merchant_id"
   end
 
+  create_table "bank_accounts", force: :cascade do |t|
+    t.string  "accnumber",   null: false
+    t.string  "name"
+    t.string  "accholder"
+    t.string  "acctype"
+    t.integer "merchant_id"
+  end
+
+  add_index "bank_accounts", ["merchant_id"], name: "index_bank_accounts_on_merchant_id"
+
   create_table "channel_types", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
