@@ -4,4 +4,7 @@ class TermController < ApplicationController
 
     render "index"
   end
+
+  def agree
+  end
 end

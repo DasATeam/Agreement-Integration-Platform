@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'merchant/document' => 'document#upload'
 
   get 'merchant/terms' => 'term#index'
+  post 'merchant/terms' => 'term#agree'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
