@@ -15,11 +15,11 @@ Berikut merupakan code convention penting yang kita terapkan:
 - Model menggunakan kata benda singular, sementara nama tabel plural.
 - Nama kelas menggunakan CamelCase, sementara variabel dan database (baik nama tabel maupun atributnya) menggunakan snake_case.
 - Indentasi menggunakan 2 spasi per tingkat (sesuai standar Ruby).
-- Gunakan parantheses (kurung) untuk penggunaan method kecuali untuk internal domain specific language (seperti Rake, Rails, RSpec), method yang menggunakan keyword status di Ruby (seperti attr_reader, puts) dan method untuk mengakses atribut. Penjelasan lebih lanjut bisa dilihat di [sini](http://stackoverflow.com/questions/7707681/idiomatic-use-of-parentheses-in-ruby).
-- Pastikan tidak ada [trailing whitespace](http://programmers.stackexchange.com/questions/121555/why-is-trailing-whitespace-a-big-deal) di akhir baris dan baris kosong. Gunakan package seperti [TrailingSpaces](https://github.com/SublimeText/TrailingSpaces) untuk Sublime Text atau [Atom whitespace package](https://github.com/atom/whitespace) untuk memudahkan Anda.
+- Gunakan parantheses (kurung) untuk penggunaan method kecuali untuk internal domain specific language (seperti Rake, Rails, RSpec), method yang menggunakan keyword status di Ruby (seperti attr_reader, puts) dan method untuk mengakses atribut. Penjelasan lebih lanjut bisa dilihat di {sini}(http://stackoverflow.com/questions/7707681/idiomatic-use-of-parentheses-in-ruby).
+- Pastikan tidak ada {trailing whitespace}(http://programmers.stackexchange.com/questions/121555/why-is-trailing-whitespace-a-big-deal) di akhir baris dan baris kosong. Gunakan package seperti {TrailingSpaces}(https://github.com/SublimeText/TrailingSpaces) untuk Sublime Text atau {Atom whitespace package}(https://github.com/atom/whitespace) untuk memudahkan Anda.
 - Perhatikan vertical indentation agar kodenya lebih enak dibaca. Kita tidak akan menggunakan standar tertentu, yang penting jangan ragu-ragu untuk menggunakannya.
 
-Daftar selengkapnya bisa dilihat di [sini](https://github.com/bbatsov/ruby-style-guide).
+Daftar selengkapnya bisa dilihat di {sini}(https://github.com/bbatsov/ruby-style-guide).
 
 ==== To-do
 
