@@ -11,7 +11,6 @@ class TermController < ApplicationController
     @agreement.has_agree = true
     @agreement.save
 
-    redirect_to controller: "user", action: "merchant_new", hash: @merchant.registrationlink
+    redirect_to controller: "user", action: "merchant_new", hash: @merchant.registrationlink, success: "has agreed"
   end
 end
-
