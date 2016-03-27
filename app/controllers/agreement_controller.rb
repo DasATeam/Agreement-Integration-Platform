@@ -1,6 +1,5 @@
 class AgreementController < ApplicationController
 	def new
-		@channels = ChannelType.all()
 	end
 
 	def create
@@ -29,41 +28,57 @@ class AgreementController < ApplicationController
 				@agreement.merchant = @merchant
 				@agreement.save()
 
-				#listing needed document
-				selectedChannels = channel_params()
-				@channels = ChannelType.all()
-				neededDocuments = Hash.new()
-				#creating each selected channel
-				@channels.each do |channel|
-					if selectedChannels[channel.id.to_s()] == "1"
-						agreementChannel = AgreementChannel.create()
-						agreementChannel.agreement = @agreement
-						agreementChannel.channel_type = channel
-						agreementChannel.save()
-
-						#listing needed documents
-						channel.documents.each do |doc|
-							puts doc
-							puts doc.class
-							if !neededDocuments.has_key?(doc.id)
-								neededDocuments[doc.id]=doc
-							end
-						end
-					end
-				end
-
-				# creating each needed document ot database
-				neededDocuments.each_value do |doc|
-					merchantDocument = MerchantDocument.new()
-					merchantDocument.merchant = @merchant
-					merchantDocument.agreement = @agreement
-					merchantDocument.document_type = doc
-					merchantDocument.save()
-				end
-				
-				render "info"
+				redirect_to action:"channeling"
+				session[:user_id] =  @user.id
 			end
 		end
+	end
+
+	def newchannel
+		@channels = ChannelType.all()
+	end
+
+	def channeling
+		if session[:agreement_id] != nil
+			@user = User.find(session[:user_id])
+			@merchant = @user.merchant
+			@agreement = @merchant.agreements.first
+		else
+			redirect_to action:"create"
+		end
+		#listing needed document
+		selectedChannels = channel_params()
+		@channels = ChannelType.all()
+		neededDocuments = Hash.new()
+		#creating each selected channel
+		@channels.each do |channel|
+			if selectedChannels[channel.id.to_s()] == "1"
+				agreementChannel = AgreementChannel.create()
+				agreementChannel.agreement = @agreement
+				agreementChannel.channel_type = channel
+				agreementChannel.save()
+
+				#listing needed documents
+				channel.documents.each do |doc|
+					puts doc
+					puts doc.class
+					if !neededDocuments.has_key?(doc.id)
+						neededDocuments[doc.id]=doc
+					end
+				end
+			end
+		end
+
+		# creating each needed document ot database
+		neededDocuments.each_value do |doc|
+			merchantDocument = MerchantDocument.new()
+			merchantDocument.merchant = @merchant
+			merchantDocument.agreement = @agreement
+			merchantDocument.document_type = doc
+			merchantDocument.save()
+		end
+		
+		render "info"
 	end
 
 	private 
