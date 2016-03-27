@@ -5,64 +5,61 @@ class MerchantformController < ApplicationController
 	end
 
 	def update
-	   check = true
-	   @merchant = Merchant.find(session[:user_id])
-	   @merchant.update(merchant_params)
-	   puts merchant_params
-	   check = @merchant.save and check
+	  check = true
+	  @merchant = Merchant.find(session[:user_id])
+	  @merchant.update(merchant_params)
+	  check = @merchant.save and check
 
-	   @merchantcs = MerchantCustomerSupport.new(merchantcustomersupport_params)
-	   @merchantcs.merchant = @merchant
-	   check = @merchantcs.save and check
+	  @merchant_cs = MerchantCustomerSupport.new(merchant_customer_support_params)
+	  @merchant_cs.merchant = @merchant
+	  check = @merchant_cs.save and check
 
-	   @merchantop = MerchantOperational.new(merchantoperational_params)
-	   @merchantop.merchant = @merchant
-	   check = @merchantop.save and check
+	  @merchant_op = MerchantOperational.new(merchant_operational_params)
+	  @merchant_op.merchant = @merchant
+	  check = @merchant_op.save and check
 
-	   @merchantpic = MerchantPic.new(merchantpic_params)
-	   @merchantpic.merchant = @merchant
-	   check = @merchantpic.save and check
+	  @merchant_pic = MerchantPic.new(merchant_pic_params)
+	  @merchant_pic.merchant = @merchant
+	  check = @merchant_pic.save and check
 
-	   @merchantowner = MerchantOwner.new(merchantowner_params)
-	   @merchantowner.merchant = @merchant
-	   check = @merchantowner.save and check
+	  @merchant_owner = MerchantOwner.new(merchant_owner_params)
+	  @merchant_owner.merchant = @merchant
+	  check = @merchant_owner.save and check
 
-	   @bankacc = BankAccount.new(bankaccount_params)
-	   @bankacc.merchant = @merchant
-	   check = @bankacc.save and check
+	  @bank_acc = BankAccount.new(bank_account_params)
+	  @bank_acc.merchant = @merchant
+	  check = @bank_acc.save and check
 
-	   
-	   #uncomment if want to handle error
-    	 if check
-	          render "success"
-	     else
-	          redirect_to action: "edit", alert: "Error creating merchant."
-	      end
+    if check
+	    render "success"
+	  else
+	    redirect_to action: "edit", alert: "Error creating merchant."
+	  end
 
 	end
 
 	def merchant_params
-	   params.require(:merchant).permit(:name, :website, :email, :city, :address, :officestatus, :typeofproduct, :pricerange, :timesincestarted, :ownershiptype, :revenueseachmonth, :creditcardpaymentratio)
+	  params.require(:merchant).permit(:name, :website, :email, :city, :address, :office_status, :type_of_product, :price_range, :time_since_started, :ownership_type, :revenues_each_month, :credit_card_payment_ratio)
 	end
 
-	def merchantcustomersupport_params
-		params.require(:merchantcustomersupport).permit(:email, :telephone, :emergency)
+	def merchant_customer_support_params
+		params.require(:merchant_customer_support).permit(:email, :telephone, :emergency)
 	end
 
-	def merchantoperational_params
-		params.require(:merchantoperational).permit(:email, :telephone, :emergency)
+	def merchant_operational_params
+		params.require(:merchant_operational).permit(:email, :telephone, :emergency)
 	end
 
-	def merchantpic_params
-		params.require(:merchantpic).permit(:email, :name, :address, :telephone)
+	def merchant_pic_params
+		params.require(:merchant_pic).permit(:email, :name, :address, :telephone)
 	end
 
-	def merchantowner_params
-		params.require(:merchantowner).permit(:email, :name, :address, :telephone)
+	def merchant_owner_params
+		params.require(:merchant_owner).permit(:email, :name, :address, :telephone)
 	end
 
-	def bankaccount_params
-		params.require(:bankaccount).permit(:accnumber, :name, :accholder, :acctype)
+	def bank_account_params
+		params.require(:bank_account).permit(:acc_number, :name, :acc_holder, :acc_type)
 	end
 	
 end
