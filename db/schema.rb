@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160316100209) do
+ActiveRecord::Schema.define(version: 20160318112357) do
 
   create_table "agreement_channels", force: :cascade do |t|
     t.datetime "created_at",      null: false
@@ -28,7 +28,26 @@ ActiveRecord::Schema.define(version: 20160316100209) do
     t.string   "ApproverName"
     t.string   "ApproverRole"
     t.integer  "merchant_id"
+    t.boolean  "has_agree"
   end
+
+  create_table "bank_accounts", force: :cascade do |t|
+    t.string  "accnumber",   null: false
+    t.string  "name"
+    t.string  "accholder"
+    t.string  "acctype"
+    t.integer "merchant_id"
+  end
+
+  create_table "bank_accounts", force: :cascade do |t|
+    t.string  "accnumber",   null: false
+    t.string  "name"
+    t.string  "accholder"
+    t.string  "acctype"
+    t.integer "merchant_id"
+  end
+
+  add_index "bank_accounts", ["merchant_id"], name: "index_bank_accounts_on_merchant_id"
 
   create_table "channel_types", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -111,6 +130,16 @@ ActiveRecord::Schema.define(version: 20160316100209) do
     t.string   "registrationlink"
     t.integer  "user_id"
   end
+
+  create_table "points", force: :cascade do |t|
+    t.string   "isi"
+    t.string   "nomor"
+    t.integer  "point_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "points", ["point_id"], name: "index_points_on_point_id"
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
