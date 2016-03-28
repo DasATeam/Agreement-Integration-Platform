@@ -4,10 +4,8 @@ Rails.application.routes.draw do
   post'sales/agreement/new' => 'agreement#create'
   get 'sales/agreement/channel'=> 'agreement#newchannel'
   post 'sales/agreement/channel' => 'agreement#channeling'
-
   get 'merchant/new/:hash' => 'user#merchant_new'
   get 'merchant/document' => 'document#upload'
-  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
