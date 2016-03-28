@@ -51,5 +51,6 @@ end
 
 # For deploying in Heroku
 gem 'rails_12factor', group: :production
+gem 'puma'
 
-ruby "2.2.4"
+ruby "2.4.0"
