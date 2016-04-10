@@ -13,7 +13,7 @@ class AgreementController < ApplicationController
 				# Generate hash of registration link
 				require 'digest/md5'
 				link = Digest::MD5.hexdigest(@user.email)
-				@merchant.registrationlink = link
+				@merchant.registration_link = link
 				@merchant.save()
 
 				# Create Agreement
@@ -24,7 +24,7 @@ class AgreementController < ApplicationController
 					month = "#{date.year}-0#{date.mon}%"
 				end
 				agreementsThisMonth = Agreement.where("created_at LIKE (?)", month)
-				@agreement = Agreement.create(PKSNumber: "#{agreementsThisMonth.size + 1}/PKS-M/VT/#{to_roman(date.mon)}/#{date.year}")
+				@agreement = Agreement.create(pks_number: "#{agreementsThisMonth.size + 1}/PKS-M/VT/#{to_roman(date.mon)}/#{date.year}")
 				@agreement.merchant = @merchant
 				@agreement.save()
 
@@ -39,7 +39,7 @@ class AgreementController < ApplicationController
 	end
 
 	def channeling
-		if session[:agreement_id] != nil
+		if session[:user_id] != nil
 			@user = User.find(session[:user_id])
 			@merchant = @user.merchant
 			@agreement = @merchant.agreements.first

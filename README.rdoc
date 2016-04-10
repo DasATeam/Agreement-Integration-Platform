@@ -1,28 +1,10 @@
-== README
+== Agreement Integration Platform
+=== By PPL Veritrans "TheATeam"
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+==== Installation Instructions
+1. Pasang RVM, Ruby, dan Ruby on Rails di environment Anda. Disarankan menggunakan UNIX (OS X atau Linux).
+2. Clone repository ini.
+3. Jalankan <tt>rake db:migrate</tt> dan <tt>rake db:seed</tt> di Terminal. Secara default, aplikasi ini menggunakan database development dengan DBMS SQLite3.
+4. Jalankan server WEBrick dengan menjalankan perintah <tt>bin/rails server</tt> di Terminal.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Aplikasi ini berhasil dijalankan di Ruby versi 2.2 dan head. Anda tidak perlu melakukan configuration tambahan atau menambah system dependency lain.
