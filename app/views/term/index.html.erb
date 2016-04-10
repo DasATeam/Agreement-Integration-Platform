@@ -1,0 +1,23 @@
+<h2>Terms &amp; Conditions</h2>
+
+<p>Dengan menggunakan produk Veritrans, maka anda menyetujui ketentuan berikut:</p>
+
+<% @term.points.each do |term_child1| %>
+  <h3><%= term_child1.isi %></h3>
+
+  <% term_child1.points.each do |term_child2| %>
+  	<p><%= term_child2.isi %></p>
+  <% end %>
+<% end %>
+
+<%= form_for :agreement do |f| %>
+  <p>
+    <%= check_box_tag :has_agree %>
+    <%= label_tag :has_agree, "I agree to the terms & conditions" %><br>
+  </p>
+  
+  <p>
+    <%= f.submit %>
+   <%= success %>
+  </p>
+<% end %>

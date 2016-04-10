@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160313194245) do
+ActiveRecord::Schema.define(version: 20160327235810) do
 
   create_table "agreement_channels", force: :cascade do |t|
     t.datetime "created_at",      null: false
@@ -22,12 +22,13 @@ ActiveRecord::Schema.define(version: 20160313194245) do
   end
 
   create_table "agreements", force: :cascade do |t|
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.string   "PKSNumber",    null: false
-    t.string   "ApproverName"
-    t.string   "ApproverRole"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "pks_number",    null: false
+    t.string   "approver_name"
+    t.string   "approver_role"
     t.integer  "merchant_id"
+    t.boolean  "has_agree"
   end
 
   create_table "bank_accounts", force: :cascade do |t|
@@ -38,8 +39,6 @@ ActiveRecord::Schema.define(version: 20160313194245) do
     t.integer "merchant_id"
   end
 
-  add_index "bank_accounts", ["merchant_id"], name: "index_bank_accounts_on_merchant_id"
-
   create_table "channel_types", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -49,12 +48,36 @@ ActiveRecord::Schema.define(version: 20160313194245) do
     t.string   "charge"
   end
 
+  create_table "channel_types_document_types", force: :cascade do |t|
+    t.integer "document_type_id"
+    t.integer "channel_type_id"
+  end
+
+  add_index "channel_types_document_types", ["channel_type_id"], name: "index_channel_types_document_types_on_channel_type_id"
+  add_index "channel_types_document_types", ["document_type_id"], name: "index_channel_types_document_types_on_document_type_id"
+
+  create_table "document_types", force: :cascade do |t|
+    t.string "name"
+  end
+
   create_table "merchant_customer_supports", force: :cascade do |t|
     t.string  "email",       null: false
     t.string  "telephone"
     t.string  "emergency"
     t.integer "merchant_id"
   end
+
+  create_table "merchant_documents", force: :cascade do |t|
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "merchant_id"
+    t.integer  "agreement_id"
+    t.integer  "document_type_id"
+    t.string   "path"
+  end
+
+  add_index "merchant_documents", ["agreement_id"], name: "index_merchant_documents_on_agreement_id"
+  add_index "merchant_documents", ["merchant_id"], name: "index_merchant_documents_on_merchant_id"
 
   create_table "merchant_operationals", force: :cascade do |t|
     t.string  "email",       null: false
@@ -97,6 +120,16 @@ ActiveRecord::Schema.define(version: 20160313194245) do
     t.string   "registrationlink"
     t.integer  "user_id"
   end
+
+  create_table "points", force: :cascade do |t|
+    t.string   "isi"
+    t.string   "nomor"
+    t.integer  "point_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "points", ["point_id"], name: "index_points_on_point_id"
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
