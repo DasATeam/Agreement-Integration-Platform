@@ -13,7 +13,7 @@ class AgreementController < ApplicationController
 				#generate hash of regist link
 				require 'digest/md5'
 				link = Digest::MD5.hexdigest(@user.email)
-				@merchant.registrationlink = link
+				@merchant.registration_link = link
 				@merchant.save()
 
 				# Create Agreement

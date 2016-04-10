@@ -1,20 +1,22 @@
 Rails.application.routes.draw do
 
   # resources :merchant
-  
-  get 'merchant/form' => 'merchantform#edit'
-  post 'merchant/form' => 'merchantform#update'
+  # root to: 'controller#method'
 
-  get 'sales/agreement/new' => 'agreement#new'
+
+  get 'sales/agreement/new' => 'agreement#new' # as create_new_agreement
   post'sales/agreement/new' => 'agreement#create'
-  get 'sales/agreement/channel'=> 'agreement#newchannel'
+  get 'sales/agreement/channel'=> 'agreement#newchannel' # as create_new_channel
   post 'sales/agreement/channel' => 'agreement#channeling'
 
-  get 'merchant/new/:hash' => 'user#merchant_new'
-  get 'merchant/document' => 'document#index'
+  get 'merchant/new/:hash' => 'user#merchant_new' # as merchant_dashboard
+  get 'merchant/form' => 'merchantform#edit' # as merchant_form
+  post 'merchant/form' => 'merchantform#update'
+  
+  get 'merchant/document' => 'document#index' # as merchant_document
   post 'merchant/document' => 'document#upload'
 
-  get 'merchant/terms' => 'term#index'
+  get 'merchant/terms' => 'term#index' # as merchant_terms
   post 'merchant/terms' => 'term#agree'
 
   # The priority is based upon order of creation: first created -> highest priority.

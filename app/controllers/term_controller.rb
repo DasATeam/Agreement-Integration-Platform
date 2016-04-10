@@ -1,5 +1,6 @@
 class TermController < ApplicationController
   def index
+    # TODO: Should check first if merchant already fill the form
     @term = Point.first
 
     render "index"
@@ -11,6 +12,6 @@ class TermController < ApplicationController
     @agreement.has_agree = true
     @agreement.save
 
-    redirect_to controller: "user", action: "merchant_new", hash: @merchant.registrationlink, success: "has agreed"
+    redirect_to controller: "user", action: "merchant_new", hash: @merchant.registration_link, success: "has agreed"
   end
 end
