@@ -6,6 +6,5 @@ class CreateMerchantCustomerSupports < ActiveRecord::Migration
       t.string :emergency
       t.references(:merchant, foreign_key: true)
     end
-
   end
 end
