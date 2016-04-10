@@ -5,11 +5,5 @@
 	<%= f.text_field :website %> <br/>
 	Merchant contact email: <br/>
 	<%= f.text_field :email %> <br/>
-
-	Channels: <br/>
-	<% for @item in @channels %>
-		<%=	f.check_box(@item.id.to_s()) %> <%= @item.name %> <br/>
-	<% end %>
-
 	<%= f.submit "Create", :class => "btn" %>
-<% end %> 
+<% end %>
