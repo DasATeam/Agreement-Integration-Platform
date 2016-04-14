@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160327235810) do
+ActiveRecord::Schema.define(version: 20160328015922) do
 
   create_table "agreement_channels", force: :cascade do |t|
     t.datetime "created_at",      null: false
@@ -32,10 +32,10 @@ ActiveRecord::Schema.define(version: 20160327235810) do
   end
 
   create_table "bank_accounts", force: :cascade do |t|
-    t.string  "accnumber",   null: false
+    t.string  "acc_number",  null: false
     t.string  "name"
-    t.string  "accholder"
-    t.string  "acctype"
+    t.string  "acc_holder"
+    t.string  "acc_type"
     t.integer "merchant_id"
   end
 
@@ -103,21 +103,21 @@ ActiveRecord::Schema.define(version: 20160327235810) do
   end
 
   create_table "merchants", force: :cascade do |t|
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.string   "name"
     t.string   "website"
     t.string   "email"
     t.string   "city"
     t.string   "address"
-    t.integer  "officestatus"
-    t.string   "typeofproduct"
-    t.string   "pricerange"
-    t.date     "timesincestarted"
-    t.integer  "ownershiptype"
-    t.decimal  "revenueseachmonth"
-    t.decimal  "creditcardpaymentratio"
-    t.string   "registrationlink"
+    t.integer  "office_status"
+    t.string   "type_of_product"
+    t.string   "price_range"
+    t.date     "time_since_started"
+    t.integer  "ownership_type"
+    t.decimal  "revenues_each_month"
+    t.decimal  "credit_card_payment_ratio"
+    t.string   "registration_link"
     t.integer  "user_id"
   end
 

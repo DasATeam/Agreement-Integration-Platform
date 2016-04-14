@@ -1,9 +1,7 @@
 <%= form_for(:form) do |f| %>
-
-Channels: <br/>
+	Channels: <br/>
 	<% for @item in @channels %>
 		<%=	f.check_box(@item.id.to_s()) %> <%= @item.name %> <br/>
 	<% end %>
-
 	<%= f.submit "Select Channels", :class => "btn" %>
-<% end %> 
+<% end %>
