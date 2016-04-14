@@ -17,4 +17,17 @@ class DocumentController < ApplicationController
 
     redirect_to action: "index"
   end
+
+  def download
+    user = User.find(session[:user_id])
+    merchant_documents = user.merchant.merchant_documents
+
+    @documents = []
+    # Get DocumentTypes id
+    merchant_documents.each do |merchant_document|
+      if ( merchant_document.document_type.is_additional )
+        @documents.push(merchant_document.document_type)
+      end
+    end
+  end
 end
