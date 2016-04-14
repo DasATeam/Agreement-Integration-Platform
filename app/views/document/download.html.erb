@@ -1,0 +1,10 @@
+<h3>Additional Documents</h3>
+
+<% @i = 0%>
+<% @documents.each do |document| %>
+	<%= @i=@i+1 %>
+	<a href="http://www.google.com">
+	<h3><%= document.name %></h3><br> </a>
+	<h3>---</h3>
+	<br>
+<% end %>
