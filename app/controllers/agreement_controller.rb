@@ -9,7 +9,7 @@ class AgreementController < ApplicationController
 				@user.merchant = @merchant
 				@user.role = 'merchant'
 				@user.save()
-				
+
 				# Generate hash of registration link
 				require 'digest/md5'
 				link = Digest::MD5.hexdigest(@user.email)
@@ -19,11 +19,16 @@ class AgreementController < ApplicationController
 				# Create Agreement
 				date = Date.today
 				if date.mon / 10 == 1
-					month = "#{date.year}-#{date.mon}%"
+					month = "#{date.year}-#{date.mon}"
 				else
-					month = "#{date.year}-0#{date.mon}%"
+					month = "#{date.year}-0#{date.mon}"
 				end
-				agreementsThisMonth = Agreement.where("created_at LIKE (?)", month)
+
+				# Get the number of agreements made this month
+				agreementsThisMonth = Agreement.all.select do |x|
+					x.created_at.to_s[0..6] == month
+				end
+
 				@agreement = Agreement.create(pks_number: "#{agreementsThisMonth.size + 1}/PKS-M/VT/#{to_roman(date.mon)}/#{date.year}")
 				@agreement.merchant = @merchant
 				@agreement.save()
