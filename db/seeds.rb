@@ -6,12 +6,18 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-ktp = DocumentType.create(name: "KTP")
-npwp = DocumentType.create(name: "NPWP")
-siup = DocumentType.create(name: "SIUP")
-tdp = DocumentType.create(name: "TDP")
-sk = DocumentType.create(name: "SK Menteri")
-buktiKantor = DocumentType.create(name: "Tanda Bukti Kepemilikan / Surat Sewa Kantor")
+ktp = DocumentType.create(name: "KTP", is_additional: false)
+npwp = DocumentType.create(name: "NPWP", is_additional: false)
+siup = DocumentType.create(name: "SIUP", is_additional: false)
+tdp = DocumentType.create(name: "TDP", is_additional: false)
+sk = DocumentType.create(name: "SK Menteri", is_additional: false)
+buktiKantor = DocumentType.create(name: "Tanda Bukti Kepemilikan / Surat Sewa Kantor", is_additional: false)
+
+form_bca = DocumentType.create(name: "Form BCA", is_additional: true)
+form_bni = DocumentType.create(name: "Form BNI", is_additional: true)
+form_bri = DocumentType.create(name: "Form BRI", is_additional: true)
+form_mandiri = DocumentType.create(name: "Form Mandiri", is_additional: true)
+form_bca2 = DocumentType.create(name: "Form BCA lampiran", is_additional: true)
 
 channels = {}
 5.times do |i|
@@ -22,19 +28,32 @@ channels[0].documents << ktp
 
 channels[1].documents << ktp
 channels[1].documents << npwp
+channels[1].documents << form_bca
+channels[1].documents << form_bca2
 
 channels[2].documents << ktp
 channels[2].documents << npwp
 channels[2].documents << buktiKantor
+channels[2].documents << form_bni
 
 channels[3].documents << siup
 channels[3].documents << tdp
 channels[3].documents << buktiKantor
+channels[2].documents << form_bri
 
 channels[4].documents << siup
 channels[4].documents << sk
 channels[4].documents << tdp
 channels[4].documents << buktiKantor
+channels[4].documents << form_mandiri
+
+link1 = DocumentLink.create(link: "www.google.com")
+link2 = DocumentLink.create(link: "www.tumblr.com")
+link1.document_type = form_bca
+link2.document_type = form_bca2
+link1.save()
+link2.save()
+
 
 root = Point.create(id: 0, nomor: "0", isi: "")
 p1 = Point.create(nomor: "1", isi: "Definisi")
