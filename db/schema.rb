@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160328015922) do
+ActiveRecord::Schema.define(version: 20160414130030) do
 
   create_table "agreement_channels", force: :cascade do |t|
     t.datetime "created_at",      null: false
@@ -61,10 +61,11 @@ ActiveRecord::Schema.define(version: 20160328015922) do
   end
 
   create_table "merchant_customer_supports", force: :cascade do |t|
-    t.string  "email",       null: false
+    t.string  "email",        null: false
     t.string  "telephone"
     t.string  "emergency"
     t.integer "merchant_id"
+    t.boolean "is_completed"
   end
 
   create_table "merchant_documents", force: :cascade do |t|
@@ -80,26 +81,29 @@ ActiveRecord::Schema.define(version: 20160328015922) do
   add_index "merchant_documents", ["merchant_id"], name: "index_merchant_documents_on_merchant_id"
 
   create_table "merchant_operationals", force: :cascade do |t|
-    t.string  "email",       null: false
+    t.string  "email",        null: false
     t.string  "telephone"
     t.string  "emergency"
     t.integer "merchant_id"
+    t.boolean "is_completed"
   end
 
   create_table "merchant_owners", force: :cascade do |t|
-    t.string  "email",       null: false
+    t.string  "email",        null: false
     t.string  "name"
     t.string  "address"
     t.string  "telephone"
     t.integer "merchant_id"
+    t.boolean "is_completed"
   end
 
   create_table "merchant_pics", force: :cascade do |t|
-    t.string  "email",       null: false
+    t.string  "email",        null: false
     t.string  "name"
     t.string  "address"
     t.string  "telephone"
     t.integer "merchant_id"
+    t.boolean "is_completed"
   end
 
   create_table "merchants", force: :cascade do |t|
@@ -119,6 +123,8 @@ ActiveRecord::Schema.define(version: 20160328015922) do
     t.decimal  "credit_card_payment_ratio"
     t.string   "registration_link"
     t.integer  "user_id"
+    t.boolean  "info_is_completed"
+    t.boolean  "documents_is_completed"
   end
 
   create_table "points", force: :cascade do |t|
@@ -131,12 +137,30 @@ ActiveRecord::Schema.define(version: 20160328015922) do
 
   add_index "points", ["point_id"], name: "index_points_on_point_id"
 
+  create_table "sales", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "name"
+    t.integer  "user_id"
+  end
+
+  add_index "sales", ["user_id"], name: "index_sales_on_user_id"
+
+  create_table "sales_agreements", force: :cascade do |t|
+    t.integer "sales_id"
+    t.integer "agreement_id"
+  end
+
+  add_index "sales_agreements", ["agreement_id"], name: "index_sales_agreements_on_agreement_id"
+  add_index "sales_agreements", ["sales_id"], name: "index_sales_agreements_on_sales_id"
+
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "email",      null: false
     t.string   "pass"
     t.string   "role"
+    t.string   "salt"
   end
 
 end
