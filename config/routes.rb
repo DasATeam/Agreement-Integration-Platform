@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   
   get 'merchant/document' => 'document#index' # as merchant_document
   post 'merchant/document' => 'document#upload'
+  get 'merchant/document/download' => 'document#download'
 
   get 'merchant/terms' => 'term#index' # as merchant_terms
   post 'merchant/terms' => 'term#agree'
