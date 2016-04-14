@@ -1,5 +1,6 @@
-test page: <br/>
-<a href="<%= request.base_url + '/document' %>">document</a> <br/>
-<a href="<%= request.base_url + '/merchant/form' %>">isi form</a> <br/>
-<a href="<%= request.base_url + '/merchant/document' %>">document</a> <br/>
-<a href="<%= request.base_url + '/merchant/terms' %>">terms & conditions</a><br/>
+<div class="container">
+  <p>Please click on the link below:</p>
+  <a href="<%= request.base_url + '/merchant/form' %>" class="btn btn-default">Merchant Information Form</a>
+  <a href="<%= request.base_url + '/merchant/document' %>" class="btn btn-default">Upload Documents</a>
+  <a href="<%= request.base_url + '/merchant/terms' %>" class="btn btn-default">Terms & Conditions</a>
+</div>
