@@ -16,4 +16,7 @@
 !/log/.keep
 /tmp
 
+# Ignore all uploaded documents.
+/public/uploads
+
 .env
