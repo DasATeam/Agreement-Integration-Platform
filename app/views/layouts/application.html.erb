@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Agreement Integration Platform</title>
+  <title>Veritrans | Agreement Integration Platform</title>
+  <link rel="icon" type="image/x-icon" href="<%= request.base_url + '/assets/veritrans.ico' %>">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -25,12 +26,14 @@
       </div>
     </div>
   </nav>
+
   <div class="vertical-space" style="height:25px;"></div>
   <%= yield %>
   <div class="vertical-space" style="height:100px;"></div>
+
   <footer class="footer">
     <div class="container">
-      <p class="text-muted">Copyright &copy; 2016 | Veritrans The A Team.</p>
+      <p class="text-muted">Copyright &copy; 2016 The A Team.</p>
     </div>
   </footer>
 </body>
