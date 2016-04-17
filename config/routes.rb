@@ -3,11 +3,11 @@ Rails.application.routes.draw do
   # resources :merchant
   # root to: 'controller#method'
 
-
   get 'sales/agreement/new' => 'agreement#new' # as create_new_agreement
   post'sales/agreement/new' => 'agreement#create'
   get 'sales/agreement/channel'=> 'agreement#newchannel' # as create_new_channel
   post 'sales/agreement/channel' => 'agreement#channeling'
+  post 'merchant/send-mail/:merchant_id' => 'merchant#send_mail'
 
   get 'merchant/new/:hash' => 'user#merchant_new' # as merchant_dashboard
   get 'merchant/form' => 'merchantform#edit' # as merchant_form
