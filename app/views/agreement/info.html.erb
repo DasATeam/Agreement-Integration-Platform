@@ -7,4 +7,12 @@ Website: <br/>
 Merchant Contact Email: <br/>
 <%= @user.email %> <br/>
 Registration link: <br/>
-<a href="<%= request.base_url + "/merchant/new/" + @merchant.registration_link %>"><%= request.base_url + "/merchant/new/" + @merchant.registration_link %></a> <br/>
+<a href="<%= request.base_url + "/merchant/new/" + @merchant.registration_link %>"><%= request.base_url + "/merchant/new/" + @merchant.registration_link %></a> <br/> <br/>
+
+Additional Message in Notice: <br/>
+
+<%= form_tag "/merchant/send-mail/" + @merchant.id.to_s do |f|%>
+  <%= text_area_tag :content %> <br/>
+  <%= submit_tag "Submit" %>
+<% end -%>
+<a href="/test">Mailer</a>
