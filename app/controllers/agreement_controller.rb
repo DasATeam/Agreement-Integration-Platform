@@ -88,6 +88,14 @@ class AgreementController < ApplicationController
 		render "info"
 	end
 
+def merchant_details
+	if session[:params] != nil
+      @merchant = Merchant.find(session[:params])
+      @agreement = @merchant.agreements.first
+      @channels = @agreement.channels.all()
+      @required_docs = @merchant.merchant_documents.all()
+  end
+
 	private
 		def to_roman(number)
 			roman_numbers = {
