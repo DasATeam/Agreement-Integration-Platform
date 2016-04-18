@@ -11,12 +11,12 @@ Revenue per Month: <%= @merchant.revenues_each_month %> <br/>
 Total Sales with Credit Card: <%= @merchant.credit_card_payment_ratio %> <br/>
 
 Submitted Documents:
-<%= for @item in @required_docs %>
-    <%= @required_docs.name %> <br/>
-<%= end %>
+<% for item in @required_docs %>
+    <%= item.name %> <br/>
+<% end %>
 
 Selected Channels:
-<%= for @item in @channels %>
-    <%= @item.name %> <br/>
-    <%= @item.price %> <br/><br/>
-<%= end %>
+<% for item in @channels %>
+    <%= item.name %> <br/>
+    <%= item.price %> <br/><br/>
+<% end %>

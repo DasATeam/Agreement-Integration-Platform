@@ -92,9 +92,10 @@ def merchant_details
 	if session[:params] != nil
       @merchant = Merchant.find(session[:params])
       @agreement = @merchant.agreements.first
-      @channels = @agreement.channels.all()
-      @required_docs = @merchant.merchant_documents.all()
+      @channels = @agreement.channels
+      @required_docs = @merchant.merchant_documents
   end
+end
 
 	private
 		def to_roman(number)
