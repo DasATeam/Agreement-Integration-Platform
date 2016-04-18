@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post'sales/agreement/new' => 'agreement#create'
   get 'sales/agreement/channel'=> 'agreement#newchannel' # as create_new_channel
   post 'sales/agreement/channel' => 'agreement#channeling'
+  get 'sales/list_merchant' => 'sales#list_merchant' # as sales dashboard
 
   get 'merchant/new/:hash' => 'user#merchant_new' # as merchant_dashboard
   get 'merchant/form' => 'merchantform#edit' # as merchant_form
