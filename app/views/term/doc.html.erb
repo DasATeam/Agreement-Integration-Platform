@@ -1,0 +1,20 @@
+<p>Nama Dagang <i>Merchant</i> : <%= "(NamaDagang)" %></p>
+<p>Jenis Usaha : <%= "(JenisUsaha)" %></p>
+
+<p>Perjanjian Kerjasama <i>Merchant</i> Internet (untuk selanjutnya disebut &quot;<b>Payment Gateway</b>&quot;, termasuk Lampiran-Lampirannya) ini dibuat dan ditandatangani pada hari <%= "(hari)" %> tanggal <%= "(tanggal)" %> oleh dan antara:</p>
+
+<p>I. <b>PT. Midtrans</b>, berkedudukan di Jakarta Pusat, berkantor pusat di MidPlaza 2, Lantai 24, Jl. Jenderal Sudirman Kav. 10-11, Jakarta 10220, yang didirikan berdasarkan Akta Pendirian No. 07 tanggal 14 Desember 2011 yang dibuat dihadapan Silvia Veronika SH, Notaris di Jakarta, yang telah memperoleh pengesahan badan hukum perseroan dari Menteri Hukum dan Hak Asasi Manusia Republik Indonesia Nomor AHU-01183.AH.01.01.Tahun 2012 tertanggal 09 Januari 2012; dalam hal ini diwakili oleh Budi Gandasoebrata dalam jabatannya selaku Direktur dan karenanya sah mewakili serta berwenang bertindak untuk dan atas nama PT. Midtrans, selanjutnya disebut &quot;<b>Payment Gateway</b>&quot;.</p>
+
+<p>II. <b><%= "(Website)" %></b>, berkedudukan di <b><%= "(kantor)" %></b>, berkantor pusat di <b><%= "(AlamatKantor)" %></b> ,dalam hal ini diwakili oleh <b><%= "(A/N)" %></b> dalam jabatannya selaku <b><%= "(Role)" %></b> dari dan oleh karenanya sah dan berwenang bertindak untuk dan atas nama <b><%= "(Website)" %></b>, yang selanjutnya disebut &quot;<b>Merchant</b>&quot;.</p>
+
+<p><i>Payment Gateway</i> dan <i>Merchant</i> secara bersama-sama selanjutnya akan disebut &quot;<b>Para Pihak</b>&quot; dan sendiri-sendiri disebut &quot;<b>Pihak</b>&quot;.</p>
+
+<p>Dengan menggunakan produk Veritrans, maka anda menyetujui ketentuan berikut:</p>
+
+<% @term.points.each do |term_child1| %>
+  <h3><%= term_child1.isi %></h3>
+
+  <% term_child1.points.each do |term_child2| %>
+  	<p><%= term_child2.isi %></p>
+  <% end %>
+<% end %>

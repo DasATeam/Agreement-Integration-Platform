@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   post 'merchant/document' => 'document#upload'
 
   get 'merchant/terms' => 'term#index' # as merchant_terms
+  get 'doc' => 'term#doc'
   post 'merchant/terms' => 'term#agree'
 
   # The priority is based upon order of creation: first created -> highest priority.

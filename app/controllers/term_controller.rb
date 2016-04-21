@@ -6,6 +6,17 @@ class TermController < ApplicationController
     render "index"
   end
 
+  def doc
+    @term = Point.first
+    respond_to do |format|
+      format.html do
+        render :pdf => "Agreement",
+        :disposition => "attachment",
+        :template => "term/doc.html.erb"
+      end
+    end
+  end
+
   def agree
     @merchant = User.find(session[:user_id]).merchant
     @agreement = @merchant.agreements.first
