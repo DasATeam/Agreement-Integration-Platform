@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   get 'merchant/terms' => 'term#index' # as merchant_terms
   post 'merchant/terms' => 'term#agree'
 
-  get 'merchant/details/:params' => 'agreement#merchant_details'
+  get 'merchant/details/:merchant_id' => 'agreement#merchant_details'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

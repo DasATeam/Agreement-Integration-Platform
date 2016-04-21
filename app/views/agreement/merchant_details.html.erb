@@ -8,15 +8,16 @@ Type of Business: <%= @merchant.type_of_product %> <br/>
 Price Range: <%= @merchant.price_range %> <br/>
 Ownership: <%= @merchant.ownership_type %> <br/>
 Revenue per Month: <%= @merchant.revenues_each_month %> <br/>
-Total Sales with Credit Card: <%= @merchant.credit_card_payment_ratio %> <br/>
+Total Sales with Credit Card: <%= @merchant.credit_card_payment_ratio %> <br/><br/>
 
-Submitted Documents:
+Submitted Documents: <br/>
 <% for item in @required_docs %>
-    <%= item.name %> <br/>
-<% end %>
+    <%= item.document_type.name %> <br/>
+<% end %><br/><br/>
 
-Selected Channels:
-<% for item in @channels %>
+Selected Channels: <br/>
+<% for ac in @channels %>
+		<% item = ac.channel_type %>
     <%= item.name %> <br/>
-    <%= item.price %> <br/><br/>
+    <%= item.charge %> <br/><br/>
 <% end %>

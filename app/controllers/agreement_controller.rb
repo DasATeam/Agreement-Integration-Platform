@@ -89,10 +89,14 @@ class AgreementController < ApplicationController
 	end
 
 def merchant_details
-	if session[:params] != nil
-      @merchant = Merchant.find(session[:params])
+	if params[:merchant_id] != nil
+			ik = params[:merchant_id].to_i
+			puts "asdasdasdasdasdasd"
+			puts "popopopopoop"
+			puts ik
+      @merchant = Merchant.find(ik)
       @agreement = @merchant.agreements.first
-      @channels = @agreement.channels
+      @channels = @agreement.agreement_channels
       @required_docs = @merchant.merchant_documents
   end
 end

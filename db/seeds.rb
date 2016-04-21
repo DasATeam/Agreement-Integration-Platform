@@ -6,12 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-userr = User.create(email: "hfhf@hfls.com", pass: "hoho", role: "Petani")
-chris = Merchant.create(name: "Chris", website: "www.chris.com", email: "chris@chris.com", city: "Pamulang", address: "Pamulang Permai", office_status: "1", type_of_product: "Buah-buahan", price_range: "5000-150000", time_since_started: DateTime.parse("09/01/2009 17:00"), ownership_type: 3, revenues_each_month: 5000000, credit_card_payment_ratio: 0.5, registration_link: "jfjfjf.fkfkf.vom", user_id: 1)
-agreeme = Agreement.create(pks_number: "81oj38f", approver_name: "Jaja Miharja", approver_role: "Dokter", merchant_id: 1, has_agree: false)
-agrrCh = AgreementChannel.create(agreement_id: 1, channel_type_id: 1, customprice: "5000")
-docss = MerchantDocument.create(merchant_id: 5, agreement_id: 1, document_type_id: 1, path: "Hahaha")
-
 ktp = DocumentType.create(name: "KTP")
 npwp = DocumentType.create(name: "NPWP")
 siup = DocumentType.create(name: "SIUP")
@@ -284,3 +278,22 @@ p14.points << p145
 # ")
 # p14 = Pasal.create(nomor_pasal: "14", nama_pasal: "Ketentuan Lainnya
 # ")
+
+#seed mock data
+
+userr = User.create(id: 1, email: "hfhf@hfls.com", pass: "hoho", role: "Petani")
+
+chris = Merchant.create(id: 1, name: "Chris", website: "www.chris.com", email: "chris@chris.com", city: "Pamulang", address: "Pamulang Permai", office_status: "1", type_of_product: "Buah-buahan", price_range: "5000-150000", time_since_started: DateTime.parse("09/01/2009 17:00"), ownership_type: 3, revenues_each_month: 5000000, credit_card_payment_ratio: 0.5, registration_link: "jfjfjf.fkfkf.vom", user_id: 1)
+agreeme = Agreement.create(id: 1, pks_number: "81oj38f", approver_name: "Jaja Miharja", approver_role: "Dokter", merchant_id: 1, has_agree: false)
+agrrCh = AgreementChannel.create(agreement_id: 1, channel_type_id: 1, customprice: "5000")
+docss = MerchantDocument.create(merchant_id: 5, agreement_id: 1, document_type_id: 1, path: "Hahaha")
+
+userr.merchant = chris
+userr.save
+chris.agreements << agreeme
+agreeme.agreement_channels << agrrCh
+agreeme.merchant_documents << docss
+
+
+
+
