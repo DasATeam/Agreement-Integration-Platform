@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160328015922) do
+ActiveRecord::Schema.define(version: 20160327235810) do
 
   create_table "agreement_channels", force: :cascade do |t|
     t.datetime "created_at",      null: false
