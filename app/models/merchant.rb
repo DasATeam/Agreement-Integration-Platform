@@ -7,7 +7,8 @@ class Merchant < ActiveRecord::Base
 	has_one(:merchant_owner)
 	has_one(:merchant_pic)
 	has_one(:bank_account)
-	has_many(:sales, through: :sales_merchants)
+	# has_many(:sales, through: :sales_merchants)
+	has_and_belongs_to_many(:sales, class_name: 'Sales', join_table: 'sales_merchants')
 
   def document_check
     self.merchant_documents.each do |doc|
