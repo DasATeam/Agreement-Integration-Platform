@@ -1,9 +1,10 @@
 class MerchantMailer < ApplicationMailer
- default from: 'notifications@example.com'
+ # default from: 'theateam.@example.com'
  
   def welcome_email(merchant, content)
     @merchant = merchant
+    @user = merchant.user
     @content = content
-    mail(to: @merchant.email, subject: 'Welcome to My Awesome Site')
+    mail(to: @user.email, subject: 'Welcome to My Awesome Site')
   end
 end
