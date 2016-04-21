@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160414130030) do
+ActiveRecord::Schema.define(version: 20160417104558) do
 
   create_table "agreement_channels", force: :cascade do |t|
     t.datetime "created_at",      null: false
@@ -154,13 +154,22 @@ ActiveRecord::Schema.define(version: 20160414130030) do
   add_index "sales_agreements", ["agreement_id"], name: "index_sales_agreements_on_agreement_id"
   add_index "sales_agreements", ["sales_id"], name: "index_sales_agreements_on_sales_id"
 
+  create_table "sales_merchants", force: :cascade do |t|
+    t.integer  "merchant_id"
+    t.integer  "sales_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "sales_merchants", ["merchant_id"], name: "index_sales_merchants_on_merchant_id"
+  add_index "sales_merchants", ["sales_id"], name: "index_sales_merchants_on_sales_id"
+
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "email",      null: false
     t.string   "pass"
     t.string   "role"
-    t.string   "salt"
   end
 
 end
