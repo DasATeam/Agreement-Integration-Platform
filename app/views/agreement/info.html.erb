@@ -11,7 +11,7 @@ Registration link: <br/>
 
 Additional Message in Notice: <br/>
 
-<%= form_tag "/merchant/send-mail/" + @merchant.id.to_s do |f|%>
+<%= form_tag ("/merchant/send-mail/" + @merchant.id.to_s) do |f|%>
   <%= text_area_tag :content %> <br/>
   <%= submit_tag "Submit" %>
 <% end -%>
