@@ -47,13 +47,21 @@ channels[4].documents << tdp
 channels[4].documents << buktiKantor
 channels[4].documents << form_mandiri
 
-link1 = DocumentLink.create(link: "www.google.com")
-link2 = DocumentLink.create(link: "www.tumblr.com")
-link1.document_type = form_bca
-link2.document_type = form_bca2
-link1.save()
-link2.save()
-
+link_bca = DocumentLink.create(link: "https://drive.google.com/open?id=0Bw3siKQNp04EcWtxNjFOSkNyVWc")
+link_bni = DocumentLink.create(link: "https://drive.google.com/open?id=0Bw3siKQNp04ESlc1LWt6bWZ0b00")
+link_bri = DocumentLink.create(link: "https://drive.google.com/open?id=0Bw3siKQNp04ENHR4Skl3TmhsM0k")
+link_mandiri = DocumentLink.create(link: "https://drive.google.com/open?id=0Bw3siKQNp04ER0hvb0Q4Z2dvX00")
+link_bca2 = DocumentLink.create(link: "https://drive.google.com/open?id=0Bw3siKQNp04EQm9CNGFKY1VKbnMom")
+link_bca.document_type = form_bca
+link_bni.document_type = form_bni
+link_bri.document_type = form_bri
+link_mandiri.document_type = form_mandiri
+link_bca2.document_type = form_bca2
+link_bca.save()
+link_bni.save()
+link_bri.save()
+link_mandiri.save()
+link_bca2.save()
 
 root = Point.create(id: 0, nomor: "0", isi: "")
 p1 = Point.create(nomor: "1", isi: "Definisi")
