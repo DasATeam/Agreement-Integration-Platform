@@ -1,7 +1,7 @@
 class MerchantformController < ApplicationController
+	before_action :require_merchant
 
 	def edit
-		
 	end
 
 	def update
@@ -64,5 +64,5 @@ class MerchantformController < ApplicationController
 	def bank_account_params
 		params.require(:bank_account).permit(:acc_number, :name, :acc_holder, :acc_type)
 	end
-	
+
 end

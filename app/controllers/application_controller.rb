@@ -14,10 +14,10 @@ class ApplicationController < ActionController::Base
   end
 
   def require_sales
-    redirect_to '/' unless current_user.sales?
+    redirect_to '/' unless current_user && @current_user.sales?
   end
 
   def require_merchant
-    redirect_to '/' unless current_user.merchant?
+    redirect_to '/' unless current_user && @current_user.merchant?
   end
 end

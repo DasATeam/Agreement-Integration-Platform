@@ -1,4 +1,6 @@
 class AgreementController < ApplicationController
+	before_action :require_sales
+
 	def new
 	end
 

@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
-  # resources :merchant
-  # root to: 'controller#method'
+  root to: redirect('/login')
 
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
