@@ -91,9 +91,6 @@ class AgreementController < ApplicationController
 def merchant_details
 	if params[:merchant_id] != nil
 			ik = params[:merchant_id].to_i
-			puts "asdasdasdasdasdasd"
-			puts "popopopopoop"
-			puts ik
       @merchant = Merchant.find(ik)
       @agreement = @merchant.agreements.first
       @channels = @agreement.agreement_channels

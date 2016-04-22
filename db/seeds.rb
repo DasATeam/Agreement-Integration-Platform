@@ -293,7 +293,3 @@ userr.save
 chris.agreements << agreeme
 agreeme.agreement_channels << agrrCh
 agreeme.merchant_documents << docss
-
-
-
-
