@@ -3,17 +3,22 @@ Rails.application.routes.draw do
   # resources :merchant
   # root to: 'controller#method'
 
+  get 'login' => 'sessions#new'
+  post 'login' => 'sessions#create'
+  get 'logout' => 'sessions#destroy'
+  delete 'logout' => 'sessions#destroy'
 
   get 'sales/agreement/new' => 'agreement#new' # as create_new_agreement
   post'sales/agreement/new' => 'agreement#create'
   get 'sales/agreement/channel'=> 'agreement#newchannel' # as create_new_channel
   post 'sales/agreement/channel' => 'agreement#channeling'
+  get 'sales/list_merchant' => 'sales#list_merchant' # as sales dashboard
 
   get 'merchant/new/:hash' => 'user#merchant_set_password' # as merchant_dashboard
   post 'merchant/new/:hash' => 'user#merchant_set_password' # as merchant_dashboard
   get 'merchant/form' => 'merchantform#edit' # as merchant_form
   post 'merchant/form' => 'merchantform#update'
-  
+
   get 'merchant/document' => 'document#index' # as merchant_document
   post 'merchant/document' => 'document#upload'
 

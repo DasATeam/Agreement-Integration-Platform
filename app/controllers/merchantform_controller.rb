@@ -6,7 +6,8 @@ class MerchantformController < ApplicationController
 
 	def update
 	  check = true
-	  @merchant = Merchant.find(session[:user_id])
+	  @user = User.find(session[:user_id])
+	  @merchant = @user.merchant
 	  @merchant.update(merchant_params)
 	  check = @merchant.save and check
 
@@ -29,6 +30,8 @@ class MerchantformController < ApplicationController
 	  @bank_acc = BankAccount.new(bank_account_params)
 	  @bank_acc.merchant = @merchant
 	  check = @bank_acc.save and check
+
+	  @merchant.information_check
 
     if check
 	    render "success"

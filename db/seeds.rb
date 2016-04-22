@@ -278,3 +278,8 @@ p14.points << p145
 # ")
 # p14 = Pasal.create(nomor_pasal: "14", nama_pasal: "Ketentuan Lainnya
 # ")
+
+dummy_user = User.create(email: 'john@veritrans.com', role: 'sales')
+dummy_user.set_password('ppl')
+
+dummy_sales = Sales.create(name: 'John Cena', user: dummy_user)

@@ -1,0 +1,10 @@
+<%= form_for(:session, url: login_path) do |f| %>
+	Password: <br/>
+  <%= f.email_field :email, :placeholder => "Email" %>
+  <%= f.password_field :password, :placeholder => "Password" %>
+  <%= f.submit "Log in", class: "btn" %>
+<% end %>
+
+<% if flash[:error] %>
+	<div class="notice"><%= flash[:error] %></div>
+<% end %>
