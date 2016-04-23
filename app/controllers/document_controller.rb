@@ -21,12 +21,15 @@ class DocumentController < ApplicationController
   def download
     user = User.find(session[:user_id])
     merchant_documents = user.merchant.merchant_documents
-
+    @channels = user.merchant.agreements.first.agreement_channels
     @documents = []
+    
     # Get DocumentTypes id
     merchant_documents.each do |merchant_document|
       if ( merchant_document.document_type.is_additional )
-        @documents.push(merchant_document.document_type)
+        @documents.push({doc: merchant_document.document_type, link: merchant_document.document_type.link})
+        puts merchant_document.document_type.link
+        puts "HAHAHAHAHAHHAAH"
       end
     end
   end
