@@ -51,7 +51,7 @@ link_bca = DocumentLink.create(link: "https://drive.google.com/open?id=0Bw3siKQN
 link_bni = DocumentLink.create(link: "https://drive.google.com/open?id=0Bw3siKQNp04ESlc1LWt6bWZ0b00")
 link_bri = DocumentLink.create(link: "https://drive.google.com/open?id=0Bw3siKQNp04ENHR4Skl3TmhsM0k")
 link_mandiri = DocumentLink.create(link: "https://drive.google.com/open?id=0Bw3siKQNp04ER0hvb0Q4Z2dvX00")
-link_bca2 = DocumentLink.create(link: "https://drive.google.com/open?id=0Bw3siKQNp04EQm9CNGFKY1VKbnMom")
+link_bca2 = DocumentLink.create(link: "https://drive.google.com/open?id=0Bw3siKQNp04EQm9CNGFKY1VKbnM")
 link_bca.document_type = form_bca
 link_bni.document_type = form_bni
 link_bri.document_type = form_bri

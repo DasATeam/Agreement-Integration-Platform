@@ -28,8 +28,6 @@ class DocumentController < ApplicationController
     merchant_documents.each do |merchant_document|
       if ( merchant_document.document_type.is_additional )
         @documents.push({doc: merchant_document.document_type, link: merchant_document.document_type.link})
-        puts merchant_document.document_type.link
-        puts "HAHAHAHAHAHHAAH"
       end
     end
   end
