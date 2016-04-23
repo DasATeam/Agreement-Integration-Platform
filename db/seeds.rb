@@ -39,7 +39,7 @@ channels[2].documents << form_bni
 channels[3].documents << siup
 channels[3].documents << tdp
 channels[3].documents << buktiKantor
-channels[2].documents << form_bri
+channels[3].documents << form_bri
 
 channels[4].documents << siup
 channels[4].documents << sk
