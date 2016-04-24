@@ -88,6 +88,16 @@ class AgreementController < ApplicationController
 		render "info"
 	end
 
+def merchant_details
+	if params[:merchant_id] != nil
+			ik = params[:merchant_id].to_i
+      @merchant = Merchant.find(ik)
+      @agreement = @merchant.agreements.first
+      @channels = @agreement.agreement_channels
+      @required_docs = @merchant.merchant_documents
+  end
+end
+
 	private
 		def to_roman(number)
 			roman_numbers = {
