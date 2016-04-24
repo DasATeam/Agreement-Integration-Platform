@@ -1,14 +1,31 @@
-<h3>Merchant: <%= @merchant.name %></h3>
-<% @merchant_documents.each do |d| %>
-  <h3><%= d.document_type.name %></h3>
-  <% if d.path %>
-    <%= image_tag d.path %>
-  <% else %>
-    <p>Belum ada file yang diupload</p>
+<div class="container">
+	<ul class="nav nav-tabs">
+	  <li role="presentation"><a href="<%= request.base_url + '/merchant/form' %>">Merchant Information Form</a></li>
+	  <li role="presentation" class="active"><a href="<%= request.base_url + '/merchant/document' %>">Upload Documents</a></li>
+	  <li role="presentation"><a href="<%= request.base_url + '/merchant/terms' %>">Terms & Conditions</a></li>
+	</ul>
+
+  <div class="vertical-space" style="height:20px;"></div>
+  <% @merchant_documents.each do |d| %>
+    <%= form_for :document do |f| %>
+      <div class="vertical-space" style="height:10px;"></div>
+      <div class="form-group">
+        <%= f.label(:document, d.document_type.name) %>
+        <% if d.path %>
+          <div class="row">
+            <div class="col-md-6">
+              <p><%= image_tag(d.path, class: "img-responsive") %></p>
+            </div>
+          </div>
+        <% else %>
+          <p>Belum ada file yang diupload</p>
+        <% end %>
+        <p id="label_<%= d.id.to_s%>"></p>
+        <%= f.label(d.id.to_s, "Choose File", class: "btn btn-default") %>
+        <%= f.file_field(d.id.to_s, {style: "display:none;", onchange: "$('#label_#{d.id.to_s}').html($(this).val());"}) %>
+
+        <%= f.submit 'Upload', :class => 'btn btn-primary' %>
+      </div>
+    <% end %>
   <% end %>
-  <%= form_for :document do |f| %>
-    <%= f.file_field d.id.to_s %><br>
-    <%= f.submit 'Upload', :class => 'btn btn-primary' %>
-  <% end %>
-  <br>
-<% end %>
+</div>
