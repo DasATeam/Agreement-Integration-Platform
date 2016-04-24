@@ -41,6 +41,8 @@ group :development, :test do
   gem 'byebug'
   # framework for testing rails with rspec
   gem 'rspec-rails', '~> 3.4.2'
+  # for feeding test data to the test suite
+  gem 'factory_girl_rails'
 end
 
 group :development do
