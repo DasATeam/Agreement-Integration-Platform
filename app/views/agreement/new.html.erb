@@ -1,0 +1,9 @@
+<%= form_for(:form) do |f| %>
+	Merchant's Name: <br/>
+	<%= f.text_field :name %> <br/>
+	Merchant's Wesbsite: <br/>
+	<%= f.text_field :website %> <br/>
+	Merchant contact email: <br/>
+	<%= f.text_field :email %> <br/>
+	<%= f.submit "Create", :class => "btn" %>
+<% end %>

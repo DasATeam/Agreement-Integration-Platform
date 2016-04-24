@@ -1,11 +1,16 @@
 == Agreement Integration Platform
 === By PPL Veritrans "TheATeam"
 
-==== Installation Instructions
-Untuk instruksi pemasangan, silahkan merujuk pada README di branch <tt>develop</tt>.
+Aplikasi ini berhasil dijalankan di Ruby versi 2.3.
+
+==== Installation Instructions (Development)
+1. Pasang RVM, Ruby 2.3, dan Ruby on Rails di environment Anda. Sangat disarankan menggunakan UNIX (OS X atau Linux).
+2. Clone repository ini.
+3. Jalankan <tt>rake db:migrate</tt> dan <tt>rake db:seed</tt> di Terminal.
+4. Jalankan server WEBrick dengan menjalankan perintah <tt>bin/rails server</tt> di Terminal.
 
 ==== Code Conventions
-Berikut merupakan code conventions penting yang kita terapkan:
+Berikut merupakan code conventions penting yang diterapkan:
 
 - Model menggunakan kata benda singular, sementara nama tabel plural.
 - Nama kelas menggunakan CamelCase, sementara variabel dan database (baik nama tabel maupun atributnya) menggunakan snake_case.
@@ -24,4 +29,3 @@ Hal yang perlu dilakukan ke depannya untuk dokumentasi ini:
 
 - Cara menjalankan test suite
 - Services yang digunakan (job queues, cache servers, search engines, dll)
-- Instruksi deployment (semoga bisa implementasi CI amiin)

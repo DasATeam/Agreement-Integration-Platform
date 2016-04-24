@@ -1,0 +1,159 @@
+<p>General Merchant Info</p>
+	<%= form_for :merchant do |f| %>
+	  <p>
+	    <%= f.label "Name" %><br>
+	    <%= f.text_field :name%>
+	  </p>
+	  <p>
+	    <%= f.label "Website" %><br>
+	    <%= f.text_field :website%>
+	  </p>
+	  <p>
+	    <%= f.label "Email" %><br>
+	    <%= f.text_field :email%>
+	  </p>
+	  <p>
+	    <%= f.label "City" %><br>
+	    <%= f.text_field :city%>
+	  </p>
+	  <p>
+	    <%= f.label "Address" %><br>
+	    <%= f.text_field :address%>
+	  </p>
+	  <p>
+	    <%= f.label "Office Status" %><br>
+	    <%= select_tag(:office_status, options_for_select([['Milik Sendiri', 1], ['Milik Keluarga', 2], ['Kontrak', 3]], 1) ) %>
+	  </p>
+	  <p>
+	    <%= f.label "Type of Product" %><br>
+	    <%= f.text_area :type_of_product %>
+	  </p>
+	  <p>
+	    <%= f.label "Price Range" %><br>
+	    <%= f.text_area :price_range %>
+	  </p>
+	  <p>
+	    <%= f.label "Time Since Started" %><br>
+	    <%= f.text_area :time_since_started %>
+	  </p>
+	  <p>
+	    <%= f.label "Ownership Type" %><br>
+	    <%= select_tag(:ownership_type, options_for_select([['Pemilik', 1], ['Perusahaan', 2], ['Partnership', 3]], 1)) %>
+	  </p>
+	  <p>
+	    <%= f.label "Revenues Per-month" %><br>
+	    <%= f.text_field :revenues_each_month%>
+	  </p>
+	  <p>
+	    <%= f.label "Credit Card Payment Ratio" %><br>
+	    <%= f.text_field :credit_card_payment_ratio%>
+	  </p>
+
+	  <p>PIC Merchant Info</p>
+
+		  <%= fields_for :merchant_pic do |p|%>
+  		  <p>
+		    <%= p.label "Name" %><br>
+		    <%= p.text_field :name%>
+		  </p>
+		  <p>
+		    <%= p.label "Address" %><br>
+		    <%= p.text_field :address%>
+		  </p>
+		  <p>
+		    <%= p.label "Email" %><br>
+		    <%= p.text_field :email%>
+		  </p>
+		  <p>
+		    <%= p.label "Emergency Telephone" %><br>
+		    <%= p.text_field :emergency%>
+		  </p>
+		  <% end %>
+
+	  
+
+	  <p>Merchant Owner Info</p>
+
+	  <%= fields_for :merchant_owner do |ow|%>
+		  <p>
+		    <%= ow.label "Name" %><br>
+		    <%= ow.text_field :name%>
+		  </p>
+		  <p>
+		    <%= ow.label "Address" %><br>
+		    <%= ow.text_field :address%>
+		  </p>
+		  <p>
+		    <%= ow.label "Email" %><br>
+		    <%= ow.text_field :email%>
+		  </p>
+		  <p>
+		    <%= ow.label "Telephone" %><br>
+		    <%= ow.text_field :telephone%>
+		  </p>
+	  <% end %>		  
+	  
+	  <p>Merchant Customer Support Info</p>
+
+	  <%= fields_for :merchant_customer_support do |cs|%>
+		  
+		  <p>
+		    <%= cs.label "Email" %><br>
+		    <%= cs.text_field :email%>
+		  </p>
+		  <p>
+		    <%= cs.label "Telephone" %><br>
+		    <%= cs.text_field :telephone%>
+		  </p>
+		  <p>
+		    <%= cs.label "Emergency Telephone" %><br>
+		    <%= cs.text_field :emergency%>
+		  </p>
+		  
+	  <% end %>		
+
+	  <p>Merchant Operational</p>
+
+	  <%= fields_for :merchant_operational do |op|%>
+		  
+		  <p>
+		    <%= op.label "Email" %><br>
+		    <%= op.text_field :email%>
+		  </p>
+		  <p>
+		    <%= op.label "Telephone" %><br>
+		    <%= op.text_field :telephone%>
+		  </p>
+		  <p>
+		    <%= op.label "Emergency Telephone" %><br>
+		    <%= op.text_field :emergency%>
+		  </p>
+		  
+	  <% end %>	
+
+	  <p>Bank Account Information</p>
+
+	  <%= fields_for :bank_account do |b|%>
+		  <p>
+		    <%= b.label "Bank Name" %><br>
+		    <%= b.text_field :name%>
+		  </p>
+		  <p>
+		    <%= b.label "Account Number" %><br>
+		    <%= b.text_field :acc_number%>
+		  </p>
+		  <p>
+		    <%= b.label "Account Holder" %><br>
+		    <%= b.text_field :acc_holder%>
+		  </p>
+		  <p>
+		    <%= b.label "Account Type" %><br>
+		    <%= b.text_field :acc_type%>
+		  </p>
+	  <% end %>
+	  
+
+	  <p>
+	    <%= f.submit %>
+	  </p>
+	<% end %>
