@@ -320,3 +320,8 @@ userr.save
 chris.agreements << agreeme
 agreeme.agreement_channels << agrrCh
 agreeme.merchant_documents << docss
+
+dummy_user = User.create(email: 'john@veritrans.com', role: 'sales')
+dummy_user.set_password('ppl')
+
+dummy_sales = Sales.create(name: 'John Cena', user: dummy_user)

@@ -1,4 +1,6 @@
 class DocumentController < ApplicationController
+  before_action :require_merchant
+
   def index
     @user = User.find(session[:user_id])
     @merchant = @user.merchant

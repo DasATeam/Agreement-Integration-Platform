@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
 
-  # resources :merchant
-  # root to: 'controller#method'
+  root to: redirect('/login')
 
+  get 'login' => 'sessions#new'
+  post 'login' => 'sessions#create'
+  get 'logout' => 'sessions#destroy'
+  delete 'logout' => 'sessions#destroy'
 
   get 'sales/agreement/new' => 'agreement#new' # as create_new_agreement
   post'sales/agreement/new' => 'agreement#create'
@@ -14,7 +17,7 @@ Rails.application.routes.draw do
   post 'merchant/new/:hash' => 'user#merchant_set_password' # as merchant_dashboard
   get 'merchant/form' => 'merchantform#edit' # as merchant_form
   post 'merchant/form' => 'merchantform#update'
-  
+
   get 'merchant/document' => 'document#index' # as merchant_document
   post 'merchant/document' => 'document#upload'
   get 'merchant/document/download' => 'document#download'
