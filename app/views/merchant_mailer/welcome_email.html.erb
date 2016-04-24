@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hai, <%= @merchant.name %></h1>
+    <p>
+      Terima kasih telah menggunakan jasa veritrans!
+    </p>
+    <p>
+      <%= @content %>
+    </p><br>
+    <p>
+      Your registration link could be accessed at: http://localhost:3000/merchant/new/<%= @merchant.registration_link %>
+    </p>
+    <p>Thanks for joining and have a great day!</p>
+  </body>
+</html>

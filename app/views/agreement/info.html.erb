@@ -16,3 +16,9 @@
   <h4>Registration link:</h4>
   <p><a href="<%= request.base_url + "/merchant/new/" + @merchant.registration_link %>"><%= request.base_url + "/merchant/new/" + @merchant.registration_link %></a></p>
 </div>
+
+<h4>Additional Message in Notice:</h4>
+<%= form_tag ("/merchant/send-mail/" + @merchant.id.to_s) do |f|%>
+  <%= text_area_tag :content %> <br/>
+  <%= submit_tag "Submit" %>
+<% end -%>

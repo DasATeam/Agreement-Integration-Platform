@@ -11,7 +11,11 @@ Rails.application.routes.draw do
   post'sales/agreement/new' => 'agreement#create'
   get 'sales/agreement/channel'=> 'agreement#newchannel' # as create_new_channel
   post 'sales/agreement/channel' => 'agreement#channeling'
+
   get 'sales/list_merchant' => 'sales#list_merchant' # as sales dashboard
+
+  post 'merchant/send-mail/:merchant_id' => 'merchant#send_mail'
+
 
   get 'merchant/new/:hash' => 'user#merchant_set_password' # as merchant_dashboard
   post 'merchant/new/:hash' => 'user#merchant_set_password' # as merchant_dashboard
@@ -24,7 +28,7 @@ Rails.application.routes.draw do
 
   get 'merchant/terms' => 'term#index' # as merchant_terms
   post 'merchant/terms' => 'term#agree'
-
+  
   get 'merchant/details/:merchant_id' => 'agreement#merchant_details'
 
   # The priority is based upon order of creation: first created -> highest priority.
