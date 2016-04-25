@@ -67,25 +67,25 @@ root.points << p12
 root.points << p13
 root.points << p14
 
-p11 = Point.create(nomor: "1.1", isi: "Bank adalah badan hukum yang bergerak di bidang perbankan dan didirikan berdasarkan hukum Indonesia, yang dalam hal ini memiliki fungsi sebagai penyedia jasa sarana Layanan Pembayaran. Daftar nama Bank serta jenis ")
-p12 = Point.create(nomor: "1.2", isi: "Biaya Transaksi adalah biaya yang dikenakan oleh Payment Gateway kepada Merchant untuk setiap Transaksi Internet berhasil, yang perhitungannya diatur lebih lanjut di dalam Lampiran 2 Perjanjian ini.")
-p13 = Point.create(nomor: "1.3", isi: "Hari Kerja adalah hari selain Sabtu, Minggu dan hari libur nasional, di mana bank-bank di Indonesia buka dan operasional untuk kegiatan sehari-hari.")
-p14 = Point.create(nomor: "1.4", isi: "Layanan Pembayaran adalah jenis-jenis metode pembayaran Transaksi Internet yang tersedia di Sistem Pembayaran Internet. Metode pembayaran yang dimaksud akan dijelaskan lebih lanjut di dalam Lampiran 1 Perjanjian ini." )
-p15 = Point.create(nomor: "1.5", isi: "Pelanggan adalah pelaku Transaksi Internet di Merchant, melalui Sistem Pembayaran Internet." )
-p16 = Point.create(nomor: "1.6", isi: "Refund adalah pengembalian dana Transaksi Internet kepada Pelanggan karena pembatalan atas Transaksi Internet tersebut.")
-p17 = Point.create(nomor: "1.7", isi: "Sistem Pembayaran Internet adalah sistem pembayaran yang dimiliki dan dikelola oleh Payment Gateway, yang menghubungkan antara Bank/Service Provider, Payment Gateway, dan Merchant.")
-p18 = Point.create(nomor: "1.8", isi: "Service Provider adalah penyedia jasa metode pembayaran selain Bank, yang memiliki kerjasama dan telah terhubung dengan Payment Gateway. Daftar nama Service Provider serta Layanan Pembayaran yang digunakan akan dicantum di dalam Lampiran 1 Perjanjian ini.")
-p19 = Point.create(nomor: "1.9", isi: "Transaksi Internet adalah transaksi melalui media elektronik yang dilakukan oleh Pelanggan di situs Merchant, dan diproses oleh Sistem Pembayaran Internet.")
+p1_1 = Point.create(nomor: "1.1", isi: "Bank adalah badan hukum yang bergerak di bidang perbankan dan didirikan berdasarkan hukum Indonesia, yang dalam hal ini memiliki fungsi sebagai penyedia jasa sarana Layanan Pembayaran. Daftar nama Bank serta jenis ")
+p1_2 = Point.create(nomor: "1.2", isi: "Biaya Transaksi adalah biaya yang dikenakan oleh Payment Gateway kepada Merchant untuk setiap Transaksi Internet berhasil, yang perhitungannya diatur lebih lanjut di dalam Lampiran 2 Perjanjian ini.")
+p1_3 = Point.create(nomor: "1.3", isi: "Hari Kerja adalah hari selain Sabtu, Minggu dan hari libur nasional, di mana bank-bank di Indonesia buka dan operasional untuk kegiatan sehari-hari.")
+p1_4 = Point.create(nomor: "1.4", isi: "Layanan Pembayaran adalah jenis-jenis metode pembayaran Transaksi Internet yang tersedia di Sistem Pembayaran Internet. Metode pembayaran yang dimaksud akan dijelaskan lebih lanjut di dalam Lampiran 1 Perjanjian ini." )
+p1_5 = Point.create(nomor: "1.5", isi: "Pelanggan adalah pelaku Transaksi Internet di Merchant, melalui Sistem Pembayaran Internet." )
+p1_6 = Point.create(nomor: "1.6", isi: "Refund adalah pengembalian dana Transaksi Internet kepada Pelanggan karena pembatalan atas Transaksi Internet tersebut.")
+p1_7 = Point.create(nomor: "1.7", isi: "Sistem Pembayaran Internet adalah sistem pembayaran yang dimiliki dan dikelola oleh Payment Gateway, yang menghubungkan antara Bank/Service Provider, Payment Gateway, dan Merchant.")
+p1_8 = Point.create(nomor: "1.8", isi: "Service Provider adalah penyedia jasa metode pembayaran selain Bank, yang memiliki kerjasama dan telah terhubung dengan Payment Gateway. Daftar nama Service Provider serta Layanan Pembayaran yang digunakan akan dicantum di dalam Lampiran 1 Perjanjian ini.")
+p1_9 = Point.create(nomor: "1.9", isi: "Transaksi Internet adalah transaksi melalui media elektronik yang dilakukan oleh Pelanggan di situs Merchant, dan diproses oleh Sistem Pembayaran Internet.")
 
-p1.points << p11
-p1.points << p12
-p1.points << p13
-p1.points << p14
-p1.points << p15
-p1.points << p16
-p1.points << p17
-p1.points << p18
-p1.points << p19
+p1.points << p1_1
+p1.points << p1_2
+p1.points << p1_3
+p1.points << p1_4
+p1.points << p1_5
+p1.points << p1_6
+p1.points << p1_7
+p1.points << p1_8
+p1.points << p1_9
 
 p21 = Point.create(nomor: "2.1", isi: "Merchant setuju untuk memberikan salinan dari dokumen-dokumen resmi yang daftarnya dicantum di Lampiran 4 Perjanjian ini, sebagai persyaratan administratif Perjanjian ini.")
 p22 = Point.create(nomor: "2.2", isi: "Transaksi Internet hanya dapat dilakukan melalui situs Merchant, dengan alamat URL dan/atau mobile apps : ")
@@ -94,7 +94,7 @@ p24 = Point.create(nomor: "2.4", isi: "Payment Gateway dapat menolak memberikan 
 p241 = Point.create(nomor: "2.4.1", isi: "terlibat tindakan kriminal atau melanggar norma hukum, social, agama dan moral;")
 p242 = Point.create(nomor: "2.4.2", isi: "terlibat dalam kelompok atau organisasi terlarang;")
 p243 = Point.create(nomor: "2.4.3", isi: "masuk ke dalam daftar hitam Payment Gateway, Bank atau Service Provider.")
-p25 = Point.create(nomor: "2.4.5", isi: "Merchant wajib memberikan pemberitahuan tertulis kepada Payment Gateway apabila Merchant merubah jenis usaha dan/atau jenis barang atau jasa yang ditawarkan melalui situs Merchant, serta dalam hal terjadi perubahan dalam susunan kepemilikan, Direksi atau penanggungjawab Merchant, sekurang-kurangnya 14 (empat belas) Hari Kerja sebelum perubahan tersebut dilakukan.")
+p25 = Point.create(nomor: "2.5", isi: "Merchant wajib memberikan pemberitahuan tertulis kepada Payment Gateway apabila Merchant merubah jenis usaha dan/atau jenis barang atau jasa yang ditawarkan melalui situs Merchant, serta dalam hal terjadi perubahan dalam susunan kepemilikan, Direksi atau penanggungjawab Merchant, sekurang-kurangnya 14 (empat belas) Hari Kerja sebelum perubahan tersebut dilakukan.")
 
 p2.points << p21
 p2.points << p22
