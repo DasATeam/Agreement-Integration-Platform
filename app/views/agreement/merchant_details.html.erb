@@ -1,23 +1,63 @@
-Completed Form: <br/>
-Name: <%= @merchant.name %> <br/>
-Email: <%= @merchant.email %> <br/>
-Website: <%= @merchant.website %> <br/>
-Address: <%= @merchant.address %> <br/>
-Status: <%= @merchant.office_status %> <br/>
-Type of Business: <%= @merchant.type_of_product %> <br/>
-Price Range: <%= @merchant.price_range %> <br/>
-Ownership: <%= @merchant.ownership_type %> <br/>
-Revenue per Month: <%= @merchant.revenues_each_month %> <br/>
-Total Sales with Credit Card: <%= @merchant.credit_card_payment_ratio %> <br/><br/>
+<div class="row">
+	<div class="container">
+		<ul class="nav nav-tabs">
+		  <li class="active"><a data-toggle="tab" href="#summary">Summary</a></li>
+		  <li><a data-toggle="tab" href="#channels">Channels</a></li>
+		  <li><a data-toggle="tab" href="#tnc">Terms and Conditions</a></li>
+		</ul>
+	</div>
+</div>
+<div class="tab-content">
+	<div id="summary" class="tab-pane fade in active">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<h3>Completed Form</h3><br/>
+					Name: <%= @merchant.name %> <br/>
+					Email: <%= @merchant.email %> <br/>
+					Website: <%= @merchant.website %> <br/>
+					Address: <%= @merchant.address %> <br/>
+					Status: <%= @merchant.office_status %> <br/>
+					Type of Business: <%= @merchant.type_of_product %> <br/>
+					Price Range: <%= @merchant.price_range %> <br/>
+					Ownership: <%= @merchant.ownership_type %> <br/>
+					Revenue per Month: <%= @merchant.revenues_each_month %> <br/>
+					Total Sales with Credit Card: <%= @merchant.credit_card_payment_ratio %> <br/><br/>
+				</div>
 
-Submitted Documents: <br/>
-<% for item in @required_docs %>
-    <%= item.document_type.name %> <br/>
-<% end %><br/><br/>
+				<div class="col-md-4">
+					<h3>Submitted Documents</h3><br/>
+					<% for item in @required_docs %>
+					    <%= item.document_type.name %> <br/>
+					<% end %><br/><br/>
+				</div>
+			</div>
+		</div>
+	</div>
 
-Selected Channels: <br/>
-<% for ac in @channels %>
-		<% item = ac.channel_type %>
-    <%= item.name %> <br/>
-    <%= item.charge %> <br/><br/>
-<% end %>
+	<div id="channels" class="tab-pane fade">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<h3>Selected Channels</h3><br/>
+					<% for ac in @channels %>
+							<% item = ac.channel_type %>
+					    <%= item.name %> <br/>
+					    <%= item.charge %> <br/><br/>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="tnc" class="tab-pane fade">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<h3> TERMS AND CONDITIONS GOES HERE </h3>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
