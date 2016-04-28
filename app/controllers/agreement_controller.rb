@@ -97,6 +97,18 @@ def merchant_details
   end
 end
 
+def custom_price
+	if params[:agreement_channel_id] != nil
+			ik = params[:agreement_channel_id].to_i
+			@agreementChannel = AgreementChannel.find(ik)
+	end
+end
+
+def change_price
+
+	render "merchant_details"
+end
+
 	private
 		def to_roman(number)
 			roman_numbers = {

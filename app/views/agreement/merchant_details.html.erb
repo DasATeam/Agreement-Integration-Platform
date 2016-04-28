@@ -19,5 +19,6 @@ Selected Channels: <br/>
 <% for ac in @channels %>
 		<% item = ac.channel_type %>
     <%= item.name %> <br/>
-    <%= item.charge %> <br/><br/>
+    <%= item.charge %> <br/>
+    <%= link_to "Change Price", controller: "agreement", action: "custom_price", agreement_channel_id: ac %> <br/><br/>
 <% end %>
