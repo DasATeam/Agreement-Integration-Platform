@@ -1,4 +1,6 @@
 class TermController < ApplicationController
+  before_action :require_merchant
+
   def index
     # TODO: Should check first if merchant already fill the form
     @term = Point.first

@@ -28,7 +28,7 @@ gem 'carrierwave'
 gem 'bootstrap-sass'
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -41,6 +41,8 @@ group :development, :test do
   gem 'byebug'
   # framework for testing rails with rspec
   gem 'rspec-rails', '~> 3.4.2'
+  # for feeding test data to the test suite
+  gem 'factory_girl_rails'
 end
 
 group :development do

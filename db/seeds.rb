@@ -6,12 +6,18 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-ktp = DocumentType.create(name: "KTP")
-npwp = DocumentType.create(name: "NPWP")
-siup = DocumentType.create(name: "SIUP")
-tdp = DocumentType.create(name: "TDP")
-sk = DocumentType.create(name: "SK Menteri")
-buktiKantor = DocumentType.create(name: "Tanda Bukti Kepemilikan / Surat Sewa Kantor")
+ktp = DocumentType.create(name: "KTP", is_additional: false)
+npwp = DocumentType.create(name: "NPWP", is_additional: false)
+siup = DocumentType.create(name: "SIUP", is_additional: false)
+tdp = DocumentType.create(name: "TDP", is_additional: false)
+sk = DocumentType.create(name: "SK Menteri", is_additional: false)
+buktiKantor = DocumentType.create(name: "Tanda Bukti Kepemilikan / Surat Sewa Kantor", is_additional: false)
+
+form_bca = DocumentType.create(name: "Form BCA", is_additional: true)
+form_bni = DocumentType.create(name: "Form BNI", is_additional: true)
+form_bri = DocumentType.create(name: "Form BRI", is_additional: true)
+form_mandiri = DocumentType.create(name: "Form Mandiri", is_additional: true)
+form_bca2 = DocumentType.create(name: "Form BCA lampiran", is_additional: true)
 
 channels = {}
 5.times do |i|
@@ -22,19 +28,40 @@ channels[0].documents << ktp
 
 channels[1].documents << ktp
 channels[1].documents << npwp
+channels[1].documents << form_bca
+channels[1].documents << form_bca2
 
 channels[2].documents << ktp
 channels[2].documents << npwp
 channels[2].documents << buktiKantor
+channels[2].documents << form_bni
 
 channels[3].documents << siup
 channels[3].documents << tdp
 channels[3].documents << buktiKantor
+channels[3].documents << form_bri
 
 channels[4].documents << siup
 channels[4].documents << sk
 channels[4].documents << tdp
 channels[4].documents << buktiKantor
+channels[4].documents << form_mandiri
+
+link_bca = DocumentLink.create(link: "https://drive.google.com/open?id=0Bw3siKQNp04EcWtxNjFOSkNyVWc")
+link_bni = DocumentLink.create(link: "https://drive.google.com/open?id=0Bw3siKQNp04ESlc1LWt6bWZ0b00")
+link_bri = DocumentLink.create(link: "https://drive.google.com/open?id=0Bw3siKQNp04ENHR4Skl3TmhsM0k")
+link_mandiri = DocumentLink.create(link: "https://drive.google.com/open?id=0Bw3siKQNp04ER0hvb0Q4Z2dvX00")
+link_bca2 = DocumentLink.create(link: "https://drive.google.com/open?id=0Bw3siKQNp04EQm9CNGFKY1VKbnM")
+link_bca.document_type = form_bca
+link_bni.document_type = form_bni
+link_bri.document_type = form_bri
+link_mandiri.document_type = form_mandiri
+link_bca2.document_type = form_bca2
+link_bca.save()
+link_bni.save()
+link_bri.save()
+link_mandiri.save()
+link_bca2.save()
 
 root = Point.create(id: 0, nomor: "0", isi: "")
 p1 = Point.create(nomor: "1", isi: "Definisi")
@@ -278,3 +305,23 @@ p14.points << p145
 # ")
 # p14 = Pasal.create(nomor_pasal: "14", nama_pasal: "Ketentuan Lainnya
 # ")
+
+#seed mock data
+
+userr = User.create(id: 1, email: "hfhf@hfls.com", pass: "hoho", role: "Petani")
+
+chris = Merchant.create(id: 1, name: "Chris", website: "www.chris.com", email: "chris@chris.com", city: "Pamulang", address: "Pamulang Permai", office_status: "1", type_of_product: "Buah-buahan", price_range: "5000-150000", time_since_started: DateTime.parse("09/01/2009 17:00"), ownership_type: 3, revenues_each_month: 5000000, credit_card_payment_ratio: 0.5, registration_link: "jfjfjf.fkfkf.vom", user_id: 1)
+agreeme = Agreement.create(id: 1, pks_number: "81oj38f", approver_name: "Jaja Miharja", approver_role: "Dokter", merchant_id: 1, has_agree: false)
+agrrCh = AgreementChannel.create(agreement_id: 1, channel_type_id: 1, customprice: "5000")
+docss = MerchantDocument.create(merchant_id: 5, agreement_id: 1, document_type_id: 1, path: "Hahaha")
+
+userr.merchant = chris
+userr.save
+chris.agreements << agreeme
+agreeme.agreement_channels << agrrCh
+agreeme.merchant_documents << docss
+
+dummy_user = User.create(email: 'john@veritrans.com', role: 'sales')
+dummy_user.set_password('ppl')
+
+dummy_sales = Sales.create(name: 'John Cena', user: dummy_user)

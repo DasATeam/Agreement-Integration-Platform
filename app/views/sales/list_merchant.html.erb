@@ -1,0 +1,15 @@
+<h1>Current Merchant</h1>
+
+<% @sales_merchants.each do |merchant| %>
+  <%= merchant.name %><br/>
+  <%= merchant.website %><br/>
+ <%= check_box_tag :info_is_completed, "1", merchant.info_is_completed, :disabled => "true" %>
+  <%= label_tag :info_is_completed, "information" %> <br/>
+  <%= check_box_tag :documents_is_completed, "1,", merchant.documents_is_completed, :disabled => "true" %>
+  <%= label_tag :documents_is_completed, "documents" %> <br/>
+  <% merchant.agreements.each do |agreement| %>
+    <%= check_box_tag :has_agree,"1", agreement.has_agree, :disabled => "true" %>
+    <%= label_tag :has_agree, "terms & conditions" %> <br/>
+    <% end %>
+  <%= button_to 'see details', :method => 'get' %><br/>
+<% end %>

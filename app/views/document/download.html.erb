@@ -1,0 +1,12 @@
+<h3>Additional Documents Channel </h3>
+<% @documents.each do |t| %>
+    <a href= <%= t[:link]%> >
+    <p> <%= t[:doc].name %></p></a>
+    Needs on channels:
+        <% t[:doc].channels.each do |channel| %>
+            <%= channel.name %>
+          <% end %>
+      <br>
+      <p>---</p>
+<% end %>
+
