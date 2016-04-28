@@ -16,6 +16,8 @@ class AgreementController < ApplicationController
 				require 'digest/md5'
 				link = Digest::MD5.hexdigest(@user.email)
 				@merchant.registration_link = link
+				sales = current_user.sales
+				sales.merchants << @merchant
 				@merchant.save()
 
 				# Create Agreement
@@ -35,8 +37,7 @@ class AgreementController < ApplicationController
 				@agreement.merchant = @merchant
 				@agreement.save()
 
-				redirect_to action:"channeling"
-				session[:user_id] =  @user.id
+				redirect_to action:"newchannel", user_id: @user.id
 			end
 		end
 	end
@@ -46,13 +47,9 @@ class AgreementController < ApplicationController
 	end
 
 	def channeling
-		if session[:user_id] != nil
-			@user = User.find(session[:user_id])
-			@merchant = @user.merchant
-			@agreement = @merchant.agreements.first
-		else
-			redirect_to action:"create"
-		end
+		@user = User.find(params[:user_id])
+		@merchant = @user.merchant
+		@agreement = @merchant.agreements.first
 
 		# Listing needed document
 		selectedChannels = channel_params()

@@ -9,8 +9,8 @@ Rails.application.routes.draw do
 
   get 'sales/agreement/new' => 'agreement#new' # as create_new_agreement
   post'sales/agreement/new' => 'agreement#create'
-  get 'sales/agreement/channel'=> 'agreement#newchannel' # as create_new_channel
-  post 'sales/agreement/channel' => 'agreement#channeling'
+  get 'sales/agreement/:user_id/channel'=> 'agreement#newchannel' # as create_new_channel
+  post 'sales/agreement/:user_id/channel' => 'agreement#channeling'
 
   get 'sales/list_merchant' => 'sales#list_merchant' # as sales dashboard
 
