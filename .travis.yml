@@ -8,8 +8,8 @@ before_script:
   - psql -c 'create database aip_development;' -U postgres
   - psql -c 'create database aip_test;' -U postgres
   - psql -c 'create database aip_production;' -U postgres
-  - rails db:migrate
-  - rails db:seed
+  - bin/rails db:migrate
+  - bin/rails db:seed
 script: bundle exec rspec
 deploy:
   skip_cleanup: true
