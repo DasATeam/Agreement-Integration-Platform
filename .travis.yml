@@ -1,6 +1,15 @@
 language: ruby
 rvm:
 - 2.3.0
+services:
+  - postgresql
+before_script:
+  - cp config/database.yml.travis config/database.yml
+  - psql -c 'create database aip_development;' -U postgres
+  - psql -c 'create database aip_test;' -U postgres
+  - psql -c 'create database aip_production;' -U postgres
+  - rails db:migrate
+  - rails db:seed
 script: bundle exec rspec
 deploy:
   skip_cleanup: true
