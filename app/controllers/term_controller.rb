@@ -9,7 +9,7 @@ class TermController < ApplicationController
   end
 
   def agree
-    @merchant = User.find(session[:user_id]).merchant
+    @merchant = current_user.merchant
     @agreement = @merchant.agreements.first
     @agreement.has_agree = true
     @agreement.save
