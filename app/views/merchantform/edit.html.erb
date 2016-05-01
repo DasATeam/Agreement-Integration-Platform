@@ -12,15 +12,15 @@
 				<h3>General Merchant Info</h3>
 			  <div class="form-group">
 			    <%= f.label(:name, "Name") %>
-			    <%= f.text_field(:name, class: "form-control") %>
+			    <%= f.text_field(:name, class: "form-control", :placeholder => @merchant.name) %>
 			  </div>
 			  <div class="form-group">
 			    <%= f.label(:website, "Website") %>
-			    <%= f.text_field(:website, class: "form-control") %>
+			    <%= f.text_field(:website, class: "form-control", :placeholder => @merchant.website) %>
 			  </div>
 			  <div class="form-group">
 			    <%= f.label(:email, "Email") %>
-			    <%= f.text_field(:email, class: "form-control") %>
+			    <%= f.text_field(:email, class: "form-control", :placeholder => @merchant.email) %>
 			  </div>
 			  <div class="form-group">
 			    <%= f.label(:city, "City") %>

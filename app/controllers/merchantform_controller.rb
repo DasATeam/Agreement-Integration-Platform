@@ -2,6 +2,8 @@ class MerchantformController < ApplicationController
 	before_action :require_merchant
 
 	def edit
+		@user = User.find(session[:user_id])
+		@merchant = @user.merchant
 	end
 
 	def update
