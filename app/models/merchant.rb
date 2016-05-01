@@ -9,6 +9,9 @@ class Merchant < ActiveRecord::Base
 	has_one(:bank_account)
 	# has_many(:sales, through: :sales_merchants)
 	has_and_belongs_to_many(:sales, class_name: 'Sales', join_table: 'sales_merchants')
+	validates :info_is_completed, presence: true
+	validates :info_is_completed, inclusion: { in: [true, false] }
+	validates :info_is_completed, exclusion: { in: [nil] }
 
   def document_check
     self.merchant_documents.each do |doc|
