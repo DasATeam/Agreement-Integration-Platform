@@ -11,12 +11,8 @@ class DocumentController < ApplicationController
     @merchant_document = nil
     params[:document].each do |id, d|
       @merchant_document = MerchantDocument.find(id)
-      File.open(Rails.root.join('public', 'uploads', d.original_filename), 'wb') do |file|
-        file.write(d.read)
-      end
-
-      @merchant_document.path = File.join('/','uploads', d.original_filename)
-      @merchant_document.save
+      @merchant_document.file = params[:file]
+      @merchant_document.save!
     end
 
     if @merchant_document
