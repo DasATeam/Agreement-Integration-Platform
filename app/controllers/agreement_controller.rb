@@ -97,16 +97,20 @@ def merchant_details
   end
 end
 
-def custom_price
-	if params[:agreement_channel_id] != nil
-			ik = params[:agreement_channel_id].to_i
-			@agreementChannel = AgreementChannel.find(ik)
-	end
+def change_price
+    if params[:haft] != nil
+            @ik = params[:haft].to_i
+            @channel = AgreementChannel.find(@ik)
+            @merchant = Merchant.find(params[:merchant_id].to_i)
+        end
 end
 
-def change_price
+def custom_price
+    @editedChannel = AgreementChannel.find(params[:haft].to_i)
+    @editedChannel.customprice = params[:form][:price]
+    @editedChannel.save()
 
-	render "merchant_details"
+    redirect_to controller:"agreement", action: "merchant_details", merchant_id: params[:merchant_id]
 end
 
 	private

@@ -1,0 +1,8 @@
+<%= @channel.channel_type.name %>
+<%= @channel.customprice %>
+
+<%= form_for(:form) do |f| %>
+<%= f.label(:price, "New Price:") %>
+<%= f.text_field(:price) %>
+<%= f.submit "Change Price", :class => "btn btn-primary" %>
+<% end %>
