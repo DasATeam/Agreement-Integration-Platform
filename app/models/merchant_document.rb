@@ -3,4 +3,7 @@ class MerchantDocument < ActiveRecord::Base
 	belongs_to(:agreement)
 	belongs_to(:document_type)
   has_one(:document_path)
+
+  mount_uploader :file, FileUploader
+  
 end
