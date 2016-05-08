@@ -13,8 +13,8 @@ class Merchant < ActiveRecord::Base
 	validates :website, presence: true
 	validates :email, format: { with: /\A[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$\z/i,
     message: 'email tidak sesuai format'}
-	validates :address, presence: true
 	validates :city, presence: true
+	validates :address, presence: true
 	validates :office_status, presence: true
 	validates :type_of_product, presence: true
 	validates :price_range, presence: true
@@ -22,10 +22,23 @@ class Merchant < ActiveRecord::Base
 	validates :ownership_type, presence: true
 	validates :revenues_each_month, presence: true
 	validates :credit_card_payment_ratio, presence: true
-	validates :registration_link, presence: true
+	#validates :registration_link, presence: true
 	#validates :user_id, presence: true
 	# validates :documents_is_completed, presence: true
 
+	def check
+		#self.info_is_completed = self.valid?
+		#self.info_is_completed = self.info_is_completed && self.merchant_customer_support.is_completed && self.merchant_owner.is_completed && self.merchant_pic.is_completed && self.merchant_operational.is_completed && self.merchant_operational.is_completed
+		#self.save
+		self.info_is_completed = self.valid?
+		#&& self.info_is_completed && self.merchant_customer_support.is_completed && self.merchant_owner.is_completed && self.merchant_pic.is_completed && self.merchant_operational.is_completed && self.merchant_operational.is_completed
+		self.save
+	end
+
+	def information_check
+		self.info_is_completed = self.valid? && self.info_is_completed && self.merchant_customer_support.is_completed && self.merchant_owner.is_completed && self.merchant_pic.is_completed && self.merchant_operational.is_completed && self.merchant_operational.is_completed
+		self.save
+  end
 
   def document_check
     self.merchant_documents.each do |doc|
@@ -40,14 +53,5 @@ class Merchant < ActiveRecord::Base
     return self.documents_is_completed
   end
 
-  def information_check
-		#self.info_is_completed = self.valid?
-		#self.info_is_completed = self.info_is_completed && self.merchant_customer_support.is_completed && self.merchant_owner.is_completed && self.merchant_pic.is_completed && self.merchant_operational.is_completed && self.merchant_operational.is_completed
-		#self.save
-		self.info_is_completed = self.valid?
-		self.info_is_completed = self.info_is_completed && self.merchant_customer_support.is_completed && self.merchant_owner.is_completed && self.merchant_pic.is_completed && self.merchant_operational.is_completed && self.merchant_operational.is_completed
-		self.save
-    return self.info_is_completed
-  end
 
 end
