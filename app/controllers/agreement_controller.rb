@@ -7,10 +7,14 @@ class AgreementController < ApplicationController
 	def create
 		# Create merchant and his account
 		if  @user = User.create(user_params())
-			if @merchant = Merchant.create(merchant_params())
+			#if @merchant = Merchant.create(merchant_params())
+				@merchant = Merchant.new(merchant_params())
+				@sales = Sales.find(session[:user_id])
+				@merchant.save(validate: false)
 				@user.merchant = @merchant
 				@user.role = 'merchant'
-				@user.save()
+				@user.save(validate: false)
+				@sales.merchants << @merchant
 
 				# Generate hash of registration link
 				require 'digest/md5'
@@ -37,7 +41,7 @@ class AgreementController < ApplicationController
 
 				redirect_to action:"channeling"
 				session[:user_id] =  @user.id
-			end
+			#end
 		end
 	end
 
