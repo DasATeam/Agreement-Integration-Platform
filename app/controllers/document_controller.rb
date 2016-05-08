@@ -9,9 +9,9 @@ class DocumentController < ApplicationController
 
   def upload
     @merchant_document = nil
-    params[:document].each do |id, d|
+    params[:document].each do |id, file|
       @merchant_document = MerchantDocument.find(id)
-      @merchant_document.file = params[:file]
+      @merchant_document.file = file
       @merchant_document.save!
     end
 
