@@ -8,40 +8,41 @@
 	<div class="row">
 		<div class="container">
 			<ul class="nav nav-pills">
-			  <li class="active"><a data-toggle="pill" href="#general">General</a></li>
-			  <li><a data-toggle="pill" href="#pic">PIC</a></li>
-			  <li><a data-toggle="pill" href="#cs">Customer Support</a></li>
-			  <li><a data-toggle="pill" href="#operational">Operational</a></li>
-			  <li><a data-toggle="pill" href="#bank_acc">Bank Account</a></li>
+			  <li class="<%= if !@is_general then 'active' end %>"><a data-toggle="pill" href="#general">General</a></li>
+			  <li class="<%= if params[:save_general] then 'active' end %>"><a data-toggle="pill" href="#pic">PIC</a></li>
+			  <li class="<%= if params[:save_pic] then 'active' end %>"><a data-toggle="pill" href="#owner">Owner</a></li>
+			  <li class="<%= if params[:save_owner] then 'active' end %>"><a data-toggle="pill" href="#cs">Customer Support</a></li>
+			  <li class="<%= if params[:save_cs] then 'active' end %>"><a data-toggle="pill" href="#operational">Operational</a></li>
+			  <li class="<%= if params[:save_operational] then 'active' end %>"><a data-toggle="pill" href="#bank_acc">Bank Account</a></li>
 			</ul>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-6">			
 			<div class="tab-content">
-				<div id="general" class="tab-pane fade in active">
+				<div id="general" class="<%= if @is_general then @non_active else @active end%>">
 					<%= form_for :merchant do |f| %>
 						<div class="vertical-space" style="height:10px;"></div>
 						<h3>General Merchant Info</h3>
 						  <div class="form-group">
 						    <%= f.label(:name, "Name") %>
-						    <%= f.text_field(:name, class: "form-control", :placeholder => @merchant.name) %>
+						    <%= f.text_field(:name, class: "form-control", value: @merchant.name) %>
 						  </div>
 						  <div class="form-group">
 						    <%= f.label(:website, "Website") %>
-						    <%= f.text_field(:website, class: "form-control", :placeholder => @merchant.website) %>
+						    <%= f.text_field(:website, class: "form-control", value: @merchant.website) %>
 						  </div>
 						  <div class="form-group">
 						    <%= f.label(:email, "Email") %>
-						    <%= f.text_field(:email, class: "form-control", :placeholder => @merchant.email) %>
+						    <%= f.text_field(:email, class: "form-control", value: @merchant.email, placeholder: " ex./ example@example.com") %>
 						  </div>
 						  <div class="form-group">
 						    <%= f.label(:city, "City") %>
-						    <%= f.text_field(:city, class: "form-control") %>
+						    <%= f.text_field(:city, class: "form-control", value: @merchant.city, placeholder: "ex./ Jakarta") %>
 						  </div>
 						  <div class="form-group">
 						    <%= f.label(:address, "Address") %>
-						    <%= f.text_field(:address, class: "form-control") %>
+						    <%= f.text_field(:address, class: "form-control", value: @merchant.address, placeholder: "ex./ Jl. example no. 1") %>
 						  </div>
 						  <div class="form-group">
 						    <%= f.label(:office_status, "Office Status") %>
@@ -49,15 +50,15 @@
 						  </div>
 						  <div class="form-group">
 						    <%= f.label(:type_of_product, "Type of Product") %>
-						    <%= f.text_area(:type_of_product, class: "form-control") %>
+						    <%= f.text_area(:type_of_product, class: "form-control", value: @merchant.type_of_product, placeholder: "ex./ clothes, food, etc") %>
 						  </div>
 						  <div class="form-group">
 						    <%= f.label(:price_range, "Price Range") %>
-						    <%= f.text_area(:price_range, class: "form-control") %>
+						    <%= f.text_area(:price_range, class: "form-control", value: @merchant.price_range, placeholder: "100000-1000000") %>
 						  </div>
 						  <div class="form-group">
 						    <%= f.label(:time_since_started, "Time Since Started") %>
-						    <%= f.text_area(:time_since_started, class: "form-control") %>
+						    <%= f.text_area (:time_since_started, class: "form-control", value: @merchant.time_since_started, placeholder: "yyyy/mm/dd") %>
 						  </div>
 						  <div class="form-group">
 						    <%= f.label(:ownership_type, "Ownership Type") %>
@@ -65,7 +66,7 @@
 						  </div>
 						  <div class="form-group">
 						    <%= f.label(:revenues_each_month, "Revenues Per-month") %>
-						    <%= f.text_field(:revenues_each_month, class: "form-control") %>
+						    <%= f.text_field(:revenues_each_month, class: "form-control", value: @merchant.revenues_each_month, placeholder: "30000000") %>
 						  </div>
 						  <div class="form-group">
 						    <%= f.label(:credit_card_payment_ratio, "Credit Card Payment Ratio") %>
@@ -76,25 +77,25 @@
 					<% end %>
 				</div>
 				<!-- <div class="col-xs-12 vertical-space" style="height:50px;"></div> -->
-				<div id="pic" class="tab-pane fade">
+				<div id="pic" class="<%= if params[:save_general] then @active else @non_active end%>">
 					<%= form_for :merchant do |f| %>
 						<h3>PIC Merchant Info</h3>
 					  	<%= fields_for :merchant_pic do |p|%>
 						  	<div class="form-group">
 							    <%= p.label(:name, "Name") %>
-							    <%= p.text_field(:name, class: "form-control") %>
+							    <%= p.text_field(:name, class: "form-control", value: @merchant_pic.name, placeholder: "ex./ John"%>
 							</div>
 							<div class="form-group">
 							    <%= p.label(:address, "Address") %>
-								<%= p.text_field(:address, class: "form-control") %>
+								<%= p.text_field(:address, class: "form-control", value: @merchant_pic.address, placeholder: "ex./ Jl. example no. 1") %>
 							</div>
 							<div class="form-group">
 							    <%= p.label(:email, "Email") %>
-							    <%= p.text_field(:email, class: "form-control") %>
+							    <%= p.text_field(:email, class: "form-control", value: @merchant_pic.email, placeholder: "ex./ example.example.com") %>
 							</div>
 								<div class="form-group">
-							    <%= p.label(:emergency, "Emergency Telephone") %>
-							    <%= p.text_field(:emergency, class: "form-control") %>
+							    <%= p.label(:telephone, "Emergency Telephone") %>
+							    <%= p.text_field(:telephone, class: "form-control", value: @merchant_pic.telephone, placeholder: "ex./ 08123456789") %>
 							</div>
 					  	<% end %>
 					  	<div class="col-xs-12 vertical-space" style="height:25px;"></div>
@@ -102,25 +103,25 @@
 					<% end %>
 				</div>
 
-				<div id="owner" class="tab-pane fade">
+				<div id="owner" class="<%= if params[:save_pic] then @active else @non_active end%>">
 					<%= form_for :merchant do |f| %>
 						<h3>Merchant Owner Info</h3>
 						<%= fields_for :merchant_owner do |ow|%>
 							<div class="form-group">
 							    <%= ow.label(:name, "Name") %><br>
-							    <%= ow.text_field(:name, class: "form-control") %>
+							    <%= ow.text_field(:name, class: "form-control", value: @merchant_owner.name, placeholder: "ex./ John") %>
 							</div>
 							<div class="form-group">
 							    <%= ow.label(:address, "Address") %><br>
-							    <%= ow.text_field(:address, class: "form-control") %>
+							    <%= ow.text_field(:address, class: "form-control", value: @merchant_owner.address, placeholder: "ex./ Jl. example no. 1") %>
 							</div>
 							<div class="form-group">
 							    <%= ow.label(:email, "Email") %><br>
-							    <%= ow.text_field(:email, class: "form-control") %>
+							    <%= ow.text_field(:email, class: "form-control", value: @merchant_owner.email, placeholder: "ex./ example.example.com") %>
 							</div>
 							<div class="form-group">
 							    <%= ow.label(:telephone, "Telephone") %><br>
-							    <%= ow.text_field(:telephone, class: "form-control") %>
+							    <%= ow.text_field(:telephone, class: "form-control", value: @merchant_owner.telephone, placeholder: "ex./ 08123456789") %>
 							</div>
 					  <% end %>
 					  <div class="col-xs-12 vertical-space" style="height:25px;"></div>
@@ -128,43 +129,43 @@
 					<% end %>
 				</div>
 				
-				<div id="cs" class="tab-pane fade">
+				<div id="cs" class="<%= if params[:save_owner] then @active else @non_active end%>">
 					<%= form_for :merchant do |f| %>
 					  <h3>Merchant Customer Support Info</h3>
 					  <%= fields_for :merchant_customer_support do |cs|%>
 						  <div class="form-group">
 						    <%= cs.label(:email, "Email") %><br>
-						    <%= cs.text_field(:email, class: "form-control") %>
+						    <%= cs.text_field(:email, class: "form-control", value: @merchant_cs.email, placeholder: "ex./ example.example.com") %>
 						  </div>
 						  <div class="form-group">
 						    <%= cs.label(:telephone, "Telephone") %><br>
-						    <%= cs.text_field(:telephone, class: "form-control") %>
+						    <%= cs.text_field(:telephone, class: "form-control", value: @merchant_cs.telephone, placeholder: "ex./ 08123456789")) %>
 						  </div>
 						  <div class="form-group">
 						    <%= cs.label(:emergency, "Emergency Telephone") %><br>
-						    <%= cs.text_field(:emergency, class: "form-control") %>
+						    <%= cs.text_field(:emergency, class: "form-control", value: @merchant_cs.emergency, placeholder: "ex./ 08123456789")) %>
 						  </div>
 					  <% end %>
 					  <div class="col-xs-12 vertical-space" style="height:25px;"></div>
 					<%= f.submit "Next", :name => 'save_cs', :class => "btn btn-primary" %>
 					<% end %>
 				</div>
-				<!-- <div class="col-xs-12 vertical-space" style="height:50px;"></div> -->
-				<div id="operational" class="tab-pane fade">
+
+				<div id="operational" class="<%= if params[:save_cs] then @active else @non_active end%>">
 					<%= form_for :merchant do |f| %>
 					  <h3>Merchant Operational</h3>
 					  <%= fields_for :merchant_operational do |op|%>
 						  <div class="form-group">
 						    <%= op.label(:email, "Email") %><br>
-						    <%= op.text_field(:email, class: "form-control") %>
+						    <%= op.text_field(:email, class: "form-control", value: @merchant_operational.email, placeholder: "ex./ example.example.com") %>
 						  </div>
 						  <div class="form-group">
 						    <%= op.label(:telephone, "Telephone") %><br>
-						    <%= op.text_field(:telephone, class: "form-control") %>
+						    <%= op.text_field(:telephone, class: "form-control", value: @merchant_operational.telephone, placeholder: "ex./ 08123456789") %>
 						  </div>
 						  <div class="form-group">
 						    <%= op.label(:emergency, "Emergency Telephone") %><br>
-						    <%= op.text_field(:emergency, class: "form-control") %>
+						    <%= op.text_field(:emergency, class: "form-control", value: @merchant_operational.emergency, placeholder: "ex./ 08123456789") %>
 						  </div>
 					  <% end %>
 					  <div class="col-xs-12 vertical-space" style="height:25px;"></div>
@@ -172,25 +173,25 @@
 					<% end %>
 				</div>
 				<!-- <div class="col-xs-12 vertical-space" style="height:50px;"></div> -->
-				<div id="bank_acc" class="tab-pane fade">
+				<div id="bank_acc" class="<%= if params[:save_operational] then @active else @non_active end%>">
 					<%= form_for :merchant do |f| %>
 					  <h3>Bank Account Information</h3>
 					  <%= fields_for :bank_account do |b|%>
 						  <div class="form-group">
 						    <%= b.label(:name, "Bank Name") %><br>
-						    <%= b.text_field(:name, class: "form-control") %>
+						    <%= b.text_field(:name, class: "form-control", value: @bank_account.name, placeholder: "ex./ BNI, BCA, etc") %>
 						  </div>
 						  <div class="form-group">
 						    <%= b.label(:acc_number, "Account Number") %><br>
-						    <%= b.text_field(:acc_number, class: "form-control") %>
+						    <%= b.text_field(:acc_number, class: "form-control", value: @bank_account.acc_number, placeholder: "ex./ 0123456") %>
 						  </div>
 						  <div class="form-group">
 						    <%= b.label(:acc_holder, "Account Holder") %><br>
-						    <%= b.text_field(:acc_holder, class: "form-control") %>
+						    <%= b.text_field(:acc_holder, class: "form-control", value: @bank_account.acc_holder, placeholder: "ex./ John") %>
 						  </div>
 						  <div class="form-group">
 						    <%= b.label(:acc_type, "Account Type") %><br>
-						    <%= b.text_field(:acc_type, class: "form-control") %>
+						    <%= b.text_field(:acc_type, class: "form-control", value: @bank_account.acc_type, placeholder: "ex./ Silver, Gold, etc") %>
 						  </div>
 						 <% end %>
 					  <div class="col-xs-12 vertical-space" style="height:25px;"></div>
