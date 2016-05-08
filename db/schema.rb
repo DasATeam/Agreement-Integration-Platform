@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160417104558) do
+ActiveRecord::Schema.define(version: 20160501220928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,10 +67,13 @@ ActiveRecord::Schema.define(version: 20160417104558) do
   end
 
   create_table "document_paths", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "merchant_document_id"
     t.string   "path"
   end
+
+  add_index "document_paths", ["merchant_document_id"], name: "index_document_paths_on_merchant_document_id", using: :btree
 
   create_table "document_types", force: :cascade do |t|
     t.string  "name"
@@ -92,6 +95,7 @@ ActiveRecord::Schema.define(version: 20160417104558) do
     t.integer  "agreement_id"
     t.integer  "document_type_id"
     t.string   "path"
+    t.string   "file"
   end
 
   add_index "merchant_documents", ["agreement_id"], name: "index_merchant_documents_on_agreement_id", using: :btree
@@ -164,7 +168,12 @@ ActiveRecord::Schema.define(version: 20160417104558) do
   add_index "sales", ["user_id"], name: "index_sales_on_user_id", using: :btree
 
   create_table "sales_agreements", force: :cascade do |t|
+    t.integer "sales_id"
+    t.integer "agreement_id"
   end
+
+  add_index "sales_agreements", ["agreement_id"], name: "index_sales_agreements_on_agreement_id", using: :btree
+  add_index "sales_agreements", ["sales_id"], name: "index_sales_agreements_on_sales_id", using: :btree
 
   create_table "sales_merchants", force: :cascade do |t|
     t.integer  "merchant_id"
@@ -192,6 +201,7 @@ ActiveRecord::Schema.define(version: 20160417104558) do
   add_foreign_key "channel_types_document_types", "channel_types"
   add_foreign_key "channel_types_document_types", "document_types"
   add_foreign_key "document_links", "document_types"
+  add_foreign_key "document_paths", "merchant_documents"
   add_foreign_key "merchant_customer_supports", "merchants"
   add_foreign_key "merchant_documents", "agreements"
   add_foreign_key "merchant_documents", "document_types"
