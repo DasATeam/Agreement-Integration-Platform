@@ -16,12 +16,12 @@
 <p>Berdasarkan hal-hal tersebut di atas, Para Pihak masing-masing dalan kedudukannya tersebut diatas sepakat untuk menandatangani dan mengadakan Perjanjian ini, dengan syarat-syarat dan ketentuan sebagai berikut:</p>
 
 <% @term.points.each do |term_child1| %>
-  <p><b><%= "Pasal " + term_child1.nomor %></b></p>
-  <p><b><%= term_child1.isi %></b></p>
+<p><b><%= "Pasal " + term_child1.nomor %></b></p>
+<p><b><%= term_child1.isi %></b></p>
 
-  <% term_child1.points.each do |term_child2| %>
-  	<p><%= term_child2.nomor + " " +  term_child2.isi %></p>
-  <% end %>
+<% term_child1.points.each do |term_child2| %>
+<p><%= term_child2.nomor + " " +  term_child2.isi %></p>
+<% end %>
 <% end %>
 <p>&nbsp;</p>
 
@@ -54,143 +54,314 @@
 <p><b>Istilah Layanan Pembayaran</b></p>
 
 <ul>
-<li><p><b>Transaksi Kartu:</b> Transaksi Internet dengan menggunakan kartu kredit/debit VISA, Mastercard, dan/atau JCB (untuk selanjutnya disebut “Principal”), atau kartu private label milik Bank, tanpa diperlukan kehadiran kartu tersebut secara fisik, yang akan diotorisasi oleh Bank melalui Sistem Pembayaran Internet.</p></li>
-<li><p><b>Internet Banking:</b> Layanan Pembayaran yang disediakan oleh Bank, di mana Pelanggan, yang merupakan nasabah Bank tersebut, dapat melakukan pembayaran dengan menyediakan nomor kartu atau rekening nasabah dan Personal Identification Number (PIN) token.</p></li>
-<li><p><b>E-Money:</b> Layanan Transaksi Internet di mana Pelanggan memiliki akun yang dapat diisi dengan nilai nominal uang, dan untuk kemudian dapat digunakan untuk bertransaksi. Pelanggan wajib mendaftar terlebih dahulu ke Service Provider E-Money agar Pelanggan dapat memiliki akun tersebut.</p></li>
-<li><p><b>Virtual Account:</b> Layanan Transaksi Internet yang disediakan oleh Bank, di mana Pelanggan dapat melakukan transfer ke nomor rekening identitas unik yang dimiliki oleh Merchant, melalui jaringan Bank atau jaringan elektronik bank lain.</p></li>
-<li><p><b>Bill Payment:</b> Layanan Transaksi Internet yang disediakan oleh Bank, di mana Pelanggan dapat melakukan pembayaran di jaringan ATM, e-banking, atau mobile banking milik Bank tersebut, dengan menggunakan kode bayar unik yang disediakan oleh layanan tersebut.</p></li>
-<li><p><b>Convenience Store:</b> Layanan Transaksi Internet yang disediakan oleh Convenience Store, di mana Pelanggan dapat melakukan pembayaran di semua channel pembayaran yang tersedia di Convenience Store tersebut, dengan menggunakan kode bayar unik yang disediakan oleh layanan tersebut.</p></li>
+    <li><p><b>Transaksi Kartu:</b> Transaksi Internet dengan menggunakan kartu kredit/debit VISA, Mastercard, dan/atau JCB (untuk selanjutnya disebut “Principal”), atau kartu private label milik Bank, tanpa diperlukan kehadiran kartu tersebut secara fisik, yang akan diotorisasi oleh Bank melalui Sistem Pembayaran Internet.</p></li>
+    <li><p><b>Internet Banking:</b> Layanan Pembayaran yang disediakan oleh Bank, di mana Pelanggan, yang merupakan nasabah Bank tersebut, dapat melakukan pembayaran dengan menyediakan nomor kartu atau rekening nasabah dan Personal Identification Number (PIN) token.</p></li>
+    <li><p><b>E-Money:</b> Layanan Transaksi Internet di mana Pelanggan memiliki akun yang dapat diisi dengan nilai nominal uang, dan untuk kemudian dapat digunakan untuk bertransaksi. Pelanggan wajib mendaftar terlebih dahulu ke Service Provider E-Money agar Pelanggan dapat memiliki akun tersebut.</p></li>
+    <li><p><b>Virtual Account:</b> Layanan Transaksi Internet yang disediakan oleh Bank, di mana Pelanggan dapat melakukan transfer ke nomor rekening identitas unik yang dimiliki oleh Merchant, melalui jaringan Bank atau jaringan elektronik bank lain.</p></li>
+    <li><p><b>Bill Payment:</b> Layanan Transaksi Internet yang disediakan oleh Bank, di mana Pelanggan dapat melakukan pembayaran di jaringan ATM, e-banking, atau mobile banking milik Bank tersebut, dengan menggunakan kode bayar unik yang disediakan oleh layanan tersebut.</p></li>
+    <li><p><b>Convenience Store:</b> Layanan Transaksi Internet yang disediakan oleh Convenience Store, di mana Pelanggan dapat melakukan pembayaran di semua channel pembayaran yang tersedia di Convenience Store tersebut, dengan menggunakan kode bayar unik yang disediakan oleh layanan tersebut.</p></li>
 </ul>
 
 <p><b><u>* Syarat dan Ketentuan Khusus untuk Transaksi Kartu</u></b></p>
 
 <ul>
-	<li>Penanganan Transaksi Penipuan (<i>Fraud</i>)</li>
-	<ul>
-		<li>Merchant wajib menggunakan sistem pendeteksian fraud (penipuan) untuk setiap Transaksi Kartu pada situs Merchant.</li>
-		<li>Payment Gateway menyediakan sistem pendeteksian fraud yang dapat digunakan oleh Merchant.</li>
-		<ul>
-			<li>Sistem pendeteksian fraud milik Payment Gateway merupakan sistem dengan menggunakan rule based engine.</li>
-		</ul>
-		<li>Merchant dapat menggunakan sarana sistem pendeteksian fraud milik VISA/Mastercard (untuk selanjutnya disebut sebagai Principal) yang lebih dikenal sebagai <i>3d-Secure</i>.</li>
-		<ul>
-			<li><i>3d-Secure</i> adalah layanan Principal berupa bentuk pembuktian keaslian identitas (authentication) Pelanggan akan Transaksi Kartu yang dilakukan oleh Pelanggan tersebut.</li>
-		</ul>
-		<li>Sesuai ketentuan dari Bank dan Principal, Para Pihak akan menjaga agar perbandingan nilai Transaksi Kartu yang dikonfirmasikan sebagai fraud terhadap total nilai Transaksi Kartu (fraud to sales ratio) tetap di bawah 1% atau 100 bips (basis points).</li>
-		<li>Payment Gateway dapat merubah rules sistem pendeteksian fraud sewaktu-waktu, dengan alasan melindungi kepentingan Para Pihak dari transaksi penipuan (fraud).</li>
-	</ul>
-	<li><i>Chargeback</i> dan <i>Refund</i></li>
-	<ul>
-		<li>Chargeback dapat terjadi apabila terdapat tagihan kembali kepada Merchant dari Bank atau suatu Transaksi Kartu yang dipermasalahkan oleh pemegang kartu atau Pelanggan.</li>
-		<li>Alasan terjadinya Chargeback adalah sebagai berikut:</li>
-		<ul>
-			<li>terjadi Transaksi Kartu yang disanggah oleh pemegang kartu yang sah, sehingga transaksi tersebut dianggap sebagai fraud; atau</li>
-			<li>terjadi Transaksi Kartu yang dipemasalahkan oleh Pelanggan akibat pelanggaran atas syarat dan ketentuan transaksi oleh Merchant, sehingga Pelanggan ingin uangnya kembali.</li>
-		</ul>
-		<li>Dalam hal terjadinya Chargeback, Merchant diwajibkan untuk membayar kembali tagihan Chargeback tersebut kepada Bank.</li>
-		<li>Batas pembayaran tagihan Chargeback akan ditetapkan oleh Bank dan Merchant wajib untuk membayar tagihan tersebut sebelum batas waktu yang ditentukan.</li>
-		<li>Tagihan Chargeback akan dibayarkan melalui mekanisme debet rekening oleh Bank (direct Merchant/facilitator), atau pengurangan dana transfer oleh Payment Gateway ke Merchant (aggregator).</li>
-		<li>Jangka waktu pelaksanaan Chargerback dan Refund akan mengikuti kebijakan dari masing-masing Bank dan Principal.</li>
-		<li>Khusus untuk Chargeback dengan alasan sanggahan Transaksi Kartu oleh Pelanggan karena fraud, Merchant akan dibebaskan dari tagihan Chargeback tersebut apabila Transaksi Kartu yang bersangkutan telah dilindungi dengan layanan 3d-Secure.</li>
-	</ul>
+    <li>Penanganan Transaksi Penipuan (<i>Fraud</i>)</li>
+    <ul>
+        <li>Merchant wajib menggunakan sistem pendeteksian fraud (penipuan) untuk setiap Transaksi Kartu pada situs Merchant.</li>
+        <li>Payment Gateway menyediakan sistem pendeteksian fraud yang dapat digunakan oleh Merchant.</li>
+        <ul>
+            <li>Sistem pendeteksian fraud milik Payment Gateway merupakan sistem dengan menggunakan rule based engine.</li>
+        </ul>
+        <li>Merchant dapat menggunakan sarana sistem pendeteksian fraud milik VISA/Mastercard (untuk selanjutnya disebut sebagai Principal) yang lebih dikenal sebagai <i>3d-Secure</i>.</li>
+        <ul>
+            <li><i>3d-Secure</i> adalah layanan Principal berupa bentuk pembuktian keaslian identitas (authentication) Pelanggan akan Transaksi Kartu yang dilakukan oleh Pelanggan tersebut.</li>
+        </ul>
+        <li>Sesuai ketentuan dari Bank dan Principal, Para Pihak akan menjaga agar perbandingan nilai Transaksi Kartu yang dikonfirmasikan sebagai fraud terhadap total nilai Transaksi Kartu (fraud to sales ratio) tetap di bawah 1% atau 100 bips (basis points).</li>
+        <li>Payment Gateway dapat merubah rules sistem pendeteksian fraud sewaktu-waktu, dengan alasan melindungi kepentingan Para Pihak dari transaksi penipuan (fraud).</li>
+    </ul>
+    <li><i>Chargeback</i> dan <i>Refund</i></li>
+    <ul>
+        <li>Chargeback dapat terjadi apabila terdapat tagihan kembali kepada Merchant dari Bank atau suatu Transaksi Kartu yang dipermasalahkan oleh pemegang kartu atau Pelanggan.</li>
+        <li>Alasan terjadinya Chargeback adalah sebagai berikut:</li>
+        <ul>
+            <li>terjadi Transaksi Kartu yang disanggah oleh pemegang kartu yang sah, sehingga transaksi tersebut dianggap sebagai fraud; atau</li>
+            <li>terjadi Transaksi Kartu yang dipemasalahkan oleh Pelanggan akibat pelanggaran atas syarat dan ketentuan transaksi oleh Merchant, sehingga Pelanggan ingin uangnya kembali.</li>
+        </ul>
+        <li>Dalam hal terjadinya Chargeback, Merchant diwajibkan untuk membayar kembali tagihan Chargeback tersebut kepada Bank.</li>
+        <li>Batas pembayaran tagihan Chargeback akan ditetapkan oleh Bank dan Merchant wajib untuk membayar tagihan tersebut sebelum batas waktu yang ditentukan.</li>
+        <li>Tagihan Chargeback akan dibayarkan melalui mekanisme debet rekening oleh Bank (direct Merchant/facilitator), atau pengurangan dana transfer oleh Payment Gateway ke Merchant (aggregator).</li>
+        <li>Jangka waktu pelaksanaan Chargerback dan Refund akan mengikuti kebijakan dari masing-masing Bank dan Principal.</li>
+        <li>Khusus untuk Chargeback dengan alasan sanggahan Transaksi Kartu oleh Pelanggan karena fraud, Merchant akan dibebaskan dari tagihan Chargeback tersebut apabila Transaksi Kartu yang bersangkutan telah dilindungi dengan layanan 3d-Secure.</li>
+    </ul>
 </ul>
 
 <p style='page-break-before:always;'><b>Lampiran 2</b></p>
 <p><b>Biaya Transaksi</b></p>
 
-<table>
-<tr>
-	<th rowspan="7">Bank</th>
-	<th>Jenis</th>
-	<th>Layanan Pembayaran</th>
-	<th>Biaya / Transaksi</th>
-</tr>
+<table style="width:100%;">
+    <tr>
+        <th rowspan="7">Bank</th>
+        <th>Jenis</th>
+        <th>Layanan Pembayaran</th>
+        <th>Biaya / Transaksi</th>
+    </tr>
 
-<tr>
-	<td rowspan="2">Bank Negara Indonesia (BNI)</td>
-	<td>Transaksi Kartu - Aggregator</td>
-	<td>3.2% + Rp. 2,750</td>
-</tr>
-<tr>
-	<td>Transaksi Kartu - Fasilitator</td>
-	<td>Biaya transaksi dari Bank + Rp. 2,750/td>
-</tr>
+    <tr>
+        <td rowspan="2">Bank Negara Indonesia (BNI)</td>
+        <td>Transaksi Kartu - Aggregator</td>
+        <td>3.2% + Rp. 2,750</td>
+    </tr>
+    <tr>
+        <td>Transaksi Kartu - Fasilitator</td>
+        <td>Biaya transaksi dari Bank + Rp. 2,750/td>
+    </tr>
 
-<tr>
-	<td rowspan="3">Bank CIMB Niaga</td>
-	<td>Transaksi Kartu - Aggregator</td>
-	<td>3.2% + Rp. 2,750</td>
-</tr>
-<tr>
-	<td>Transaksi Kartu - Fasilitator</td>
-	<td>Biaya transaksi dari Bank + Rp. 2,750</td>
-</tr>
-<tr>
-	<td>Internet Banking - CIMB Clicks</td>
-	<td>Rp. 5,000</td>
-</tr>
-
-
-<tr>
-	<td rowspan="4">Bank Mandiri</td>
-	<td>Transaksi Kartu - Fasilitator</td>
-	<td>Biaya transaksi dari Bank + Rp. 2,750</td>
-</tr>
-<tr>
-	<td>Internet Banking - Mandiri ClickPay</td>
-	<td>Rp. 5,000</td>
-</tr>
-<tr>
-	<td>Bill Payment</td>
-	<td>Rp. 5,390</td>
-</tr>
-<tr>
-	<td>E-Money - e-cash</td>
-	<td>1% untuk transaksi min Rp. 250,000 atau Rp. 2,500 untuk transaksi di bawah Rp. 250,000</td>
-</tr>
-
-<tr>
-	<td>Bank Rakyat Indonesia (BRI)</td>
-	<td>Internet Banking - e-Pay BRI</td>
-	<td>Rp. 5,000</td>
-</tr>
-
-<tr>
-	<td rowspan="3">Bank Central Asia (BCA)</td>
-	<td>Transaksi Kartu - Fasilitator</td>
-	<td>Biaya transaksi dari Bank + Rp. 2,750</td>
-</tr>
-<tr>
-	<td>Internet Banking - BCA KlikPay</td>
-	<td>Biaya transaksi dari Bank + Rp. 2,200</td>
-</tr>
-<tr>
-	<td>Virtual Account</td>
-	<td>Biaya transaksi dari Bank + Rp. 2,750</td>
-</tr>
-
-<tr>
-	<td>Bank Permata</td>
-	<td>Virtual Account</td>
-	<td>Rp. 5,390</td>
-</tr>
+    <tr>
+        <td rowspan="3">Bank CIMB Niaga</td>
+        <td>Transaksi Kartu - Aggregator</td>
+        <td>3.2% + Rp. 2,750</td>
+    </tr>
+    <tr>
+        <td>Transaksi Kartu - Fasilitator</td>
+        <td>Biaya transaksi dari Bank + Rp. 2,750</td>
+    </tr>
+    <tr>
+        <td>Internet Banking - CIMB Clicks</td>
+        <td>Rp. 5,000</td>
+    </tr>
 
 
+    <tr>
+        <td rowspan="4">Bank Mandiri</td>
+        <td>Transaksi Kartu - Fasilitator</td>
+        <td>Biaya transaksi dari Bank + Rp. 2,750</td>
+    </tr>
+    <tr>
+        <td>Internet Banking - Mandiri ClickPay</td>
+        <td>Rp. 5,000</td>
+    </tr>
+    <tr>
+        <td>Bill Payment</td>
+        <td>Rp. 5,390</td>
+    </tr>
+    <tr>
+        <td>E-Money - e-cash</td>
+        <td>1% untuk transaksi min Rp. 250,000 atau Rp. 2,500 untuk transaksi di bawah Rp. 250,000</td>
+    </tr>
 
+    <tr>
+        <td>Bank Rakyat Indonesia (BRI)</td>
+        <td>Internet Banking - e-Pay BRI</td>
+        <td>Rp. 5,000</td>
+    </tr>
+
+    <tr>
+        <td rowspan="3">Bank Central Asia (BCA)</td>
+        <td>Transaksi Kartu - Fasilitator</td>
+        <td>Biaya transaksi dari Bank + Rp. 2,750</td>
+    </tr>
+    <tr>
+        <td>Internet Banking - BCA KlikPay</td>
+        <td>Biaya transaksi dari Bank + Rp. 2,200</td>
+    </tr>
+    <tr>
+        <td>Virtual Account</td>
+        <td>Biaya transaksi dari Bank + Rp. 2,750</td>
+    </tr>
+
+    <tr>
+        <td>Bank Permata</td>
+        <td>Virtual Account</td>
+        <td>Rp. 5,390</td>
+    </tr>
+
+    <tr>
+        <th rowspan="6">Service Provider</th>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>Telkomsel</td>
+        <td>E-Money - Telkomsel TCash</td>
+        <td>Rp. 3,300</td>
+    </tr>
+    <tr>
+        <td>XL</td>
+        <td>E-Money - XL Tunai</td>
+        <td>Rp. 3,300</td>
+    </tr>
+    <tr>
+        <td>Indosat Dompetku</td>
+        <td>E-Money - Indosat Dompetku</td>
+        <td>Rp. 3,300</td>
+    </tr>
+    <tr>
+        <td>Indomaret</td>
+        <td>Convenience Store - Indomaret</td>
+        <td>Biaya transaksi dari Indomaret</td>
+    </tr>
+    <tr>
+        <td>BBM Money</td>
+        <td>E-Money - BBM Money</td>
+        <td>3% + Rp. 1,650</td>
+    </tr>
 </table>
+
+<p><b>Seluruh biaya transaksi sudah termasuk PPN.</b></p>
 
 <p style='page-break-before:always;'><b>Lampiran 3</b></p>
 <p><b>Tata Cara Pembayaran Biaya Transaksi</b></p>
 
+<ul>
+    <li>Pencairan Dana Melalui <i>Payment Gateway</i> (<b>Aggregrator</b>)</li>
+    <ul>
+        <li>Untuk setiap Transaksi Internet yang berhasil, <i>Payment Gateway</i> akan menyimpan dana nilai Transaksi Internet tersebut di rekening <i>Payment Gateway</i> selama jangka waktu 7 (tujuh) hari kalendar setelah tanggal terjadinya Transaksi Internet.</li>
+        <li>Setelah jangka waktu yang dimaksud berakhir, <i>Merchant</i> dapat melakukan permohonan pencairan dana nilai Transaksi Internet melalui <i>Merchant Administration Portal</i> (MAP, https://my.veritrans.co.id/map/) yang disediakan oleh <i>Payment Gateway</i> kepada <i>Merchant</i>.</li>
+        <li>Informasi Biaya Transaksi yang dimuat di MAP termasuk namun tidak terbatas pada:</li>
+        <ul>
+            <li>Total nilai Transaksi Internet yang dananya masih mengendap di <i>Payment Gateway</i>;</li>
+            <li>Total nilai Transaksi Internet yang dananya dapat dicairkan oleh <i>Merchant</i>; dan</li>
+            <li>Total Biaya Transaksi masing-masing Layanan Pembayaran.</li>
+        </ul>
+        <li><i>Payment Gateway</i> akan melakukan proses transfer dana Transaksi Internet, setelah dipotong Biaya Transaksi ke rekening <i>Merchant</i> di Hari Kerja yang sama, apabila permohonan pencairan dana dilakukan oleh <i>Merchant</i> sebelum pukul 11:00. Apabila permohonan pencairan dana Transaksi Internet dilakukan oleh <i>Merchant</i> setelah pukul 11:00, maka <i>Payment Gateway</i> akan melakukan proses transfer dana di Hari Kerja berikutnya.</li>
+        <li>Pencairan dana Transaksi Internet setelah dipotong biaya transaksi akan dilakukan ke rekening Merchant dengan detil sebagai berikut:</li>
+        <ul>
+            <li>
+                <table style="width:100%;">
+                    <tr>
+                        <td>Nama Bank:</td>
+                        <td>Bank Central Asia</td>
+                    </tr>
+                    <tr>
+                        <td>Nama Pemegang Rekening:</td>
+                        <td>David Susanto</td>
+                    </tr>
+                    <tr>
+                        <td>Nomor Rekening Bank:</td>
+                        <td>500.519.9911</td>
+                    </tr>
+                    <tr>
+                        <td>Kantor Cabang:</td>
+                        <td>Mall Senayan City</td>
+                    </tr>
+                </table>
+            </li>
+        </ul>
+    </ul>
+    <li>Pencairan Dana Langsung Dari Bank/<i>Service Provider</i> (<b>Facilitator/Direct Merchant</b>)</li>
+    <ul>
+        <li>Untuk beberapa Layanan Pembayaran, dana Transaksi Internet akan langsung dicairkan oleh Bank dan/atau <i>Service Provider</i> ke rekening <i>Merchant</i>.</li>
+        <li>Ketentuan dari pencairan dana Transaksi Internet dari Bank dan/atau <i>Service Provider</i> ke rekening <i>Merchant</i> telah diatur di perjanjian kerjasama yang ditandatangani antara <i>Merchant</i> dengan Bank dan/atau <i>Service Provider</i>.</li>
+        <li>Biaya Transaksi yang dikenakan ke <i>Merchant</i> oleh Bank dan/atau <i>Service Provider</i> akan dipotong langsung dari dana Transaksi Internet yang dicairkan ke rekening <i>Merchant</i> oleh Bank dan/atau <i>Service Provider</i>.</li>
+        <li>Biaya Transaksi yang dikenakan ke <i>Merchant</i> oleh <i>Payment Gateway</i> akan ditagihkan oleh <i>Payment Gateway</i> setiap akhir bulan melalui tagihan (<i>invoice</i>) dan faktur pajak ke <i>Merchant</i>.</li>
+        <li>Mekanisme penagihan Biaya Transaksi oleh <i>Payment Gateway</i> kepada <i>Merchant</i> adalah sebagai berikut:</li>
+        <ul>
+            <li><i>Payment Gateway</i> akan mengirimkan rekapitulasi Transaksi Internet kepada <i>Merchant</i> selambat-lambatnya 5 (lima) Hari Kerja setelah bulan yang bersangkutan berakhir.  Rekapitulasi Transaksi Internet akan digunakan sebagai dasar penagihan dari <i>Payment Gateway</i> kepada <i>Merchant</i>;</li>
+            <li>Apabila rekapitulasi Transaksi Internet telah disetujui dan dikonfirmasi oleh <i>Merchant</i>, <i>Payment Gateway</i> akan mengirimkan tagihan (<i>invoice</i>) dan faktur pajak dalam bentuk salinan cetak (<i>hardcopy</i>) kepada <i>Merchant</i>;</li>
+            <li><i>Merchant</i> wajib membayar tagihan dari <i>Payment Gateway</i>, selambat-lambatnya 5 (lima) Hari Kerja setelah tagihan dan faktur pajak yang dikirimkan oleh <i>Payment Gateway</i> diterima oleh <i>Merchant</i>;</li>
+        </ul>
+    </ul>
+</ul>
+
 <p style='page-break-before:always;'><b>Lampiran 4</b></p>
 <p><b>Daftar Persyaratan Administrasi Merchant</b></p>
+
+<p>Persyaratan administrasi yang wajib dikumpulkan oleh <i>Merchant</i> ke <i>Payment Gateway</i> untuk masing-masing Layanan Pembayaran:</p>
+
+<table style="width:100%;">
+    <tr>
+        <th>Transaksi Kartu</th>
+        <th>Internet Banking, e-Wallet dan Convenience Store</th>
+        <th>Virtual Account dan Bill Payment</th>
+    </tr>
+    <tr>
+        <td>
+            <ul>
+                <li>Kartu Tanda Penduduk (KTP) atau KITAS Direksi</li>
+                <li>Nomor Pokok Wajib Pajak (NPWP)*</li>
+                <li>Fotokopi Perjanjian Kerjasama ini</li>
+                <li>Akta Pendirian Usaha serta perubahannya**</li>
+                <li>Surat Keputusan Menteri Hukum dan HAM**</li>
+            </ul>
+        </td>
+        <td>(akan ditetapkan oleh masing-masing bank)</td>
+        <td>
+            <ul>
+                <li>Kartu Tanda Penduduk (KTP) atau KITAS Direksi</li>
+                <li>Nomor Pokok Wajib Pajak (NPWP)*</li>
+                <li>Fotokopi Perjanjian Kerjasama ini</li>
+            </ul>
+        </td>
+    </tr>
+</table>
+
+<p>*) NPWP Perorangan atau Perusahaan, tergantung bentuk usaha <i>Merchant</i>.</p>
+<p>**) Apabila <i>Merchant</i> berbentuk PT atau badan usaha.</p>
+
+<p>Dokumen-dokumen di bawah ini dikumpulkan sebagai pendukung (sesuai dengan kebutuhan bank), guna mempermudah proses aplikasi:</p>
+<ul>
+    <li>Surat Ijin Usaha Perdangangan (SIUP) atau sejenisnya;</li>
+    <li>Tanda Daftar Perusahaan (TDP);</li>
+    <li>Akta Pendirian beserta perubahan sesudahnya;</li>
+    <li>Surat Keputusan Mentri (SK Menkeh) atas akta yang dimaksud;</li>
+    <li>Surat sewa atau bukti kepemilikan kantor;</li>
+    <li>Surat Badan Koordinasi Penanaman Modal (BKPMA) jika ada mendapatkan injeksi dana dari pihak asing;</li>
+    <li>Rekening koran usaha minimal 3 bulan terakhir;</li>
+    <li>Foto lokasi usaha;</li>
+</ul>
+
+<p><i>Payment Gateway</i> berhak untuk meminta dokumen tambahan kepada Merchant sebagai dokumen pendukung jika diperlukan.</p>
 
 <p style='page-break-before:always;'><b>Lampiran 5</b></p>
 <p><b>Korespondensi</b></p>
 
+<p>Untuk mendukung operasional layanan Sistem Pembayaran Internet, maka segala pemberitahuan dari satu Pihak kepada Pihak lainnya sehubungan dengan pelaksanaan Perjanjian ini, Para Pihak sepakat untuk menyediakan layanan bantuan dengan rincian sebagai berikut:</p>
+<p>&nbsp;</p>
+<p><i><u>Payment Gateway:</u></i></p>
+<p>&nbsp;</p>
+<p><i>Overall Support</i></p>
+<p><u><b>PT. MIDTRANS</b></u></p>
+<p><u>Up. Tim Solutions</u></p>
+<p>Dengan alamat:</p>
+<p>MidPlaza 2 Lt. 24</p>
+<p>Jl. Jend. Sudirman Kav 10-11</p>
+<p>Jakarta 10220</p>
+<p>Telepon: 021-5736789</p>
+<p>Fax: 021-5734555</p>
+<p>Email: solutions@veritrans.co.id dan/atau support@veritrans.co.id</p>
+<p>&nbsp;</p>
+<p><i><u>Merchant:</u></i></p>
+<p><b><u><%="(NamaDagang)"%></u></b></p>
+<p>Dengan alamat:</p>
+<p><%="(Alamat)"%></p>
+<p><%="(Kota)"%></p>
+<p>&nbsp;</p>
+<p>A. Operational/Technical Support</p>
+<p>Telepon:</p>
+<p>Email:</p>
+<p>Emergency:</p>
+<p>&nbsp;</p>
+<p>B. Customer Support</p>
+<p>Telepon:</p>
+<p>Email:</p>
+<p>Emergency:</p>
+<p>&nbsp;</p>
+<p>Dalam hal terjadi perubahan alamat atau nomor telepon sebagaimana yang tercantum dalam Perjanjian ini, maka Pihak yang mengubah alamat wajib untuk memberitahukan secara tertulis, perubahan tersebut kepada PIHAK lainnya dalam jangka waktu 3 (tiga) hari kalender setelah perubahan alamat itu terjadi/dilakukan. Segala akibat yang timbul karena perubahan alamat yang tidak diberitahukan kepada Pihak lainnya, sepenuhnya menjadi risiko dan tanggungan Pihak yang mengubah alamat yang bersangkutan.</p>
+
 <p style='page-break-before:always;'><b>Lampiran 6</b></p>
 <p><b>Standard Operational Procedure (SOP)</b></p>
 
+<p>1. Laporan Rekapitulasi Transaksi Internet</p>
+<p>1.1.	Merchant dapat mengakses laporan dan status Transaksi Internet melalui Merchant Administration Portal (MAP, https://my.veritrans.co.id/map/) secara real-time (langsung setelah Transaksi Internet berhasil dilakukan);</p>
+<p>1.2.	Merchant dapat mendapatkan laporan rekapitulasi transaksi harian dalam format excel atau csv, yang akan dikirimkan ke email Merchant. Laporan Transaksi Internet akan dikirimkan apabila Merchant sudah mengaktivasikan pengiriman laporan tersebut di MAP.</p>
+
+<p>2. Waktu Settlement Transaksi Kartu</p>
+<p>Seluruh Transaksi Kartu yang telah diotorisasi antara pukul 00.00 sampai dengan 23:59 di hari H oleh Bank akan diproses settlement pada pukul 15.00 pada keesokan harinya (H+1).</p>
+
+<p>3. Pembatalan Transaksi Kartu (Void)</p>
+<p>Merchant juga dapat membatalkan (cancel atau void) Transaksi Internet yang telah diotorisasi melalui MAP atau melalui API yang disediakan oleh Payment Gateway.</p>
+
 <p style='page-break-before:always;'><b>Lampiran 7</b></p>
 <p><b><u>FORMULIR PERMOHONAN MERCHANT E-COMMERCE</u></b></p>
- 
