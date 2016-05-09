@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: redirect('/login')
 
   get 'login' => 'sessions#new'
-  post 'login' => 'sessions#create'
+  post 'create' => 'sessions#create'
   get 'logout' => 'sessions#destroy'
   delete 'logout' => 'sessions#destroy'
 
@@ -28,7 +28,7 @@ Rails.application.routes.draw do
 
   get 'merchant/terms' => 'term#index' # as merchant_terms
   post 'merchant/terms' => 'term#agree'
-  
+
   get 'merchant/details/:merchant_id' => 'agreement#merchant_details'
 
   # The priority is based upon order of creation: first created -> highest priority.
