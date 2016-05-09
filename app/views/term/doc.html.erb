@@ -1,11 +1,11 @@
-<p>Nama Dagang <i>Merchant</i> : <%= "(NamaDagang)" %></p>
-<p>Jenis Usaha : <%= "(JenisUsaha)" %></p>
+<p>Nama Dagang <i>Merchant</i> : <%= @merchant.name %></p>
+<p>Jenis Usaha : <%= @merchant.type_of_product %></p>
 
-<p>Perjanjian Kerjasama <i>Merchant</i> Internet (untuk selanjutnya disebut &quot;<b>Payment Gateway</b>&quot;, termasuk Lampiran-Lampirannya) ini dibuat dan ditandatangani pada hari <%= "(hari)" %> tanggal <%= "(tanggal)" %> oleh dan antara:</p>
+<p>Perjanjian Kerjasama <i>Merchant</i> Internet (untuk selanjutnya disebut &quot;<b>Payment Gateway</b>&quot;, termasuk Lampiran-Lampirannya) ini dibuat dan ditandatangani pada hari <%= Time.now.wday %> tanggal <%= Time.now.strftime("%m/%d/%Y") %> oleh dan antara:</p>
 
 <p>I. <b>PT. Midtrans</b>, berkedudukan di Jakarta Pusat, berkantor pusat di MidPlaza 2, Lantai 24, Jl. Jenderal Sudirman Kav. 10-11, Jakarta 10220, yang didirikan berdasarkan Akta Pendirian No. 07 tanggal 14 Desember 2011 yang dibuat dihadapan Silvia Veronika SH, Notaris di Jakarta, yang telah memperoleh pengesahan badan hukum perseroan dari Menteri Hukum dan Hak Asasi Manusia Republik Indonesia Nomor AHU-01183.AH.01.01.Tahun 2012 tertanggal 09 Januari 2012; dalam hal ini diwakili oleh Budi Gandasoebrata dalam jabatannya selaku Direktur dan karenanya sah mewakili serta berwenang bertindak untuk dan atas nama PT. Midtrans, selanjutnya disebut &quot;<b>Payment Gateway</b>&quot;.</p>
 
-<p>II. <b><%= "(Website)" %></b>, berkedudukan di <b><%= "(kantor)" %></b>, berkantor pusat di <b><%= "(AlamatKantor)" %></b> ,dalam hal ini diwakili oleh <b><%= "(A/N)" %></b> dalam jabatannya selaku <b><%= "(Role)" %></b> dari dan oleh karenanya sah dan berwenang bertindak untuk dan atas nama <b><%= "(Website)" %></b>, yang selanjutnya disebut &quot;<b>Merchant</b>&quot;.</p>
+<p>II. <b><%= @merchant.website %></b>, berkedudukan di <b><%= @merchant.city %></b>, berkantor pusat di <b><%= @merchant.address %></b> ,dalam hal ini diwakili oleh <b><%= @merchant.merchant_owner.name %></b> dalam jabatannya selaku <b><%= "(Role)" %></b> dari dan oleh karenanya sah dan berwenang bertindak untuk dan atas nama <b><%= @merchant.website %></b>, yang selanjutnya disebut &quot;<b>Merchant</b>&quot;.</p>
 
 <p><i>Payment Gateway</i> dan <i>Merchant</i> secara bersama-sama selanjutnya akan disebut &quot;<b>Para Pihak</b>&quot; dan sendiri-sendiri disebut &quot;<b>Pihak</b>&quot;.</p>
 
@@ -333,20 +333,20 @@
 <p>Email: solutions@veritrans.co.id dan/atau support@veritrans.co.id</p>
 <p>&nbsp;</p>
 <p><i><u>Merchant:</u></i></p>
-<p><b><u><%="(NamaDagang)"%></u></b></p>
+<p><b><u><%= @merchant.name %></u></b></p>
 <p>Dengan alamat:</p>
-<p><%="(Alamat)"%></p>
-<p><%="(Kota)"%></p>
+<p><%= @merchant.address %></p>
+<p><%= @merchant.city %></p>
 <p>&nbsp;</p>
 <p>A. Operational/Technical Support</p>
-<p>Telepon:</p>
-<p>Email:</p>
-<p>Emergency:</p>
+<p>Telepon: <%= @merchant.merchant_operational.telephone %></p>
+<p>Email: <%= @merchant.merchant_operational.email %></p>
+<p>Emergency: <%= @merchant.merchant_operational.emergency %></p>
 <p>&nbsp;</p>
 <p>B. Customer Support</p>
-<p>Telepon:</p>
-<p>Email:</p>
-<p>Emergency:</p>
+<p>Telepon: <%= @merchant.merchant_customer_support.telephone %></p>
+<p>Email: <%= @merchant.merchant_customer_support.email %></p>
+<p>Emergency: <%= @merchant.merchant_customer_support.emergency %></p>
 <p>&nbsp;</p>
 <p>Dalam hal terjadi perubahan alamat atau nomor telepon sebagaimana yang tercantum dalam Perjanjian ini, maka Pihak yang mengubah alamat wajib untuk memberitahukan secara tertulis, perubahan tersebut kepada PIHAK lainnya dalam jangka waktu 3 (tiga) hari kalender setelah perubahan alamat itu terjadi/dilakukan. Segala akibat yang timbul karena perubahan alamat yang tidak diberitahukan kepada Pihak lainnya, sepenuhnya menjadi risiko dan tanggungan Pihak yang mengubah alamat yang bersangkutan.</p>
 
@@ -365,3 +365,41 @@
 
 <p style='page-break-before:always;'><b>Lampiran 7</b></p>
 <p><b><u>FORMULIR PERMOHONAN MERCHANT E-COMMERCE</u></b></p>
+<p>Semua informasi dibawah ini <b>wajib</b> diisi dengan data sebenarnya untuk kepentingan persetujuan</p>
+<p><b><u>DATA USAHA/MERCHANT</u></b></p>
+<p>Nama Merchant: <%= @merchant.name %></p>
+<p>No. Telepon: <%= @merchant.telephone %></p>
+<p>Website Merchant: <%= @merchant.website %></p> 
+<p>Email: <%= @merchant.email %></p> 
+<p>Alamat Merchant: <%= @merchant.address %></p> 
+<p>Status Tempat Usaha: <%= @merchant.office_status %></p> 
+<p>Barang/Jasa yang dijual: <%= @merchant.type_of_product %></p> 
+<p>Kisaran harga barang/jasa per item: <%= @merchant.price_range %></p> 
+<p>Lama Usaha: <%= @merchant.time_since_started %></p> 
+<p>Jumlah Penjualan/bln: <%= @merchant.revenues_each_month %></p> 
+<p>Total Penjualan dengan kartu kredit: <%= @merchant.credit_card_payment_ratio %></p> 
+
+<p><b>MDR + Fee Per Transaksi  (include Tax)</b></p>
+<p><b>Monthly Fee Product / Month</b></p>
+
+<p><b><u>DATA PIC MERCHANT</u></b></p>
+<p>Nama PIC/Jabatan: <%= @merchant.merchant_pic.name %></p>
+<p>No. Telepon: <%= @merchant.merchant_pic.telephone %></p>
+<p>Email: <%= @merchant.merchant_pic.email %></p> 
+<p><b><u>DATA USAHAWAN</u></b></p>
+<p>Nama Pemilik/Direksi: <%= @merchant.merchant_owners.name %></p>
+<p>No. Telepon: <%= @merchant.merchant_owners.name %></p>
+<p>Email: <%= @merchant.merchant_owners.name %></p> 
+<p><b><u>INFORMASI REKENING BANK</u></b></p>
+<table style="width:100%;">
+    <tr>
+        <td><p>Saya/kami dengan ini menyatakan bahwa keterangan ini dibuat dengan sebenarnya untuk mengajukan permohonan sebagai Merchant Veritrans dan Bank. Sebagai merchant Veritrans dan Bank, saya/kami akan bertanggung jawab sepenuhnya atas perjanjian yang sudah dibuat serta peraturan yang berlaku. </p></td>
+        <td>
+        <%= @merchant.city %>, <%= Time.now.strftime("%m/%d/%Y") %>
+        <br/>
+        <br/>
+        <br/>
+        <%= @merchant.merchant_owners.name %>
+        </td>
+    </tr>
+</table>
