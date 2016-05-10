@@ -7,11 +7,16 @@ class SessionsController < ApplicationController
   def create
     @user = User.find_by_email(params[:session][:email])
 
-    if @user && @user.password_match?(params[:session][:password])
-      session[:user_id] = @user.id
-
-      redirect_to_dashboard
+    if @user
+      if @user.password_match?(params[:session][:password])
+        session[:user_id] = @user.id
+        redirect_to_dashboard
+      else
+        flash[:notice] = 'Wrong password'
+        redirect_to '/login'
+      end
     else
+      flash[:notice] = 'Email does not exist'
       redirect_to '/login'
     end
   end
