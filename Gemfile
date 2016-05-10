@@ -43,6 +43,9 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.4.2'
   # for feeding test data to the test suite
   gem 'factory_girl_rails'
+
+  # For testing user interface elements
+  gem 'capybara'
 end
 
 group :development do
