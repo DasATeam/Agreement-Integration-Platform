@@ -26,19 +26,19 @@
 						<h3>General Merchant Info</h3>
 						  <div class="form-group">
 						    <%= f.label(:name, "Name") %>
-						    <%= f.text_field(:name, class: "form-control", value: @merchant.name) %>
+						    <%= f.text_field(:name, class: "form-control", value: @merchant.name, placeholder: "ex./ John Doe") %>
 						  </div>
 						  <div class="form-group">
 						    <%= f.label(:website, "Website") %>
-						    <%= f.text_field(:website, class: "form-control", value: @merchant.website) %>
+						    <%= f.text_field(:website, class: "form-control", value: @merchant.website, placeholder: "ex./ www.shop.com") %>
 						  </div>
 						  <div class="form-group">
 						    <%= f.label(:email, "Email") %>
-						    <%= f.text_field(:email, class: "form-control", value: @merchant.email, placeholder: " ex./ example@example.com") %>
+						    <%= f.text_field(:email, class: "form-control", placeholder: " ex./ example@example.com", value: @merchant.email) %>
 						  </div>
 						  <div class="form-group">
 						    <%= f.label(:city, "City") %>
-						    <%= f.text_field(:city, class: "form-control", value: @merchant.city, placeholder: "ex./ Jakarta") %>
+						    <%= f.text_field(:city, class: "form-control", placeholder: "ex./ Jakarta", value: @merchant.city) %>
 						  </div>
 						  <div class="form-group">
 						    <%= f.label(:address, "Address") %>
@@ -50,15 +50,15 @@
 						  </div>
 						  <div class="form-group">
 						    <%= f.label(:type_of_product, "Type of Product") %>
-						    <%= f.text_area(:type_of_product, class: "form-control", value: @merchant.type_of_product, placeholder: "ex./ clothes, food, etc") %>
+						    <%= f.text_area(:type_of_product, class: "form-control", value: @merchant.type_of_product, placeholder: "ex./ Clothing Line, Food, etc") %>
 						  </div>
 						  <div class="form-group">
 						    <%= f.label(:price_range, "Price Range") %>
-						    <%= f.text_area(:price_range, class: "form-control", value: @merchant.price_range, placeholder: "100000-1000000") %>
+						    <%= f.text_area(:price_range, class: "form-control", value: @merchant.price_range, placeholder: "ex./ 100000-3000000") %>
 						  </div>
 						  <div class="form-group">
 						    <%= f.label(:time_since_started, "Time Since Started") %>
-						    <%= f.text_area (:time_since_started, class: "form-control", value: @merchant.time_since_started, placeholder: "yyyy/mm/dd") %>
+						    <%= f.date_field(:time_since_started, class: "form-control", value: @merchant.time_since_started, placeholder: "ex./ yyyy/mm/dd") %>
 						  </div>
 						  <div class="form-group">
 						    <%= f.label(:ownership_type, "Ownership Type") %>
@@ -66,37 +66,37 @@
 						  </div>
 						  <div class="form-group">
 						    <%= f.label(:revenues_each_month, "Revenues Per-month") %>
-						    <%= f.text_field(:revenues_each_month, class: "form-control", value: @merchant.revenues_each_month, placeholder: "30000000") %>
+						    <%= f.text_field(:revenues_each_month, value: @merchant.revenues_each_month, class: "form-control", placeholder: "30000000") %>
 						  </div>
 						  <div class="form-group">
 						    <%= f.label(:credit_card_payment_ratio, "Credit Card Payment Ratio") %>
-						    <%= f.text_field(:credit_card_payment_ratio, class: "form-control") %>
+						    <%= f.text_field(:credit_card_payment_ratio, class: "form-control", value: @merchant.credit_card_payment_ratio, placeholder: "ex./ 500000") %>
 						  </div>
 						  <div class="col-xs-12 vertical-space" style="height:25px;"></div>
 						<%= f.submit "Next", :name => 'save_general', :class => "btn btn-primary" %>
 					<% end %>
 				</div>
-				<!-- <div class="col-xs-12 vertical-space" style="height:50px;"></div> -->
+				
 				<div id="pic" class="<%= if params[:save_general] then @active else @non_active end%>">
 					<%= form_for :merchant do |f| %>
 						<h3>PIC Merchant Info</h3>
 					  	<%= fields_for :merchant_pic do |p|%>
 						  	<div class="form-group">
 							    <%= p.label(:name, "Name") %>
-							    <%= p.text_field(:name, class: "form-control", value: @merchant_pic.name, placeholder: "ex./ John"%>
-							</div>
-							<div class="form-group">
-							    <%= p.label(:address, "Address") %>
-								<%= p.text_field(:address, class: "form-control", value: @merchant_pic.address, placeholder: "ex./ Jl. example no. 1") %>
-							</div>
-							<div class="form-group">
-							    <%= p.label(:email, "Email") %>
-							    <%= p.text_field(:email, class: "form-control", value: @merchant_pic.email, placeholder: "ex./ example.example.com") %>
-							</div>
+							    <%= p.text_field(:name, class: "form-control", value: @merchant_pic.name, placeholder: "ex./ John")%>
+								</div>
+								<div class="form-group">
+								    <%= p.label(:address, "Address") %>
+										<%= p.text_field(:address, class: "form-control", value: @merchant_pic.address, placeholder: "ex./ Jl. example no. 1") %>
+								</div>
+								<div class="form-group">
+								    <%= p.label(:email, "Email") %>
+								    <%= p.text_field(:email, class: "form-control", value: @merchant_pic.email, placeholder: "ex./ example.example.com") %>
+								</div>
 								<div class="form-group">
 							    <%= p.label(:telephone, "Emergency Telephone") %>
 							    <%= p.text_field(:telephone, class: "form-control", value: @merchant_pic.telephone, placeholder: "ex./ 08123456789") %>
-							</div>
+								</div>
 					  	<% end %>
 					  	<div class="col-xs-12 vertical-space" style="height:25px;"></div>
 						<%= f.submit "Next", :name => 'save_pic', :class => "btn btn-primary" %>
@@ -139,11 +139,11 @@
 						  </div>
 						  <div class="form-group">
 						    <%= cs.label(:telephone, "Telephone") %><br>
-						    <%= cs.text_field(:telephone, class: "form-control", value: @merchant_cs.telephone, placeholder: "ex./ 08123456789")) %>
+						    <%= cs.text_field(:telephone, class: "form-control", value: @merchant_cs.telephone, placeholder: "ex./ 08123456789") %>
 						  </div>
 						  <div class="form-group">
 						    <%= cs.label(:emergency, "Emergency Telephone") %><br>
-						    <%= cs.text_field(:emergency, class: "form-control", value: @merchant_cs.emergency, placeholder: "ex./ 08123456789")) %>
+						    <%= cs.text_field(:emergency, class: "form-control", value: @merchant_cs.emergency, placeholder: "ex./ 08123456789") %>
 						  </div>
 					  <% end %>
 					  <div class="col-xs-12 vertical-space" style="height:25px;"></div>
