@@ -7,7 +7,12 @@ class TermController < ApplicationController
   end
 
   def doc
+    @user = current_user
+    @merchant = @user.merchant
+    @agreement = @merchant.first
     @term = Point.first
+
+
     respond_to do |format|
       format.html do
         render :pdf => "Agreement",
