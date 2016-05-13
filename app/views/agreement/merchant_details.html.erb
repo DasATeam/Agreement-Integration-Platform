@@ -38,15 +38,24 @@
 	<div id="channels" class="tab-pane fade">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-4">
-					<h3>Selected Channels</h3><br/>
-					<% for ac in @channels %>
-							<% item = ac.channel_type %>
-					    <%= item.name %> <br/>
-					    <%= item.charge %> <br/><br/>
-					<% end %>
-				</div>
+				<h3>Selected Channels:</h3>
 			</div>
+			<% for ac in @channels %>
+				<div class="row" style="margin-top: 15px;">
+					<div class="col-md-3">
+					  <% item = ac.channel_type %>
+					</div>
+					<div class="col-md-3">
+					  <%= item.name %>
+					</div>
+					<div class="col-md-3">
+					  <%= ac.customprice %>
+					</div>
+					<div class="col-md-3">
+					  <%= link_to "Change Price", controller: "agreement", action: "change_price", haft: item.id %>
+					</div>
+				</div>
+			<% end %>
 		</div>
 	</div>
 
@@ -60,11 +69,3 @@
 		</div>
 	</div>
 </div>
-
-Selected Channels: <br/>
-<% for ac in @channels %>
-    <% item = ac.channel_type %>
-    <%= item.name %> <br/>
-    <%= ac.customprice %> <br/><br/>
-    <%= link_to "Change Price", controller: "agreement", action: "change_price", haft: item.id %>
-<% end %>

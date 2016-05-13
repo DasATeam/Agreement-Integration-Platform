@@ -1,22 +1,43 @@
-<div class="row">
-<div class="col-md-4 col-md-offset-4">
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Veritrans | Agreement Integration Platform</title>
+  <link rel="icon" type="image/x-icon" href="<%= request.base_url + '/assets/veritrans.ico' %>">
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="container">
+    <div class="vertical-space" style="height:200px;"></div>
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+        <div class="text-center">
+          <img class="vt-logo" src="<%= request.base_url + '/assets/veritrans.png' %>"> | Agreement Integration Platform
+        </div>
+        <div class="vertical-space" style="height:10px;"></div>
+        <h4 class="text-center">Login</h4>
 
-<h2>Login</h2>
+        <%= form_for(:session, url: create_path) do |f| %>
+          <% if flash[:notice] %>
+            <div class="notice"><%= flash[:notice] %></div>
+          <% end %>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <%= f.email_field :email, :placeholder => "Email", :class => "form-control" %>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <%= f.password_field :password, :placeholder => "Password", :class => "form-control"  %>
+          </div>
+          <%= f.submit "Log in", class: "btn btn-primary" %>
+        <% end %>
 
-<%= form_for(:session, url: create_path) do |f| %>
-  <% if flash[:notice] %>
-    <div class="notice"><%= flash[:notice] %></div>
-  <% end %>
-  <label for="email">Email</label>
-  <%= f.email_field :email, :placeholder => "Email", :class => "form-control" %>
-  <label for="password">Password</label>
-  <%= f.password_field :password, :placeholder => "Password", :class => "form-control"  %>
-  <br>
-  <%= f.submit "Log in", class: "btn btn-default" %>
-<% end %>
-
-<% if flash[:error] %>
-  <div class="notice"><%= flash[:error] %></div>
-<% end %>
-</div>
-</div>
+        <% if flash[:error] %>
+          <div class="notice"><%= flash[:error] %></div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

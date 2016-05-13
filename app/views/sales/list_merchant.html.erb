@@ -1,25 +1,29 @@
 <div class="container">
-<div class="row">
-<%= link_to 'Create New agreement', 'agreement/new', class: 'btn btn-primary' %>
-<h1>Current Merchant</h1>
-<% @sales_merchants.each do |merchant| %>
-<div class="panel panel-default">
-  <div class="container">
-  <h4><%= merchant.name %></h4><h5>Integration since <%= merchant.created_at.strftime('%b %d, %Y') %></h5>
-</div>
-  <!--<%= (Time.current.to_date - merchant.created_at.to_date).to_i %>-->
-  <div class="panel-body">
- <%= check_box_tag :info_is_completed, '1', merchant.info_is_completed, :disabled => 'true' %>
-  <%= label_tag :info_is_completed, 'information' %> <br/>
-  <%= check_box_tag :documents_is_completed, '1', merchant.documents_is_completed, :disabled => 'true' %>
-  <%= label_tag :documents_is_completed, 'documents' %> <br/>
-  <% merchant.agreements.each do |agreement| %>
-    <%= check_box_tag :has_agree,'1', agreement.has_agree, :disabled => 'true' %>
-    <%= label_tag :has_agree, 'terms & conditions' %> <br/>
+  <div class="row">
+    <%= link_to 'Create New agreement', 'agreement/new', class: 'btn btn-primary' %>
+    <h1>Current Merchant</h1>
+
+    <% @sales_merchants.each do |merchant| %>
+    <div class="panel panel-default">
+      <div class="container">
+        <h4><%= merchant.name %></h4><h5>Integration since <%= merchant.created_at.strftime('%b %d, %Y') %></h5>
+      </div>
+      <!--<%= (Time.current.to_date - merchant.created_at.to_date).to_i %>-->
+      <div class="panel-body">
+        <%= check_box_tag :info_is_completed, '1', merchant.info_is_completed, :disabled => 'true' %>
+        <%= label_tag :info_is_completed, 'information' %> <br/>
+
+        <%= check_box_tag :documents_is_completed, '1', merchant.documents_is_completed, :disabled => 'true' %>
+        <%= label_tag :documents_is_completed, 'documents' %> <br/>
+
+        <% merchant.agreements.each do |agreement| %>
+          <%= check_box_tag :has_agree,'1', agreement.has_agree, :disabled => 'true' %>
+          <%= label_tag :has_agree, 'terms & conditions' %> <br/>
+        <% end %>
+
+        <%= link_to 'Details', '/merchant/details/:merchant_id', class: 'btn pull-right btn-default' %><br/>
+      </div>
+    </div>
     <% end %>
-  <%= link_to 'Details', '/merchant/details/:merchant_id', class: 'btn pull-right btn-default' %><br/>
-</div>
-</div>
-<% end %>
-</div>
+  </div>
 </div>
