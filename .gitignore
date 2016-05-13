@@ -20,3 +20,6 @@
 /public/uploads
 
 .env
+
+# Ignore test coverage result of simplecov
+/coverage
