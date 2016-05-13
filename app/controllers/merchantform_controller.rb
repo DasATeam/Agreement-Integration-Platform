@@ -7,26 +7,26 @@ class MerchantformController < ApplicationController
 	def update
 	  check = true
 	  @user = current_user
-		
+
 	  @merchant = @user.merchant
 	  @merchant.update(merchant_params)
-	  check = @merchant.save and check
+	  check = @merchant.save(validate: false) and check
 
 	  @merchant_cs = MerchantCustomerSupport.new(merchant_customer_support_params)
 	  @merchant_cs.merchant = @merchant
-	  check = @merchant_cs.save and check
+	  check = @merchant_cs.check and check
 
 	  @merchant_op = MerchantOperational.new(merchant_operational_params)
 	  @merchant_op.merchant = @merchant
-	  check = @merchant_op.save and check
+	  check = @merchant_op.check and check
 
 	  @merchant_pic = MerchantPic.new(merchant_pic_params)
 	  @merchant_pic.merchant = @merchant
-	  check = @merchant_pic.save and check
+	  check = @merchant_pic.check and check
 
 	  @merchant_owner = MerchantOwner.new(merchant_owner_params)
 	  @merchant_owner.merchant = @merchant
-	  check = @merchant_owner.save and check
+	  check = @merchant_owner.check and check
 
 	  @bank_acc = BankAccount.new(bank_account_params)
 	  @bank_acc.merchant = @merchant

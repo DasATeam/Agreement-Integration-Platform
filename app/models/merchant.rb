@@ -24,7 +24,7 @@ class Merchant < ActiveRecord::Base
 	validates :credit_card_payment_ratio, presence: true
 	#validates :registration_link, presence: true
 	#validates :user_id, presence: true
-	# validates :documents_is_completed, presence: true
+	#validates :documents_is_completed, presence: true
 
 	def check
 		#self.info_is_completed = self.valid?
@@ -36,7 +36,7 @@ class Merchant < ActiveRecord::Base
 	end
 
 	def information_check
-		self.info_is_completed = self.valid? && self.info_is_completed && self.merchant_customer_support.is_completed && self.merchant_owner.is_completed && self.merchant_pic.is_completed && self.merchant_operational.is_completed && self.merchant_operational.is_completed
+		self.info_is_completed = self.valid? && self.merchant_customer_support.is_completed && self.merchant_owner.is_completed && self.merchant_pic.is_completed && self.merchant_operational.is_completed && self.merchant_operational.is_completed
 		self.save
   end
 
