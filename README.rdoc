@@ -9,6 +9,16 @@ Aplikasi ini berhasil dijalankan di Ruby versi 2.3.
 3. Jalankan <tt>rake db:migrate</tt> dan <tt>rake db:seed</tt> di Terminal.
 4. Jalankan server WEBrick dengan menjalankan perintah <tt>bin/rails server</tt> di Terminal.
 
+
+==== Standarisasi Penyesuaian dengan Branch <tt>master</tt>
+
+1. Pastikan versi Ruby yang ter-install RVM adalah versi 2.3. Jika belum, maka jalankan <tt>rvm install 2.3</tt>, <tt>rvm use 2.3 --default</tt>, dan <tt>gem install rails</tt>
+2. Untuk OS X, install {Homebrew}[http://brew.sh/] dan {Postgres.app}[http://postgresapp.com/], kemudian jalankan <tt>brew install postgresql</tt>. Untuk Ubuntu, jalankan <tt>sudo apt-get install postgresql-9.4</tt>
+3. Jalankan <tt>gem install pg</tt>
+4. Buat role baru di PostgreSQL. Jalankan server PostgreSQL, masuklah ke command line client PostgreSQL, kemudian jalankan <tt>create role aip with createdb login password 'cendikiawan';</tt>
+5. Jalankan <tt>bundle install</tt> untuk meng-install segala dependency yang diperlukan. Apabila semua telah berhasil, jalankan <tt>rake db:setup</tt>
+
+
 ==== Code Conventions
 Berikut merupakan code conventions penting yang diterapkan:
 

@@ -6,7 +6,8 @@ class MerchantformController < ApplicationController
 
 	def update
 	  check = true
-	  @user =  current_user
+	  @user = current_user
+		
 	  @merchant = @user.merchant
 	  @merchant.update(merchant_params)
 	  check = @merchant.save and check

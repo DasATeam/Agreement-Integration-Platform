@@ -1,10 +1,22 @@
-<%= form_for(:session, url: login_path) do |f| %>
-	Password: <br/>
-  <%= f.email_field :email, :placeholder => "Email" %>
-  <%= f.password_field :password, :placeholder => "Password" %>
-  <%= f.submit "Log in", class: "btn" %>
+<div class="row">
+<div class="col-md-4 col-md-offset-4">
+
+<h2>Login</h2>
+
+<%= form_for(:session, url: create_path) do |f| %>
+  <% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+  <% end %>
+  <label for="email">Email</label>
+  <%= f.email_field :email, :placeholder => "Email", :class => "form-control" %>
+  <label for="password">Password</label>
+  <%= f.password_field :password, :placeholder => "Password", :class => "form-control"  %>
+  <br>
+  <%= f.submit "Log in", class: "btn btn-default" %>
 <% end %>
 
 <% if flash[:error] %>
-	<div class="notice"><%= flash[:error] %></div>
+  <div class="notice"><%= flash[:error] %></div>
 <% end %>
+</div>
+</div>
