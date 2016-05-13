@@ -1,12 +1,37 @@
-<h3>Additional Documents Channel </h3>
-<% @documents.each do |t| %>
-    <a href= <%= t[:link]%> >
-    <p> <%= t[:doc].name %></p></a>
-    Needs on channels:
-        <% t[:doc].channels.each do |channel| %>
-            <%= channel.name %>
-          <% end %>
-      <br>
-      <p>---</p>
-<% end %>
+<div class="container">
+	<h3>Additional Documents Channel </h3>
+	<div class="vertical-space" style="height:20px;"></div>
+	<% @documents.each do |t| %>
+		<div class="row">
+			<div class="col-md-4">
+				<h4> <%= t[:doc].name %></h4>		
+			</div>
+			<div class="col-md-4">
+				<%= link_to "Download", t[:link], :id => "button_id", :class => "button_class", :class => "btn btn-primary" %>	
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-8">
+				<p>Needs on channels: 
+					<% t[:doc].channels.each do |channel| %>
+		            <%= channel.name %>
+		          <% end %>
+				</p>		
+			</div>
+		</div>
+		<div class="vertical-space" style="height:20px;"></div>
+
+	    
+	    <!-- <a href= <%= %> >button</a> -->
+	    
+	    <!-- Needs on channels:
+	        <% t[:doc].channels.each do |channel| %>
+	            <%= channel.name %>
+	          <% end %>
+	      <br> -->
+	      
+	<% end %>
+	
+</div>
+
 

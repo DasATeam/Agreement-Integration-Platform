@@ -93,7 +93,7 @@ def merchant_details
       @merchant = Merchant.find(ik)
       @agreement = @merchant.agreements.first
       @channels = @agreement.agreement_channels
-      @required_docs = @merchant.merchant_documents
+      @required_docs = @agreement.merchant_documents
   end
 end
 
