@@ -9,12 +9,11 @@ class AgreementController < ApplicationController
 		if  @user = User.new(user_params())
 			#if @merchant = Merchant.create(merchant_params())
 				@merchant = Merchant.new(merchant_params())
-				@sales = Sales.find(session[:user_id])
+				@sales = current_user.sales
 				@user.merchant = @merchant
 				@user.role = 'merchant'
 				@user.save(validate: false)
 				@merchant.save(validate: false)
-				@sales.merchants << @merchant
 
 				# Generate hash of registration link
 				require 'digest/md5'
@@ -22,7 +21,7 @@ class AgreementController < ApplicationController
 				@merchant.registration_link = link
 				sales = current_user.sales
 				sales.merchants << @merchant
-				@merchant.save()
+				@merchant.save(validate: false)
 
 				# Create Agreement
 				date = Date.today
@@ -44,7 +43,6 @@ class AgreementController < ApplicationController
 			end
 
 		end
-	end
 
 	def newchannel
 		@channels = ChannelType.all()
