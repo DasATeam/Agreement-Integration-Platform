@@ -17,7 +17,8 @@ Submitted Documents: <br/>
 
 Selected Channels: <br/>
 <% for ac in @channels %>
-		<% item = ac.channel_type %>
+    <% item = ac.channel_type %>
     <%= item.name %> <br/>
-    <%= item.charge %> <br/><br/>
+    <%= ac.customprice %> <br/><br/>
+    <%= link_to "Change Price", controller: "agreement", action: "change_price", haft: item.id %>
 <% end %>
