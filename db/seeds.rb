@@ -6,35 +6,71 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-ktp = DocumentType.create(name: "KTP")
-npwp = DocumentType.create(name: "NPWP")
-siup = DocumentType.create(name: "SIUP")
-tdp = DocumentType.create(name: "TDP")
-sk = DocumentType.create(name: "SK Menteri")
-buktiKantor = DocumentType.create(name: "Tanda Bukti Kepemilikan / Surat Sewa Kantor")
+#required documents
+ktp = DocumentType.create(name: "Kartu Tanda Penduduk (KTP) atau KITAS Direksi")
+npwp = DocumentType.create(name: "Nomor Pokok Wajib Pajak (NPWP)")
+kerjasama = DocumentType.create(name: "Fotokopi Perjanjian Kerjasama ini")
+akta = DocumentType.create(name: "Akta Pendirian Usaha serta perubahannya")
+sk = DocumentType.create(name: "Surat Keputusan Menteri Hukum dan HAM")
 
-channels = {}
-5.times do |i|
-  channels[i] = ChannelType.create(category: "Test Channel", name: "Channel #{i}", charge: "Rp 500/transaksi")
-end
+kantor = DocumentType.create(name: "Surat sewa atau bukti kepemilikan kantor")
+siup = DocumentType.create(name: "Surat Ijin Usaha Perdangangan (SIUP) atau sejenisnya")
+tdp = DocumentType.create(name: "Tanda Daftar Perusahaan (TDP)")
+bkpma = DocumentType.create(name: "Surat Badan Koordinasi Penanaman Modal (BKPMA) jika ada mendapatkan injeksi dana dari pihak asing")
+rekening = DocumentType.create(name: "Rekening koran usaha minimal 3 bulan terakhir")
+foto = DocumentType.create(name: "Foto lokasi usaha")
 
-channels[0].documents << ktp
+#channels
+bni1 = ChannelType.create(category: "Bank Negara Indonesia (BNI)", name: "Transaksi Kartu - Aggregator", charge: "3.2% + Rp. 2,750")
+bni2 = ChannelType.create(category: "Bank Negara Indonesia (BNI)", name: "Transaksi Kartu - Fasilitator", charge: "Biaya transaksi dari Bank + Rp. 2,750")
 
-channels[1].documents << ktp
-channels[1].documents << npwp
+cimb1 = ChannelType.create(category: "Bank CIMB Niaga", name: "Transaksi Kartu - Aggregator", charge: "3.2% + Rp. 2,750")
+cimb2 = ChannelType.create(category: "Bank CIMB Niaga", name: "Transaksi Kartu - Fasilitator", charge: "Biaya transaksi dari Bank + Rp. 2,750")
+cimb3 = ChannelType.create(category: "Bank CIMB Niaga", name: "Internet Banking - CIMB Clicks", charge: "Rp. 5,000")
 
-channels[2].documents << ktp
-channels[2].documents << npwp
-channels[2].documents << buktiKantor
+mandiri1 = ChannelType.create(category: "Bank Mandiri", name: "Transaksi Kartu - Fasilitator", charge: "Biaya transaksi dari Bank + Rp. 2,750")
+mandiri2 = ChannelType.create(category: "Bank Mandiri", name: "Internet Banking - Mandiri Clickpay", charge: "Rp. 5,000")
+mandiri3 = ChannelType.create(category: "Bank Mandiri", name: "Bill Payment", charge: "Rp. 5,390")
+mandiri4 = ChannelType.create(category: "Bank Mandiri", name: "E-Money - e-cash", charge: "1% untuk transaksi min Rp. 250,000 atau Rp. 2,500 untuk transaksi di bawah Rp. 250,000")
 
-channels[3].documents << siup
-channels[3].documents << tdp
-channels[3].documents << buktiKantor
+bri = ChannelType.create(category: "Bank Rakyat Indonesia (BRI)", name: "Internet Banking - e-Pay BRI", charge: "Rp. 5,000")
 
-channels[4].documents << siup
-channels[4].documents << sk
-channels[4].documents << tdp
-channels[4].documents << buktiKantor
+bca1 = ChannelType.create(category: "Bank Central Asia (BCA)", name: "Transaksi Kartu - Fasilitator", charge: "Biaya transaksi dari Bank + Rp. 2,750")
+bca2 = ChannelType.create(category: "Bank Central Asia (BCA)", name: "Internet Banking - BCA KlikPay", charge: "Biaya transaksi dari Bank + Rp. 2,200")
+bca3 = ChannelType.create(category: "Bank Central Asia (BCA)", name: "Virtual Account", charge: "Biaya transaksi dari Bank + Rp. 2,750")
+
+permata = ChannelType.create(category: "Bank Permata", name: "Virtual Account", charge: "Rp. 5,390")
+
+telkom = ChannelType.create(category: "Telkomsel", name: "E-Money - Telkomsel TCash", charge: "Rp. 3,300")
+xl = ChannelType.create(category: "XL  ", name: "E-Money - XL Tunai", charge: "Rp. 3,300")
+isat = ChannelType.create(category: "Indosat Dompetku", name: "E-Money - Indosat Dompetku", charge: "Rp. 3,300")
+indomaret = ChannelType.create(category: "Indomaret", name: "Convenience Store - Indomaret", charge: "Biaya transaksi dari Indomaret")
+bbm = ChannelType.create(category: "BBM Money", name: "E-Money - BBM Money", charge: "3% + Rp. 1,650")
+
+#channels and required documents
+transaksi_kartu = [ktp, npwp, kerjasama, akta, sk]
+bni1.documents = transaksi_kartu
+bni2.documents = transaksi_kartu
+cimb1.documents = transaksi_kartu
+cimb2.documents = transaksi_kartu
+mandiri1.documents = transaksi_kartu
+bca1.documents = transaksi_kartu
+
+virtual_acc = [ktp, npwp, kerjasama]
+mandiri3.documents = virtual_acc
+bca3.documents = virtual_acc
+permata.documents = virtual_acc
+
+cimb3.documents = virtual_acc
+mandiri2.documents = virtual_acc
+mandiri4.documents = virtual_acc
+bri.documents = virtual_acc
+bca2.documents = virtual_acc
+telkom.documents = virtual_acc
+xl.documents = virtual_acc
+isat.documents = virtual_acc
+indomaret.documents = virtual_acc
+bbm.documents = virtual_acc
 
 root = Point.create(id: 0, nomor: "0", isi: "")
 p1 = Point.create(nomor: "1", isi: "Definisi")
@@ -250,31 +286,3 @@ p14.points << p142
 p14.points << p143
 p14.points << p144
 p14.points << p145
-
-
-# p1 = Pasal.create(nomor_pasal: "1", nama_pasal: "Definisi")
-# p2 = Pasal.create(nomor_pasal: "2", nama_pasal: "Proses Pendaftaran dan Persyaratan Merchant")
-# p3 = Pasal.create(nomor_pasal: "3", nama_pasal: "Hak Dan Kewajiban Payment Gateway
-# ")
-# p4 = Pasal.create(nomor_pasal: "4", nama_pasal: "Hak dan Kewajiban Merchant
-# ")
-# p5 = Pasal.create(nomor_pasal: "5", nama_pasal: "Biaya Transaksi Dan Pembayaran Tagihan
-# ")
-# p6 = Pasal.create(nomor_pasal: "6", nama_pasal: "Penghentian Sementara Layanan Sistem Pembayaran Internet
-# ")
-# p7 = Pasal.create(nomor_pasal: "7", nama_pasal: "Keamanan dan Perlindungan Informasi
-# ")
-# p8 = Pasal.create(nomor_pasal: "8", nama_pasal: "Jangka Waktu Dan Pengakhiran Perjanjian
-# ")
-# p9 = Pasal.create(nomor_pasal: "9", nama_pasal: "Pernyataan Dan Jaminan
-# ")
-# p10 = Pasal.create(nomor_pasal: "10", nama_pasal: "Domisili Hukum dan Penyelesaian Sengketa
-# ")
-# p11 = Pasal.create(nomor_pasal: "11", nama_pasal: "Ingkar Janji (Wanprestasi)
-# ")
-# p12 = Pasal.create(nomor_pasal: "12", nama_pasal: "Kerahasiaan
-# ")
-# p13 = Pasal.create(nomor_pasal: "13", nama_pasal: "Keadaan Memaksa (Force Majeure)
-# ")
-# p14 = Pasal.create(nomor_pasal: "14", nama_pasal: "Ketentuan Lainnya
-# ")
