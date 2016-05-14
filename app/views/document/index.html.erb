@@ -8,13 +8,14 @@
   <div class="vertical-space" style="height:20px;"></div>
   <% @merchant_documents.each do |d| %>
     <%= form_for :document do |f| %>
+      <%=  %>
       <div class="vertical-space" style="height:10px;"></div>
       <div class="form-group">
         <%= f.label(:document, d.document_type.name) %>
         <% if d.path %>
           <div class="row">
             <div class="col-md-6">
-              <p><%= image_tag(d.path, class: "img-responsive") %></p>
+              <p><%= image_tag(d.file.url, class: "img-responsive") %></p>
             </div>
           </div>
         <% else %>
