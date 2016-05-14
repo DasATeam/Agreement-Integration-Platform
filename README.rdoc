@@ -1,10 +1,31 @@
 == Agreement Integration Platform
 === By PPL Veritrans "TheATeam"
 
-==== Installation Instructions
-1. Pasang RVM, Ruby, dan Ruby on Rails di environment Anda. Disarankan menggunakan UNIX (OS X atau Linux).
+Aplikasi ini berhasil dijalankan di Ruby versi 2.3.
+
+==== Installation Instructions (Development)
+1. Pasang RVM, Ruby 2.3, dan Ruby on Rails di environment Anda. Sangat disarankan menggunakan UNIX (OS X atau Linux).
 2. Clone repository ini.
-3. Jalankan <tt>rake db:migrate</tt> dan <tt>rake db:seed</tt> di Terminal. Secara default, aplikasi ini menggunakan database development dengan DBMS SQLite3.
+3. Jalankan <tt>rake db:migrate</tt> dan <tt>rake db:seed</tt> di Terminal.
 4. Jalankan server WEBrick dengan menjalankan perintah <tt>bin/rails server</tt> di Terminal.
 
-Aplikasi ini berhasil dijalankan di Ruby versi 2.2 dan head. Anda tidak perlu melakukan configuration tambahan atau menambah system dependency lain.
+==== Code Conventions
+Berikut merupakan code conventions penting yang diterapkan:
+
+- Model menggunakan kata benda singular, sementara nama tabel plural.
+- Nama kelas menggunakan CamelCase, sementara variabel dan database (baik nama tabel maupun atributnya) menggunakan snake_case.
+- Indentasi menggunakan 2 spasi per tingkat (sesuai standar Ruby).
+- Gunakan single quotes untuk string kecuali jika Anda ingin melakukan interpolation. Hal ini semata hanya untuk mengurangi visual clutter.
+- Gunakan parentheses (tanda kurung) untuk penggunaan variabel dan method kecuali untuk internal domain specific language (seperti Rake, Rails, RSpec), method yang menggunakan keyword status di Ruby (seperti attr_reader, puts) dan method untuk mengakses atribut. Penjelasan lebih lanjut bisa dilihat di {sini}[http://stackoverflow.com/questions/7707681/idiomatic-use-of-parentheses-in-ruby].
+- Pastikan tidak ada {trailing whitespace}[http://programmers.stackexchange.com/questions/121555/why-is-trailing-whitespace-a-big-deal] di akhir baris dan baris kosong. Gunakan package seperti {TrailingSpaces}[https://github.com/SublimeText/TrailingSpaces] untuk Sublime Text atau {Atom whitespace package}[https://github.com/atom/whitespace] untuk memudahkan Anda.
+- Buat sebuah newline kosong di akhir semua file.
+- Perhatikan vertical indentation agar kodenya lebih enak dibaca. Kita tidak akan menggunakan standar tertentu, yang penting jangan ragu-ragu untuk menggunakannya.
+
+Daftar selengkapnya bisa dilihat di {sini}[https://github.com/bbatsov/ruby-style-guide].
+
+==== To-do
+
+Hal yang perlu dilakukan ke depannya untuk dokumentasi ini:
+
+- Cara menjalankan test suite
+- Services yang digunakan (job queues, cache servers, search engines, dll)
