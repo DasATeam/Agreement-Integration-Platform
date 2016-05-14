@@ -1,5 +1,5 @@
 class AddFileToMerchantDocuments < ActiveRecord::Migration
   def change
-    add_column :merchant_documents, :File, :string
+    add_column :merchant_documents, :file, :string
   end
 end
