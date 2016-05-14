@@ -31,6 +31,9 @@ Rails.application.routes.draw do
 
   get 'merchant/details/:merchant_id' => 'agreement#merchant_details'
 
+  get 'merchant/details/:merchant_id/change/:haft' => 'agreement#change_price'
+  post 'merchant/details/:merchant_id/change/:haft' => 'agreement#custom_price'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

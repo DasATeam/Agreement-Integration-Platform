@@ -16,7 +16,6 @@ ActiveRecord::Schema.define(version: 20160501220928) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-
   create_table "agreement_channels", force: :cascade do |t|
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
@@ -170,23 +169,15 @@ ActiveRecord::Schema.define(version: 20160501220928) do
 
   add_index "sales", ["user_id"], name: "index_sales_on_user_id", using: :btree
 
-  create_table "sales_agreements", force: :cascade do |t|
-    t.integer "sales_id"
-    t.integer "agreement_id"
-  end
-
-  add_index "sales_agreements", ["agreement_id"], name: "index_sales_agreements_on_agreement_id", using: :btree
-  add_index "sales_agreements", ["sales_id"], name: "index_sales_agreements_on_sales_id", using: :btree
-
   create_table "sales_merchants", force: :cascade do |t|
     t.integer  "merchant_id"
-    t.integer  "sales_id"
+    t.integer  "sale_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
   add_index "sales_merchants", ["merchant_id"], name: "index_sales_merchants_on_merchant_id", using: :btree
-  add_index "sales_merchants", ["sales_id"], name: "index_sales_merchants_on_sales_id", using: :btree
+  add_index "sales_merchants", ["sale_id"], name: "index_sales_merchants_on_sale_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -215,4 +206,6 @@ ActiveRecord::Schema.define(version: 20160501220928) do
   add_foreign_key "merchants", "users"
   add_foreign_key "points", "points"
   add_foreign_key "sales", "users"
+  add_foreign_key "sales_merchants", "merchants"
+  add_foreign_key "sales_merchants", "sales"
 end

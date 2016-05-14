@@ -1,8 +1,9 @@
 <div class="container">
-	<ul class="nav nav-tabs">
-	  <li role="presentation"><a href="<%= request.base_url + '/merchant/form' %>">Merchant Information Form</a></li>
-	  <li role="presentation" class="active"><a href="<%= request.base_url + '/merchant/document' %>">Upload Documents</a></li>
-	  <li role="presentation"><a href="<%= request.base_url + '/merchant/terms' %>">Terms & Conditions</a></li>
+	<ul class="nav nav-wizard">
+		<li class="done"><a href="<%= request.base_url + '/merchant/form' %>">1. Merchant Information Form</a></li>
+		<li class="active"><a href="<%= request.base_url + '/merchant/document' %>">2. Upload Documents</a></li>
+		<li><a href="<%= request.base_url + '/merchant/terms' %>">3. Terms & Conditions</a></li>
+		<li class="disabled"><a>4. Finish</a></li>
 	</ul>
 
   <div class="vertical-space" style="height:20px;"></div>

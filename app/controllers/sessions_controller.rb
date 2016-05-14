@@ -2,6 +2,8 @@ class SessionsController < ApplicationController
   def new
     @user = current_user
     redirect_to_dashboard if @user
+
+    render :layout => false
   end
 
   def create
