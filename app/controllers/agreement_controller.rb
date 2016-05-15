@@ -6,11 +6,14 @@ class AgreementController < ApplicationController
 
 	def create
 		# Create merchant and his account
-		if  @user = User.create(user_params())
-			if @merchant = Merchant.create(merchant_params())
+		if  @user = User.new(user_params())
+			#if @merchant = Merchant.create(merchant_params())
+				@merchant = Merchant.new(merchant_params())
+				@sales = current_user.sales
 				@user.merchant = @merchant
 				@user.role = 'merchant'
-				@user.save()
+				@user.save(validate: false)
+				@merchant.save(validate: false)
 
 				# Generate hash of registration link
 				require 'digest/md5'
@@ -18,7 +21,7 @@ class AgreementController < ApplicationController
 				@merchant.registration_link = link
 				sales = current_user.sales
 				sales.merchants << @merchant
-				@merchant.save()
+				@merchant.save(validate: false)
 
 				# Create Agreement
 				date = Date.today
@@ -36,11 +39,10 @@ class AgreementController < ApplicationController
 				@agreement = Agreement.create(pks_number: "#{agreementsThisMonth.size + 1}/PKS-M/VT/#{to_roman(date.mon)}/#{date.year}")
 				@agreement.merchant = @merchant
 				@agreement.save()
-
 				redirect_to action:"newchannel", user_id: @user.id
 			end
+
 		end
-	end
 
 	def newchannel
 		@channels = ChannelType.all()
