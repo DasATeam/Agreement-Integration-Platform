@@ -3,8 +3,11 @@ require 'pp'
 
 RSpec.describe SessionsController, type: :controller do
   before :all do
-    @user = User.create(email: 'john@veritrans.com', role: 'sales')
-    @user.set_password('ppl')
+    @sales = User.create(email: 'john@veritrans.com', role: 'sales')
+    @sales.set_password('ppl')
+
+    @sales = User.create(email: 'rahnna@tokowinnetou.com', role: 'merchant')
+    @sales.set_password('kampungutan')
   end
 
   describe 'new' do
@@ -17,10 +20,16 @@ RSpec.describe SessionsController, type: :controller do
       expect(response.body).to match /Login/m
     end
 
-    it 'should redirect merchant if they are already logged in' do
+    it 'should redirect sales if they are already logged in' do
       post(:create, session: {email: 'john@veritrans.com', password: 'ppl'})
 
       expect(response).to redirect_to '/sales/list_merchant'
+    end
+
+    it 'should redirect merchant if they are already logged in' do
+      post(:create, session: {email: 'rahnna@tokowinnetou.com', password: 'kampungutan'})
+
+      expect(response).to redirect_to '/merchant/form'
     end
   end
 
@@ -30,6 +39,21 @@ RSpec.describe SessionsController, type: :controller do
       post(:create, session: {email: 'john@veritrans.com', password: 'ppl'})
 
       expect(session[:user_id]).not_to be_nil
+    end
+
+    it 'should redirect the user back to login page if they enter email that does not exist' do
+      post(:create, session: {email: 'john@bogusmail.com', password: 'ppl'})
+
+      expect(session[:user_id]).to be_nil
+      expect(response).to redirect_to '/login'
+    end
+
+    it 'should redirect the user back to login page if they enter
+        correct email but incorrect password' do
+      post(:create, session: {email: 'john@veritrans.com', password: 'boguspassword'})
+
+      expect(session[:user_id]).to be_nil
+      expect(response).to redirect_to '/login'
     end
   end
 
