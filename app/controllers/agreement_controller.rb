@@ -44,6 +44,12 @@ class AgreementController < ApplicationController
 
 		end
 
+	def sales_success_create
+		@user = User.find(params[:user_id])
+		@merchant = @user.merchant
+		@agreement = @merchant.agreements.first
+	end
+
 	def newchannel
 		@channels = ChannelType.all()
 	end
@@ -86,7 +92,7 @@ class AgreementController < ApplicationController
 			merchantDocument.save()
 		end
 
-		render "info"
+		redirect_to action:"sales_success_create", user_id: @user.id
 	end
 
 def merchant_details

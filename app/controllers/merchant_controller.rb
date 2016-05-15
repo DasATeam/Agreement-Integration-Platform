@@ -5,6 +5,18 @@ class MerchantController < ApplicationController
     @id = params[:merchant_id]
     @merchant = Merchant.find(@id)
 
-    MerchantMailer.welcome_email(@merchant, @text).deliver_now
+
+    begin
+      if MerchantMailer.welcome_email(@merchant, @text).deliver_now
+        flash[:notice] = "Mail successfully sent"
+        redirect_to sales_list_merchant_url
+      else
+        flash[:alert] = "Mail failed to send, check your connection and try again"
+        redirect_to controller: "agreement", action:"sales_success_create", user_id: @merchant.user.id
+      end
+    rescue Exception
+      flash[:alert] = "Mail failed to send, check your connection and try again"
+      redirect_to controller: "agreement", action:"sales_success_create", user_id: @merchant.user.id
+    end
   end
 end

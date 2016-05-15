@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'sales/agreement/new' => 'agreement#new' # as create_new_agreement
   post'sales/agreement/new' => 'agreement#create'
   get 'sales/agreement/:user_id/channel'=> 'agreement#newchannel' # as create_new_channel
+  get 'sales/agreement/:user_id/info'=> 'agreement#sales_success_create' # display merchant details to send mail
   post 'sales/agreement/:user_id/channel' => 'agreement#channeling'
 
   get 'sales/list_merchant' => 'sales#list_merchant' # as sales dashboard
