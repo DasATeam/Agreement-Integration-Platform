@@ -1,4 +1,24 @@
 <%= wicked_pdf_stylesheet_link_tag "term_doc.css" -%>
+<br/><br/><br/>
+<div class="center-align"><%= wicked_pdf_image_tag 'veritrans.png' %></div>
+<br/><br/><br/><br/>
+<div class="center-align"><h3>
+    PERJANJIAN KERJASAMA<br/>
+    MERCHANT INTERNET
+</h3></div>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<div class="center-align">
+    Veritrans (PT. Midtrans), MidPlaza 2, Lantai 24<br/>
+    Jl. Jendral Sudirman Kav. 10-11<br/>
+    Jakarta 10220 Indonesia
+</div>
+<div class="center-align"><h3><u>
+    PERJANJIAN KERJASAMA MERCHANT INTERNET<br/>
+    Nomor : <%= @agreement.pks_number %>
+</u></h3></div>
+
+<div class="page-break"></div>
 
 <p>Nama Dagang <i>Merchant</i> : <%= @merchant.name %></p>
 <p>Jenis Usaha : <%= @merchant.type_of_product %></p>
