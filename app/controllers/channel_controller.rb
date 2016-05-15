@@ -43,7 +43,11 @@ class ChannelController < ApplicationController
       merchantDocument.save()
     end
 
-    render "info"
+    redirect_to controller: "agreement", action:"sales_success_create", user_id: @user.id
   end
 
+  private
+    def channel_params
+      params.require(:form).permit!
+    end
 end
