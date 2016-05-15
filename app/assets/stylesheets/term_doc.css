@@ -1,0 +1,35 @@
+ol {
+    counter-reset: item;
+}
+ol > li {
+    display: block;
+    position: relative;
+}
+ol > li:before {
+    content: counters(item, ".")".";
+    counter-increment: item;
+    position: absolute;
+    margin-right: 100%;
+    right: 10px; /* space between number and text */
+}
+
+.center-align{
+	text-align: center;
+}
+
+.page-break{
+	page-break-before:always;
+}
+
+table.table-view{
+	width: 100%
+}
+table.table-view, .table-view tr td, .table-view tr th { 
+    border-collapse: collapse;
+    border: 0.5mm solid black;
+    border-spacing: 0;
+    border-color: black;
+}
+.table-padding td, .table-padding th{ 
+    padding: 3mm;
+}
