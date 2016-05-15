@@ -1,24 +1,39 @@
 Rails.application.routes.draw do
 
-  # resources :merchant
-  # root to: 'controller#method'
+  root to: redirect('/login')
 
+  get 'login' => 'sessions#new'
+  post 'create' => 'sessions#create'
+  get 'logout' => 'sessions#destroy'
+  delete 'logout' => 'sessions#destroy'
 
   get 'sales/agreement/new' => 'agreement#new' # as create_new_agreement
   post'sales/agreement/new' => 'agreement#create'
-  get 'sales/agreement/channel'=> 'agreement#newchannel' # as create_new_channel
-  post 'sales/agreement/channel' => 'agreement#channeling'
+  get 'sales/agreement/:user_id/channel'=> 'agreement#newchannel' # as create_new_channel
+  post 'sales/agreement/:user_id/channel' => 'agreement#channeling'
 
-  get 'merchant/new/:hash' => 'user#merchant_new' # as merchant_dashboard
+  get 'sales/list_merchant' => 'sales#list_merchant' # as sales dashboard
+
+  post 'merchant/send-mail/:merchant_id' => 'merchant#send_mail'
+
+
+  get 'merchant/new/:hash' => 'user#merchant_set_password' # as merchant_dashboard
+  post 'merchant/new/:hash' => 'user#merchant_set_password' # as merchant_dashboard
   get 'merchant/form' => 'merchantform#edit' # as merchant_form
   post 'merchant/form' => 'merchantform#update'
-  
+
   get 'merchant/document' => 'document#index' # as merchant_document
   post 'merchant/document' => 'document#upload'
+  get 'merchant/document/download' => 'document#download'
 
   get 'merchant/terms' => 'term#index' # as merchant_terms
   get 'doc' => 'term#doc'
   post 'merchant/terms' => 'term#agree'
+
+  get 'merchant/details/:merchant_id' => 'agreement#merchant_details'
+
+  get 'merchant/details/:merchant_id/change/:haft' => 'agreement#change_price'
+  post 'merchant/details/:merchant_id/change/:haft' => 'agreement#custom_price'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

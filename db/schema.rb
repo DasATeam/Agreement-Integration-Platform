@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160327235810) do
+ActiveRecord::Schema.define(version: 20160501220928) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "agreement_channels", force: :cascade do |t|
     t.datetime "created_at",      null: false
@@ -53,18 +56,36 @@ ActiveRecord::Schema.define(version: 20160327235810) do
     t.integer "channel_type_id"
   end
 
-  add_index "channel_types_document_types", ["channel_type_id"], name: "index_channel_types_document_types_on_channel_type_id"
-  add_index "channel_types_document_types", ["document_type_id"], name: "index_channel_types_document_types_on_document_type_id"
+  add_index "channel_types_document_types", ["channel_type_id"], name: "index_channel_types_document_types_on_channel_type_id", using: :btree
+  add_index "channel_types_document_types", ["document_type_id"], name: "index_channel_types_document_types_on_document_type_id", using: :btree
+
+  create_table "document_links", force: :cascade do |t|
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "document_type_id"
+    t.string   "link"
+  end
+
+  create_table "document_paths", force: :cascade do |t|
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "merchant_document_id"
+    t.string   "path"
+  end
+
+  add_index "document_paths", ["merchant_document_id"], name: "index_document_paths_on_merchant_document_id", using: :btree
 
   create_table "document_types", force: :cascade do |t|
-    t.string "name"
+    t.string  "name"
+    t.boolean "is_additional"
   end
 
   create_table "merchant_customer_supports", force: :cascade do |t|
-    t.string  "email",       null: false
+    t.string  "email",        null: false
     t.string  "telephone"
     t.string  "emergency"
     t.integer "merchant_id"
+    t.boolean "is_completed"
   end
 
   create_table "merchant_documents", force: :cascade do |t|
@@ -74,32 +95,36 @@ ActiveRecord::Schema.define(version: 20160327235810) do
     t.integer  "agreement_id"
     t.integer  "document_type_id"
     t.string   "path"
+    t.string   "file"
   end
 
-  add_index "merchant_documents", ["agreement_id"], name: "index_merchant_documents_on_agreement_id"
-  add_index "merchant_documents", ["merchant_id"], name: "index_merchant_documents_on_merchant_id"
+  add_index "merchant_documents", ["agreement_id"], name: "index_merchant_documents_on_agreement_id", using: :btree
+  add_index "merchant_documents", ["merchant_id"], name: "index_merchant_documents_on_merchant_id", using: :btree
 
   create_table "merchant_operationals", force: :cascade do |t|
-    t.string  "email",       null: false
+    t.string  "email",        null: false
     t.string  "telephone"
     t.string  "emergency"
     t.integer "merchant_id"
+    t.boolean "is_completed"
   end
 
   create_table "merchant_owners", force: :cascade do |t|
-    t.string  "email",       null: false
+    t.string  "email",        null: false
     t.string  "name"
     t.string  "address"
     t.string  "telephone"
     t.integer "merchant_id"
+    t.boolean "is_completed"
   end
 
   create_table "merchant_pics", force: :cascade do |t|
-    t.string  "email",       null: false
+    t.string  "email",        null: false
     t.string  "name"
     t.string  "address"
     t.string  "telephone"
     t.integer "merchant_id"
+    t.boolean "is_completed"
   end
 
   create_table "merchants", force: :cascade do |t|
@@ -119,6 +144,8 @@ ActiveRecord::Schema.define(version: 20160327235810) do
     t.decimal  "credit_card_payment_ratio"
     t.string   "registration_link"
     t.integer  "user_id"
+    t.boolean  "info_is_completed"
+    t.boolean  "documents_is_completed"
   end
 
   create_table "points", force: :cascade do |t|
@@ -129,7 +156,26 @@ ActiveRecord::Schema.define(version: 20160327235810) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "points", ["point_id"], name: "index_points_on_point_id"
+  add_index "points", ["point_id"], name: "index_points_on_point_id", using: :btree
+
+  create_table "sales", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "name"
+    t.integer  "user_id"
+  end
+
+  add_index "sales", ["user_id"], name: "index_sales_on_user_id", using: :btree
+
+  create_table "sales_merchants", force: :cascade do |t|
+    t.integer  "merchant_id"
+    t.integer  "sale_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "sales_merchants", ["merchant_id"], name: "index_sales_merchants_on_merchant_id", using: :btree
+  add_index "sales_merchants", ["sale_id"], name: "index_sales_merchants_on_sale_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -137,6 +183,27 @@ ActiveRecord::Schema.define(version: 20160327235810) do
     t.string   "email",      null: false
     t.string   "pass"
     t.string   "role"
+    t.string   "salt"
   end
 
+  add_foreign_key "agreement_channels", "agreements"
+  add_foreign_key "agreement_channels", "channel_types"
+  add_foreign_key "agreements", "merchants"
+  add_foreign_key "bank_accounts", "merchants"
+  add_foreign_key "channel_types_document_types", "channel_types"
+  add_foreign_key "channel_types_document_types", "document_types"
+  add_foreign_key "document_links", "document_types"
+  add_foreign_key "document_paths", "merchant_documents"
+  add_foreign_key "merchant_customer_supports", "merchants"
+  add_foreign_key "merchant_documents", "agreements"
+  add_foreign_key "merchant_documents", "document_types"
+  add_foreign_key "merchant_documents", "merchants"
+  add_foreign_key "merchant_operationals", "merchants"
+  add_foreign_key "merchant_owners", "merchants"
+  add_foreign_key "merchant_pics", "merchants"
+  add_foreign_key "merchants", "users"
+  add_foreign_key "points", "points"
+  add_foreign_key "sales", "users"
+  add_foreign_key "sales_merchants", "merchants"
+  add_foreign_key "sales_merchants", "sales"
 end

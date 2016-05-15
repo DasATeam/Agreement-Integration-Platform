@@ -20,6 +20,12 @@ bkpma = DocumentType.create(name: "Surat Badan Koordinasi Penanaman Modal (BKPMA
 rekening = DocumentType.create(name: "Rekening koran usaha minimal 3 bulan terakhir")
 foto = DocumentType.create(name: "Foto lokasi usaha")
 
+form_bca = DocumentType.create(name: "Form BCA", is_additional: true)
+form_bni = DocumentType.create(name: "Form BNI", is_additional: true)
+form_bri = DocumentType.create(name: "Form BRI", is_additional: true)
+form_mandiri = DocumentType.create(name: "Form Mandiri", is_additional: true)
+form_bca2 = DocumentType.create(name: "Form BCA lampiran", is_additional: true)
+
 #channels
 bni1 = ChannelType.create(category: "Bank Negara Indonesia (BNI)", name: "Transaksi Kartu - Aggregator", charge: "3.2% + Rp. 2,750")
 bni2 = ChannelType.create(category: "Bank Negara Indonesia (BNI)", name: "Transaksi Kartu - Fasilitator", charge: "Biaya transaksi dari Bank + Rp. 2,750")
@@ -71,6 +77,22 @@ xl.documents = virtual_acc
 isat.documents = virtual_acc
 indomaret.documents = virtual_acc
 bbm.documents = virtual_acc
+
+link_bca = DocumentLink.create(link: "https://drive.google.com/open?id=0Bw3siKQNp04EcWtxNjFOSkNyVWc")
+link_bni = DocumentLink.create(link: "https://drive.google.com/open?id=0Bw3siKQNp04ESlc1LWt6bWZ0b00")
+link_bri = DocumentLink.create(link: "https://drive.google.com/open?id=0Bw3siKQNp04ENHR4Skl3TmhsM0k")
+link_mandiri = DocumentLink.create(link: "https://drive.google.com/open?id=0Bw3siKQNp04ER0hvb0Q4Z2dvX00")
+link_bca2 = DocumentLink.create(link: "https://drive.google.com/open?id=0Bw3siKQNp04EQm9CNGFKY1VKbnM")
+link_bca.document_type = form_bca
+link_bni.document_type = form_bni
+link_bri.document_type = form_bri
+link_mandiri.document_type = form_mandiri
+link_bca2.document_type = form_bca2
+link_bca.save()
+link_bni.save()
+link_bri.save()
+link_mandiri.save()
+link_bca2.save()
 
 root = Point.create(id: 0, nomor: "0", isi: "")
 p1 = Point.create(nomor: "1", isi: "Definisi")
@@ -286,3 +308,26 @@ p14.points << p142
 p14.points << p143
 p14.points << p144
 p14.points << p145
+
+
+
+#seed mock data
+
+dummy_user_merchant = User.create(email: "chris@petani.com", role: "merchant")
+dummy_merchant = Merchant.create(name: "Chris", website: "www.chris.com", email: "chris@chris.com", city: "Pamulang", address: "Pamulang Permai", office_status: "1", type_of_product: "Buah-buahan", price_range: "5000-150000", time_since_started: DateTime.parse("09/01/2009 17:00"), ownership_type: 3, revenues_each_month: 5000000, credit_card_payment_ratio: 0.5, registration_link: "test")
+dummy_agreement = Agreement.create(pks_number: "dummy_pks", approver_name: "Jaja Miharja", approver_role: "Dokter", has_agree: false)
+dummy_channel = AgreementChannel.create(channel_type_id: 1, customprice: "5000")
+dummy_doc = MerchantDocument.create(document_type_id: 1)
+
+dummy_user_merchant.merchant = dummy_merchant
+dummy_user_merchant.save
+dummy_user_merchant.set_password('ppl')
+dummy_merchant.agreements << dummy_agreement
+dummy_agreement.agreement_channels << dummy_channel
+dummy_agreement.merchant_documents << dummy_doc
+dummy_merchant.merchant_documents << dummy_doc
+
+dummy_user = User.create(email: 'john@veritrans.com', role: 'sales')
+dummy_user.set_password('ppl')
+
+dummy_sales = Sales.create(name: 'John Cena', user: dummy_user)
