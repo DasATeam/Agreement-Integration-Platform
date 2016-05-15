@@ -29,7 +29,7 @@
           <%= label_tag :has_agree, 'terms & conditions' %> <br/>
         <% end %>
 
-        <%= link_to 'Details', '/merchant/details/:merchant_id', class: 'btn pull-right btn-default' %><br/>
+        <%= link_to 'Details', '/merchant/details/' + merchant.id.to_s , class: 'btn btn-primary' %><br/>
       </div>
     </div>
     <% end %>
