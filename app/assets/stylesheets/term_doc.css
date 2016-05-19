@@ -1,3 +1,7 @@
+body, table{
+    font-size: 10pt;
+}
+
 ol {
     counter-reset: item;
 }
@@ -13,12 +17,20 @@ ol > li:before {
     right: 10px; /* space between number and text */
 }
 
+ol.pasal{
+    padding-left: 0;  
+}
+
 .center-align{
 	text-align: center;
 }
 
 .page-break{
 	page-break-before:always;
+}
+
+.table-align-top td, .table-align-top th{
+    vertical-align: top;
 }
 
 table.table-view{

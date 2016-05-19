@@ -9,11 +9,25 @@ class TermController < ApplicationController
   end
 
   def doc
+    card_channel_id = [1, 2, 3, 4, 5, 6, 11]
+
     @user = current_user
     @merchant = @user.merchant
     @agreement = @merchant.agreements.first
     @term = Point.first
 
+    @selected_channels = Array.new(20, false)
+    @agreement.agreement_channels.each do |agreement_channel|
+      @selected_channels[agreement_channel.channel_type.id] = true 
+    end
+
+    @cards_channel = false
+    card_channel_id.each do |val|
+      if ! @selected_channels[val]
+        @cards_channel = true
+        break
+      end
+    end
 
     respond_to do |format|
       format.html do

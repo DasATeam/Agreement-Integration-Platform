@@ -146,7 +146,7 @@ p1.points << p1_8
 p1.points << p1_9
 
 p21 = Point.create(nomor: "2.1", isi: "Merchant setuju untuk memberikan salinan dari dokumen-dokumen resmi yang daftarnya dicantum di Lampiran 4 Perjanjian ini, sebagai persyaratan administratif Perjanjian ini.")
-p22 = Point.create(nomor: "2.2", isi: "Transaksi Internet hanya dapat dilakukan melalui situs Merchant, dengan alamat URL dan/atau mobile apps : ")
+p22 = Point.create(nomor: "2.2", isi: "Transaksi Internet hanya dapat dilakukan melalui situs Merchant, dengan alamat URL dan/atau mobile apps")
 p23 = Point.create(nomor: "2.3", isi: "Merchant berjanji untuk tidak menjual barang atau jasa yang melanggar hukum/peraturan perundang-undangan/ketertiban umum dan/atau yang secara spesifik dilarang oleh Bank, Service Provider atau Principal.")
 p24 = Point.create(nomor: "2.4", isi: "Payment Gateway dapat menolak memberikan layanan kepada Merchant dengan kategori sebagai berikut:")
 p241 = Point.create(nomor: "2.4.1", isi: "terlibat tindakan kriminal atau melanggar norma hukum, social, agama dan moral;")
