@@ -15,7 +15,6 @@ Rails.application.routes.draw do
   
 
   get 'sales/list_merchant' => 'sales#list_merchant' # as sales dashboard
-
   post 'merchant/send-mail/:merchant_id' => 'merchant#send_mail'
 
 
@@ -29,6 +28,8 @@ Rails.application.routes.draw do
   get 'merchant/document/download' => 'document#download'
 
   get 'merchant/terms' => 'term#index' # as merchant_terms
+  get 'sales/document/:agreement_id' => 'term#sales_download'
+  get 'doc' => 'term#doc'
   post 'merchant/terms' => 'term#agree'
 
   get 'merchant/details/:merchant_id' => 'agreement#merchant_details'

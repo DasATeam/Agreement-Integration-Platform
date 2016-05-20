@@ -6,12 +6,19 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-ktp = DocumentType.create(name: "KTP", is_additional: false)
-npwp = DocumentType.create(name: "NPWP", is_additional: false)
-siup = DocumentType.create(name: "SIUP", is_additional: false)
-tdp = DocumentType.create(name: "TDP", is_additional: false)
-sk = DocumentType.create(name: "SK Menteri", is_additional: false)
-buktiKantor = DocumentType.create(name: "Tanda Bukti Kepemilikan / Surat Sewa Kantor", is_additional: false)
+#required documents
+ktp = DocumentType.create(name: "Kartu Tanda Penduduk (KTP) atau KITAS Direksi")
+npwp = DocumentType.create(name: "Nomor Pokok Wajib Pajak (NPWP)")
+kerjasama = DocumentType.create(name: "Fotokopi Perjanjian Kerjasama ini")
+akta = DocumentType.create(name: "Akta Pendirian Usaha serta perubahannya")
+sk = DocumentType.create(name: "Surat Keputusan Menteri Hukum dan HAM")
+
+kantor = DocumentType.create(name: "Surat sewa atau bukti kepemilikan kantor")
+siup = DocumentType.create(name: "Surat Ijin Usaha Perdangangan (SIUP) atau sejenisnya")
+tdp = DocumentType.create(name: "Tanda Daftar Perusahaan (TDP)")
+bkpma = DocumentType.create(name: "Surat Badan Koordinasi Penanaman Modal (BKPMA) jika ada mendapatkan injeksi dana dari pihak asing")
+rekening = DocumentType.create(name: "Rekening koran usaha minimal 3 bulan terakhir")
+foto = DocumentType.create(name: "Foto lokasi usaha")
 
 form_bca = DocumentType.create(name: "Form BCA", is_additional: true)
 form_bni = DocumentType.create(name: "Form BNI", is_additional: true)
@@ -19,33 +26,57 @@ form_bri = DocumentType.create(name: "Form BRI", is_additional: true)
 form_mandiri = DocumentType.create(name: "Form Mandiri", is_additional: true)
 form_bca2 = DocumentType.create(name: "Form BCA lampiran", is_additional: true)
 
-channels = {}
-5.times do |i|
-  channels[i] = ChannelType.create(category: "Test Channel", name: "Channel #{i}", charge: "Rp 500/transaksi")
-end
+#channels
+bni1 = ChannelType.create(category: "Bank Negara Indonesia (BNI)", name: "Transaksi Kartu - Aggregator", charge: "3.2% + Rp. 2,750")
+bni2 = ChannelType.create(category: "Bank Negara Indonesia (BNI)", name: "Transaksi Kartu - Fasilitator", charge: "Biaya transaksi dari Bank + Rp. 2,750")
 
-channels[0].documents << ktp
+cimb1 = ChannelType.create(category: "Bank CIMB Niaga", name: "Transaksi Kartu - Aggregator", charge: "3.2% + Rp. 2,750")
+cimb2 = ChannelType.create(category: "Bank CIMB Niaga", name: "Transaksi Kartu - Fasilitator", charge: "Biaya transaksi dari Bank + Rp. 2,750")
+cimb3 = ChannelType.create(category: "Bank CIMB Niaga", name: "Internet Banking - CIMB Clicks", charge: "Rp. 5,000")
 
-channels[1].documents << ktp
-channels[1].documents << npwp
-channels[1].documents << form_bca
-channels[1].documents << form_bca2
+mandiri1 = ChannelType.create(category: "Bank Mandiri", name: "Transaksi Kartu - Fasilitator", charge: "Biaya transaksi dari Bank + Rp. 2,750")
+mandiri2 = ChannelType.create(category: "Bank Mandiri", name: "Internet Banking - Mandiri Clickpay", charge: "Rp. 5,000")
+mandiri3 = ChannelType.create(category: "Bank Mandiri", name: "Bill Payment", charge: "Rp. 5,390")
+mandiri4 = ChannelType.create(category: "Bank Mandiri", name: "E-Money - e-cash", charge: "1% untuk transaksi min Rp. 250,000 atau Rp. 2,500 untuk transaksi di bawah Rp. 250,000")
 
-channels[2].documents << ktp
-channels[2].documents << npwp
-channels[2].documents << buktiKantor
-channels[2].documents << form_bni
+bri = ChannelType.create(category: "Bank Rakyat Indonesia (BRI)", name: "Internet Banking - e-Pay BRI", charge: "Rp. 5,000")
 
-channels[3].documents << siup
-channels[3].documents << tdp
-channels[3].documents << buktiKantor
-channels[3].documents << form_bri
+bca1 = ChannelType.create(category: "Bank Central Asia (BCA)", name: "Transaksi Kartu - Fasilitator", charge: "Biaya transaksi dari Bank + Rp. 2,750")
+bca2 = ChannelType.create(category: "Bank Central Asia (BCA)", name: "Internet Banking - BCA KlikPay", charge: "Biaya transaksi dari Bank + Rp. 2,200")
+bca3 = ChannelType.create(category: "Bank Central Asia (BCA)", name: "Virtual Account", charge: "Biaya transaksi dari Bank + Rp. 2,750")
 
-channels[4].documents << siup
-channels[4].documents << sk
-channels[4].documents << tdp
-channels[4].documents << buktiKantor
-channels[4].documents << form_mandiri
+permata = ChannelType.create(category: "Bank Permata", name: "Virtual Account", charge: "Rp. 5,390")
+
+telkom = ChannelType.create(category: "Telkomsel", name: "E-Money - Telkomsel TCash", charge: "Rp. 3,300")
+xl = ChannelType.create(category: "XL  ", name: "E-Money - XL Tunai", charge: "Rp. 3,300")
+isat = ChannelType.create(category: "Indosat Dompetku", name: "E-Money - Indosat Dompetku", charge: "Rp. 3,300")
+indomaret = ChannelType.create(category: "Indomaret", name: "Convenience Store - Indomaret", charge: "Biaya transaksi dari Indomaret")
+bbm = ChannelType.create(category: "BBM Money", name: "E-Money - BBM Money", charge: "3% + Rp. 1,650")
+
+#channels and required documents
+transaksi_kartu = [ktp, npwp, kerjasama, akta, sk]
+bni1.documents = transaksi_kartu
+bni2.documents = transaksi_kartu
+cimb1.documents = transaksi_kartu
+cimb2.documents = transaksi_kartu
+mandiri1.documents = transaksi_kartu
+bca1.documents = transaksi_kartu
+
+virtual_acc = [ktp, npwp, kerjasama]
+mandiri3.documents = virtual_acc
+bca3.documents = virtual_acc
+permata.documents = virtual_acc
+
+cimb3.documents = virtual_acc
+mandiri2.documents = virtual_acc
+mandiri4.documents = virtual_acc
+bri.documents = virtual_acc
+bca2.documents = virtual_acc
+telkom.documents = virtual_acc
+xl.documents = virtual_acc
+isat.documents = virtual_acc
+indomaret.documents = virtual_acc
+bbm.documents = virtual_acc
 
 link_bca = DocumentLink.create(link: "https://drive.google.com/open?id=0Bw3siKQNp04EcWtxNjFOSkNyVWc")
 link_bni = DocumentLink.create(link: "https://drive.google.com/open?id=0Bw3siKQNp04ESlc1LWt6bWZ0b00")
@@ -94,34 +125,34 @@ root.points << p12
 root.points << p13
 root.points << p14
 
-p11 = Point.create(nomor: "1.1", isi: "Bank adalah badan hukum yang bergerak di bidang perbankan dan didirikan berdasarkan hukum Indonesia, yang dalam hal ini memiliki fungsi sebagai penyedia jasa sarana Layanan Pembayaran. Daftar nama Bank serta jenis ")
-p12 = Point.create(nomor: "1.2", isi: "Biaya Transaksi adalah biaya yang dikenakan oleh Payment Gateway kepada Merchant untuk setiap Transaksi Internet berhasil, yang perhitungannya diatur lebih lanjut di dalam Lampiran 2 Perjanjian ini.")
-p13 = Point.create(nomor: "1.3", isi: "Hari Kerja adalah hari selain Sabtu, Minggu dan hari libur nasional, di mana bank-bank di Indonesia buka dan operasional untuk kegiatan sehari-hari.")
-p14 = Point.create(nomor: "1.4", isi: "Layanan Pembayaran adalah jenis-jenis metode pembayaran Transaksi Internet yang tersedia di Sistem Pembayaran Internet. Metode pembayaran yang dimaksud akan dijelaskan lebih lanjut di dalam Lampiran 1 Perjanjian ini." )
-p15 = Point.create(nomor: "1.5", isi: "Pelanggan adalah pelaku Transaksi Internet di Merchant, melalui Sistem Pembayaran Internet." )
-p16 = Point.create(nomor: "1.6", isi: "Refund adalah pengembalian dana Transaksi Internet kepada Pelanggan karena pembatalan atas Transaksi Internet tersebut.")
-p17 = Point.create(nomor: "1.7", isi: "Sistem Pembayaran Internet adalah sistem pembayaran yang dimiliki dan dikelola oleh Payment Gateway, yang menghubungkan antara Bank/Service Provider, Payment Gateway, dan Merchant.")
-p18 = Point.create(nomor: "1.8", isi: "Service Provider adalah penyedia jasa metode pembayaran selain Bank, yang memiliki kerjasama dan telah terhubung dengan Payment Gateway. Daftar nama Service Provider serta Layanan Pembayaran yang digunakan akan dicantum di dalam Lampiran 1 Perjanjian ini.")
-p19 = Point.create(nomor: "1.9", isi: "Transaksi Internet adalah transaksi melalui media elektronik yang dilakukan oleh Pelanggan di situs Merchant, dan diproses oleh Sistem Pembayaran Internet.")
+p1_1 = Point.create(nomor: "1.1", isi: "Bank adalah badan hukum yang bergerak di bidang perbankan dan didirikan berdasarkan hukum Indonesia, yang dalam hal ini memiliki fungsi sebagai penyedia jasa sarana Layanan Pembayaran. Daftar nama Bank serta jenis ")
+p1_2 = Point.create(nomor: "1.2", isi: "Biaya Transaksi adalah biaya yang dikenakan oleh Payment Gateway kepada Merchant untuk setiap Transaksi Internet berhasil, yang perhitungannya diatur lebih lanjut di dalam Lampiran 2 Perjanjian ini.")
+p1_3 = Point.create(nomor: "1.3", isi: "Hari Kerja adalah hari selain Sabtu, Minggu dan hari libur nasional, di mana bank-bank di Indonesia buka dan operasional untuk kegiatan sehari-hari.")
+p1_4 = Point.create(nomor: "1.4", isi: "Layanan Pembayaran adalah jenis-jenis metode pembayaran Transaksi Internet yang tersedia di Sistem Pembayaran Internet. Metode pembayaran yang dimaksud akan dijelaskan lebih lanjut di dalam Lampiran 1 Perjanjian ini." )
+p1_5 = Point.create(nomor: "1.5", isi: "Pelanggan adalah pelaku Transaksi Internet di Merchant, melalui Sistem Pembayaran Internet." )
+p1_6 = Point.create(nomor: "1.6", isi: "Refund adalah pengembalian dana Transaksi Internet kepada Pelanggan karena pembatalan atas Transaksi Internet tersebut.")
+p1_7 = Point.create(nomor: "1.7", isi: "Sistem Pembayaran Internet adalah sistem pembayaran yang dimiliki dan dikelola oleh Payment Gateway, yang menghubungkan antara Bank/Service Provider, Payment Gateway, dan Merchant.")
+p1_8 = Point.create(nomor: "1.8", isi: "Service Provider adalah penyedia jasa metode pembayaran selain Bank, yang memiliki kerjasama dan telah terhubung dengan Payment Gateway. Daftar nama Service Provider serta Layanan Pembayaran yang digunakan akan dicantum di dalam Lampiran 1 Perjanjian ini.")
+p1_9 = Point.create(nomor: "1.9", isi: "Transaksi Internet adalah transaksi melalui media elektronik yang dilakukan oleh Pelanggan di situs Merchant, dan diproses oleh Sistem Pembayaran Internet.")
 
-p1.points << p11
-p1.points << p12
-p1.points << p13
-p1.points << p14
-p1.points << p15
-p1.points << p16
-p1.points << p17
-p1.points << p18
-p1.points << p19
+p1.points << p1_1
+p1.points << p1_2
+p1.points << p1_3
+p1.points << p1_4
+p1.points << p1_5
+p1.points << p1_6
+p1.points << p1_7
+p1.points << p1_8
+p1.points << p1_9
 
 p21 = Point.create(nomor: "2.1", isi: "Merchant setuju untuk memberikan salinan dari dokumen-dokumen resmi yang daftarnya dicantum di Lampiran 4 Perjanjian ini, sebagai persyaratan administratif Perjanjian ini.")
-p22 = Point.create(nomor: "2.2", isi: "Transaksi Internet hanya dapat dilakukan melalui situs Merchant, dengan alamat URL dan/atau mobile apps : ")
+p22 = Point.create(nomor: "2.2", isi: "Transaksi Internet hanya dapat dilakukan melalui situs Merchant, dengan alamat URL dan/atau mobile apps")
 p23 = Point.create(nomor: "2.3", isi: "Merchant berjanji untuk tidak menjual barang atau jasa yang melanggar hukum/peraturan perundang-undangan/ketertiban umum dan/atau yang secara spesifik dilarang oleh Bank, Service Provider atau Principal.")
 p24 = Point.create(nomor: "2.4", isi: "Payment Gateway dapat menolak memberikan layanan kepada Merchant dengan kategori sebagai berikut:")
 p241 = Point.create(nomor: "2.4.1", isi: "terlibat tindakan kriminal atau melanggar norma hukum, social, agama dan moral;")
 p242 = Point.create(nomor: "2.4.2", isi: "terlibat dalam kelompok atau organisasi terlarang;")
 p243 = Point.create(nomor: "2.4.3", isi: "masuk ke dalam daftar hitam Payment Gateway, Bank atau Service Provider.")
-p25 = Point.create(nomor: "2.4.5", isi: "Merchant wajib memberikan pemberitahuan tertulis kepada Payment Gateway apabila Merchant merubah jenis usaha dan/atau jenis barang atau jasa yang ditawarkan melalui situs Merchant, serta dalam hal terjadi perubahan dalam susunan kepemilikan, Direksi atau penanggungjawab Merchant, sekurang-kurangnya 14 (empat belas) Hari Kerja sebelum perubahan tersebut dilakukan.")
+p25 = Point.create(nomor: "2.5", isi: "Merchant wajib memberikan pemberitahuan tertulis kepada Payment Gateway apabila Merchant merubah jenis usaha dan/atau jenis barang atau jasa yang ditawarkan melalui situs Merchant, serta dalam hal terjadi perubahan dalam susunan kepemilikan, Direksi atau penanggungjawab Merchant, sekurang-kurangnya 14 (empat belas) Hari Kerja sebelum perubahan tersebut dilakukan.")
 
 p2.points << p21
 p2.points << p22
@@ -279,32 +310,6 @@ p14.points << p144
 p14.points << p145
 
 
-# p1 = Pasal.create(nomor_pasal: "1", nama_pasal: "Definisi")
-# p2 = Pasal.create(nomor_pasal: "2", nama_pasal: "Proses Pendaftaran dan Persyaratan Merchant")
-# p3 = Pasal.create(nomor_pasal: "3", nama_pasal: "Hak Dan Kewajiban Payment Gateway
-# ")
-# p4 = Pasal.create(nomor_pasal: "4", nama_pasal: "Hak dan Kewajiban Merchant
-# ")
-# p5 = Pasal.create(nomor_pasal: "5", nama_pasal: "Biaya Transaksi Dan Pembayaran Tagihan
-# ")
-# p6 = Pasal.create(nomor_pasal: "6", nama_pasal: "Penghentian Sementara Layanan Sistem Pembayaran Internet
-# ")
-# p7 = Pasal.create(nomor_pasal: "7", nama_pasal: "Keamanan dan Perlindungan Informasi
-# ")
-# p8 = Pasal.create(nomor_pasal: "8", nama_pasal: "Jangka Waktu Dan Pengakhiran Perjanjian
-# ")
-# p9 = Pasal.create(nomor_pasal: "9", nama_pasal: "Pernyataan Dan Jaminan
-# ")
-# p10 = Pasal.create(nomor_pasal: "10", nama_pasal: "Domisili Hukum dan Penyelesaian Sengketa
-# ")
-# p11 = Pasal.create(nomor_pasal: "11", nama_pasal: "Ingkar Janji (Wanprestasi)
-# ")
-# p12 = Pasal.create(nomor_pasal: "12", nama_pasal: "Kerahasiaan
-# ")
-# p13 = Pasal.create(nomor_pasal: "13", nama_pasal: "Keadaan Memaksa (Force Majeure)
-# ")
-# p14 = Pasal.create(nomor_pasal: "14", nama_pasal: "Ketentuan Lainnya
-# ")
 
 #seed mock data
 
