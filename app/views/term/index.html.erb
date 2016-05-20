@@ -18,15 +18,18 @@
     <% end %>
   <% end %>
 
-  <%= form_for :agreement do |f| %>
-    <div class="checkbox">
-      <label>
-        <%= check_box_tag :has_agree %> I agree to the terms & conditions
-    </div>
-
-    <p>
-      <%= f.submit 'Save Agreement', :class => 'btn btn-primary' %>
-     <%= success %>
-    </p>
+  <div class="vertical-space" style="height:20px;"></div>
+  <% if @agreement.has_agree %>
+    <%= link_to 'Download', '/doc' , class: 'btn btn-primary', target: "_blank"%>
+  <% else %>
+    <%= form_for :agreement do |f| %>
+      <div class="checkbox">
+          <%= check_box_tag :has_agree %> I agree to the terms & conditions %>
+      </div>
+      <div class="vertical-space" style="height:20px;"></div>
+      <div>
+        <%= f.submit 'Save Agreement', :class => 'btn btn-primary' %>
+      </div>
+    <% end %>  
   <% end %>
 </div>
