@@ -20,3 +20,6 @@
 /public/uploads
 
 .env
+
+doc/
+coverage/

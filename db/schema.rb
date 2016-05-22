@@ -143,6 +143,7 @@ ActiveRecord::Schema.define(version: 20160501220928) do
     t.decimal  "revenues_each_month"
     t.decimal  "credit_card_payment_ratio"
     t.string   "registration_link"
+    t.integer  "sales_id"
     t.integer  "user_id"
     t.boolean  "info_is_completed"
     t.boolean  "documents_is_completed"
@@ -169,13 +170,13 @@ ActiveRecord::Schema.define(version: 20160501220928) do
 
   create_table "sales_merchants", force: :cascade do |t|
     t.integer  "merchant_id"
-    t.integer  "sale_id"
+    t.integer  "sales_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
   add_index "sales_merchants", ["merchant_id"], name: "index_sales_merchants_on_merchant_id", using: :btree
-  add_index "sales_merchants", ["sale_id"], name: "index_sales_merchants_on_sale_id", using: :btree
+  add_index "sales_merchants", ["sales_id"], name: "index_sales_merchants_on_sales_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -205,5 +206,5 @@ ActiveRecord::Schema.define(version: 20160501220928) do
   add_foreign_key "points", "points"
   add_foreign_key "sales", "users"
   add_foreign_key "sales_merchants", "merchants"
-  add_foreign_key "sales_merchants", "sales"
+  add_foreign_key "sales_merchants", "sales", column: "sales_id"
 end
