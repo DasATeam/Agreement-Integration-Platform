@@ -8,7 +8,7 @@ class MerchantController < ApplicationController
 
     begin
       if MerchantMailer.welcome_email(@merchant, @text).deliver_now
-        flash[:notice] = "Mail successfully sent"
+        flash[:notice] = "Mail successfully sent to" + @merchant.name
         redirect_to sales_list_merchant_url
       else
         flash[:alert] = "Mail failed to send, check your connection and try again"
