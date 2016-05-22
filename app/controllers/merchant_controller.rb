@@ -8,11 +8,7 @@ before_action :require_merchant, only: [:edit, :update]
     @user = User.find(session[:user_id])
     @merchant = @user.merchant
     
-    @merchant_pic = @merchant.merchant_pic ? @merchant.merchant_pic : MerchantPic.new()
-    @merchant_owner = @merchant.merchant_owner ? @merchant.merchant_owner : MerchantOwner.new()
-    @merchant_operational = @merchant.merchant_operational ? @merchant.merchant_operational : MerchantOperational.new()
-    @merchant_cs = @merchant.merchant_customer_support ? @merchant.merchant_customer_support : MerchantCustomerSupport.new()
-    @bank_account = @merchant.bank_account ? @merchant.bank_account : BankAccount.new()
+    dummy_data
   end
 
   def update
@@ -23,12 +19,8 @@ before_action :require_merchant, only: [:edit, :update]
     check = true
     @merchant = @current_user.merchant
 
-    @merchant_pic = @merchant.merchant_pic ? @merchant.merchant_pic : MerchantPic.new()
-    @merchant_owner = @merchant.merchant_owner ? @merchant.merchant_owner : MerchantOwner.new()
-    @merchant_operational = @merchant.merchant_operational ? @merchant.merchant_operational : MerchantOperational.new()
-    @merchant_cs = @merchant.merchant_customer_support ? @merchant.merchant_customer_support : MerchantCustomerSupport.new()
-    @bank_account = @merchant.bank_account ? @merchant.bank_account : BankAccount.new()
-
+    dummy_data
+    
     if params[:save_general]
       @merchant.update(merchant_params)
       check = @merchant.save and check
@@ -135,5 +127,13 @@ before_action :require_merchant, only: [:edit, :update]
 
   def bank_account_params
     params.require(:bank_account).permit(:acc_number, :name, :acc_holder, :acc_type)
+  end
+
+  def dummy_data
+    @merchant_pic = @merchant.merchant_pic ? @merchant.merchant_pic : MerchantPic.new()
+    @merchant_owner = @merchant.merchant_owner ? @merchant.merchant_owner : MerchantOwner.new()
+    @merchant_operational = @merchant.merchant_operational ? @merchant.merchant_operational : MerchantOperational.new()
+    @merchant_cs = @merchant.merchant_customer_support ? @merchant.merchant_customer_support : MerchantCustomerSupport.new()
+    @bank_account = @merchant.bank_account ? @merchant.bank_account : BankAccount.new()
   end
 end
