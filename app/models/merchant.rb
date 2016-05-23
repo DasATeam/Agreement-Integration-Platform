@@ -7,8 +7,38 @@ class Merchant < ActiveRecord::Base
 	has_one(:merchant_owner)
 	has_one(:merchant_pic)
 	has_one(:bank_account)
-	# has_many(:sales, through: :sales_merchants)
 	has_and_belongs_to_many(:sales, class_name: 'Sales', join_table: 'sales_merchants')
+	# has_many(:sales, through: :sales_merchants)
+	validates :name, presence: true
+	validates :website, presence: true
+	validates :email, format: { with: /\A[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$\z/i,
+    message: 'email tidak sesuai format'}
+	validates :city, presence: true
+	validates :address, presence: true
+	validates :office_status, presence: true
+	validates :type_of_product, presence: true
+	validates :price_range, presence: true
+	validates :time_since_started, presence: true
+	validates :ownership_type, presence: true
+	validates :revenues_each_month, presence: true
+	validates :credit_card_payment_ratio, presence: true
+	#validates :registration_link, presence: true
+	#validates :user_id, presence: true
+	#validates :documents_is_completed, presence: true
+
+	def check
+		#self.info_is_completed = self.valid?
+		#self.info_is_completed = self.info_is_completed && self.merchant_customer_support.is_completed && self.merchant_owner.is_completed && self.merchant_pic.is_completed && self.merchant_operational.is_completed && self.merchant_operational.is_completed
+		#self.save
+		self.info_is_completed = self.valid?
+		#&& self.info_is_completed && self.merchant_customer_support.is_completed && self.merchant_owner.is_completed && self.merchant_pic.is_completed && self.merchant_operational.is_completed && self.merchant_operational.is_completed
+		self.save
+	end
+
+	def information_check
+		self.info_is_completed = self.valid? && self.merchant_customer_support.is_completed && self.merchant_owner.is_completed && self.merchant_pic.is_completed && self.merchant_operational.is_completed && self.merchant_operational.is_completed
+		self.save
+  end
 
   def document_check
     self.merchant_documents.each do |doc|
@@ -23,11 +53,5 @@ class Merchant < ActiveRecord::Base
     return self.documents_is_completed
   end
 
-  def information_check
-    self.info_is_completed = self.name && self.name.blank? && self.website && self.website.blank? && self.email && self.email.blank? && self.city && self.city.blank? && self.address && self.address.blank? && self.office_status && self.office_status.blank? && self.type_of_product && self.type_of_product.blank? && self.price_range && self.price_range.blank? && self.time_since_started && self.time_since_started.blank? && self.ownership_type && self.ownership_type.blank? && self.revenues_each_month && self.revenues_each_month.blank? && self.credit_card_payment_ratio && self.credit_card_payment_ratio.blank? && self.registration_link && self.registration_link.blank?
-    self.info_is_completed = self.info_is_completed && self.merchant_customer_support.is_completed && self.merchant_owner.is_completed && self.merchant_pic.is_completed && self.merchant_operational.is_completed
-    self.save
-    return self.info_is_completed
-  end
 
 end

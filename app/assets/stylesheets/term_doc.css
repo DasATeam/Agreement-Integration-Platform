@@ -1,0 +1,47 @@
+body, table{
+    font-size: 10pt;
+}
+
+ol {
+    counter-reset: item;
+}
+ol > li {
+    display: block;
+    position: relative;
+}
+ol > li:before {
+    content: counters(item, ".")".";
+    counter-increment: item;
+    position: absolute;
+    margin-right: 100%;
+    right: 10px; /* space between number and text */
+}
+
+ol.pasal{
+    padding-left: 0;  
+}
+
+.center-align{
+	text-align: center;
+}
+
+.page-break{
+	page-break-before:always;
+}
+
+.table-align-top td, .table-align-top th{
+    vertical-align: top;
+}
+
+table.table-view{
+	width: 100%
+}
+table.table-view, .table-view tr td, .table-view tr th { 
+    border-collapse: collapse;
+    border: 0.5mm solid black;
+    border-spacing: 0;
+    border-color: black;
+}
+.table-padding td, .table-padding th{ 
+    padding: 3mm;
+}

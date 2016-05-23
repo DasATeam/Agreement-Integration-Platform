@@ -78,7 +78,6 @@
 						<%= f.submit "Next", :name => 'save_general', :class => "btn btn-primary" %>
 					<% end %>
 				</div>
-
 				<div id="pic" class="<%= if params[:save_general] then @active else @non_active end%>">
 					<%= form_for :merchant do |f| %>
 						<h3>PIC Merchant Info</h3>
@@ -152,7 +151,6 @@
 					<%= f.submit "Next", :name => 'save_cs', :class => "btn btn-primary" %>
 					<% end %>
 				</div>
-
 				<div id="operational" class="<%= if params[:save_cs] then @active else @non_active end%>">
 					<%= form_for :merchant do |f| %>
 					  <h3>Merchant Operational</h3>

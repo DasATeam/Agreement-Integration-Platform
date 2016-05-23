@@ -26,6 +26,18 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'carrierwave'
 # Use bootstrap sass
 gem 'bootstrap-sass'
+# Creating pdf doc
+gem 'wicked_pdf'
+#wkhtmltopdf program
+gem 'wkhtmltopdf-binary'
+
+gem 'pg' # etc etc
+
+gem 'rack-mini-profiler'
+gem 'flamegraph'
+gem 'stackprof' # ruby 2.1+ only
+gem 'memory_profiler'
+
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
@@ -45,6 +57,8 @@ group :development, :test do
 
   # For testing user interface elements
   gem 'capybara'
+
+  gem 'simplecov' , require: false
 end
 
 group :development do

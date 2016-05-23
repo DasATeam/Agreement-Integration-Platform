@@ -9,24 +9,27 @@ Rails.application.routes.draw do
 
   get 'sales/agreement/new' => 'agreement#new' # as create_new_agreement
   post'sales/agreement/new' => 'agreement#create'
-  get 'sales/agreement/:user_id/channel'=> 'agreement#newchannel' # as create_new_channel
-  post 'sales/agreement/:user_id/channel' => 'agreement#channeling'
+  get 'sales/agreement/:user_id/channel'=> 'channel#edit' # as create_new_channel
+  post 'sales/agreement/:user_id/channel' => 'channel#save_channel'
+  get 'sales/agreement/:user_id/info'=> 'agreement#sales_success_create' # display merchant details to send mail
+  
 
   get 'sales/list_merchant' => 'sales#list_merchant' # as sales dashboard
-
   post 'merchant/send-mail/:merchant_id' => 'merchant#send_mail'
 
 
   get 'merchant/new/:hash' => 'user#merchant_set_password' # as merchant_dashboard
   post 'merchant/new/:hash' => 'user#merchant_set_password' # as merchant_dashboard
-  get 'merchant/form' => 'merchantform#edit' # as merchant_form
-  post 'merchant/form' => 'merchantform#update'
+  get 'merchant/form' => 'merchant#edit' # as merchant_form
+  post 'merchant/form' => 'merchant#update'
 
   get 'merchant/document' => 'document#index' # as merchant_document
   post 'merchant/document' => 'document#upload'
   get 'merchant/document/download' => 'document#download'
 
   get 'merchant/terms' => 'term#index' # as merchant_terms
+  get 'sales/document/:agreement_id' => 'term#sales_download'
+  get 'doc' => 'term#doc'
   post 'merchant/terms' => 'term#agree'
 
   get 'merchant/details/:merchant_id' => 'agreement#merchant_details'
