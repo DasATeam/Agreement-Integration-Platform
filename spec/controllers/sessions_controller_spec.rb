@@ -3,23 +3,19 @@ require 'pp'
 
 RSpec.describe SessionsController, type: :controller do
   before :all do
-    @user = User.create(email: 'john@veritrans.com', role: 'sales')
-    @user.set_password('ppl')
+    @user = User.find_by email: 'john@veritrans.com'
   end
 
   describe 'new' do
-    render_views
-
     it 'should show the login page if the user is not logged in' do
       get(:destroy)
       get(:new)
-
-      expect(response.body).to match /Login/m
+      expect(response).to render_template("new")
     end
 
-    it 'should redirect merchant if they are already logged in' do
-      post(:create, session: {email: 'john@veritrans.com', password: 'ppl'})
-
+    it 'should redirect sales if they already logged in' do
+      session[:user_id] = @user
+      get(:new)
       expect(response).to redirect_to '/sales/list_merchant'
     end
   end
@@ -31,15 +27,10 @@ RSpec.describe SessionsController, type: :controller do
 
       expect(session[:user_id]).not_to be_nil
     end
-  end
-
-  describe 'destroy' do
-    it 'should log the user out after they are logged in' do
+  
+    it 'should redirect sales if they enter the correct email and password' do
       post(:create, session: {email: 'john@veritrans.com', password: 'ppl'})
-      expect(session[:user_id]).not_to be_nil
-
-      get(:destroy)
-      expect(session[:user_id]).to be_nil
+      expect(response).to redirect_to '/sales/list_merchant'
     end
   end
 end
