@@ -65,6 +65,7 @@ end
 gem 'puma'
 
 # For software profiling
+gem "bullet", :group => "development"
 gem 'rack-mini-profiler'
 gem 'flamegraph'
 gem 'stackprof'
