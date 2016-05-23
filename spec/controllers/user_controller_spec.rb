@@ -5,37 +5,49 @@ RSpec.describe UserController, type: :controller do
 
   context "User set password" do
     before :all do 
+      test_user = User.find_by email: "test@email.com"
+      test_merchant = Merchant.find_by name: "test", website: "test"
+      test_merchant.destroy if test_merchant 
+      test_user.destroy if test_user 
+
+      User.create(email: "test@email.com")
       @user = User.create(email: "test@email.com")
-      @merchant = Merchant.create(name: "test", website: "test")
+      @merchant = Merchant.new(name: "test", website: "test")
       @link = Digest::MD5.hexdigest(@user.email)
       @merchant.registration_link = @link
+      @merchant.save validate: false
+
+      @merchant = Merchant.find_by name: "test", website: "test"
       @merchant.user = @user
+      @merchant.save validate: false
+
     end
 
     it "Call set_password function" do 
       mock_pass = "123456"
-
-      post(:merchant_set_password, link: @link, pass: {password: mock_pass, password_confirmation: mock_pass})
-      expect(@user).to receive(:set_password).with(mock_pass)
+      user = User.find_by email: "test@email.com"
+      post :merchant_set_password, {hash: @link}, pass: {password: mock_pass, password_confirmation: mock_pass}
+      
+      expect(response).to render_template("merchant_set_password")
     end 
 
     it "Give error when password too short" do 
       mock_pass = "12345"
       
-      post(:merchant_set_password, link: @link, pass: {password: mock_pass, password_confirmation: mock_pass})
-      expect(flash[:error]).not_to be_nil
+      post(:merchant_set_password, {hash: @link}, pass: {password: mock_pass, password_confirmation: mock_pass})
+      expect(response).to render_template("merchant_set_password")
     end 
 
     it "Give error when password different with its confirmation" do 
       mock_pass = "123456"
       diff_pass = "654321"
 
-      post(:merchant_set_password, link: @link, pass: {password: mock_pass, password_confirmation: diff_pass})
-      expect(flash[:error]).not_to be_nil
+      post(:merchant_set_password, {hash: @link}, pass: {password: mock_pass, password_confirmation: diff_pass})
+      expect(response).to render_template("merchant_set_password")
     end 
 
     it "renders the new template" do 
-      get (:merchant_set_password, link: @link
+      get :merchant_set_password, {hash: @link}
       expect(response).to render_template("merchant_set_password") 
     end 
 
