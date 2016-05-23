@@ -27,31 +27,31 @@ form_mandiri = DocumentType.create(name: "Form Mandiri", is_additional: true)
 form_bca2 = DocumentType.create(name: "Form BCA lampiran", is_additional: true)
 
 #channels
-bni1 = ChannelType.create(category: "Bank Negara Indonesia (BNI)", name: "Transaksi Kartu - Aggregator", charge: "3.2% + Rp. 2,750")
-bni2 = ChannelType.create(category: "Bank Negara Indonesia (BNI)", name: "Transaksi Kartu - Fasilitator", charge: "Biaya transaksi dari Bank + Rp. 2,750")
+bni1 = ChannelType.create(partner: "Bank Negara Indonesia (BNI)", name: "Transaksi Kartu - Aggregator", charge: "3.2% + Rp. 2,750")
+bni2 = ChannelType.create(partner: "Bank Negara Indonesia (BNI)", name: "Transaksi Kartu - Fasilitator", charge: "Biaya transaksi dari Bank + Rp. 2,750")
 
-cimb1 = ChannelType.create(category: "Bank CIMB Niaga", name: "Transaksi Kartu - Aggregator", charge: "3.2% + Rp. 2,750")
-cimb2 = ChannelType.create(category: "Bank CIMB Niaga", name: "Transaksi Kartu - Fasilitator", charge: "Biaya transaksi dari Bank + Rp. 2,750")
-cimb3 = ChannelType.create(category: "Bank CIMB Niaga", name: "Internet Banking - CIMB Clicks", charge: "Rp. 5,000")
+cimb1 = ChannelType.create(partner: "Bank CIMB Niaga", name: "Transaksi Kartu - Aggregator", charge: "3.2% + Rp. 2,750")
+cimb2 = ChannelType.create(partner: "Bank CIMB Niaga", name: "Transaksi Kartu - Fasilitator", charge: "Biaya transaksi dari Bank + Rp. 2,750")
+cimb3 = ChannelType.create(partner: "Bank CIMB Niaga", name: "Internet Banking - CIMB Clicks", charge: "Rp. 5,000")
 
-mandiri1 = ChannelType.create(category: "Bank Mandiri", name: "Transaksi Kartu - Fasilitator", charge: "Biaya transaksi dari Bank + Rp. 2,750")
-mandiri2 = ChannelType.create(category: "Bank Mandiri", name: "Internet Banking - Mandiri Clickpay", charge: "Rp. 5,000")
-mandiri3 = ChannelType.create(category: "Bank Mandiri", name: "Bill Payment", charge: "Rp. 5,390")
-mandiri4 = ChannelType.create(category: "Bank Mandiri", name: "E-Money - e-cash", charge: "1% untuk transaksi min Rp. 250,000 atau Rp. 2,500 untuk transaksi di bawah Rp. 250,000")
+mandiri1 = ChannelType.create(partner: "Bank Mandiri", name: "Transaksi Kartu - Fasilitator", charge: "Biaya transaksi dari Bank + Rp. 2,750")
+mandiri2 = ChannelType.create(partner: "Bank Mandiri", name: "Internet Banking - Mandiri Clickpay", charge: "Rp. 5,000")
+mandiri3 = ChannelType.create(partner: "Bank Mandiri", name: "Bill Payment", charge: "Rp. 5,390")
+mandiri4 = ChannelType.create(partner: "Bank Mandiri", name: "E-Money - e-cash", charge: "1% untuk transaksi min Rp. 250,000 atau Rp. 2,500 untuk transaksi di bawah Rp. 250,000")
 
-bri = ChannelType.create(category: "Bank Rakyat Indonesia (BRI)", name: "Internet Banking - e-Pay BRI", charge: "Rp. 5,000")
+bri = ChannelType.create(partner: "Bank Rakyat Indonesia (BRI)", name: "Internet Banking - e-Pay BRI", charge: "Rp. 5,000")
 
-bca1 = ChannelType.create(category: "Bank Central Asia (BCA)", name: "Transaksi Kartu - Fasilitator", charge: "Biaya transaksi dari Bank + Rp. 2,750")
-bca2 = ChannelType.create(category: "Bank Central Asia (BCA)", name: "Internet Banking - BCA KlikPay", charge: "Biaya transaksi dari Bank + Rp. 2,200")
-bca3 = ChannelType.create(category: "Bank Central Asia (BCA)", name: "Virtual Account", charge: "Biaya transaksi dari Bank + Rp. 2,750")
+bca1 = ChannelType.create(partner: "Bank Central Asia (BCA)", name: "Transaksi Kartu - Fasilitator", charge: "Biaya transaksi dari Bank + Rp. 2,750")
+bca2 = ChannelType.create(partner: "Bank Central Asia (BCA)", name: "Internet Banking - BCA KlikPay", charge: "Biaya transaksi dari Bank + Rp. 2,200")
+bca3 = ChannelType.create(partner: "Bank Central Asia (BCA)", name: "Virtual Account", charge: "Biaya transaksi dari Bank + Rp. 2,750")
 
-permata = ChannelType.create(category: "Bank Permata", name: "Virtual Account", charge: "Rp. 5,390")
+permata =   ChannelType.create(partner: "Bank Permata", name: "Virtual Account", charge: "Rp. 5,390")
 
-telkom = ChannelType.create(category: "Telkomsel", name: "E-Money - Telkomsel TCash", charge: "Rp. 3,300")
-xl = ChannelType.create(category: "XL  ", name: "E-Money - XL Tunai", charge: "Rp. 3,300")
-isat = ChannelType.create(category: "Indosat Dompetku", name: "E-Money - Indosat Dompetku", charge: "Rp. 3,300")
-indomaret = ChannelType.create(category: "Indomaret", name: "Convenience Store - Indomaret", charge: "Biaya transaksi dari Indomaret")
-bbm = ChannelType.create(category: "BBM Money", name: "E-Money - BBM Money", charge: "3% + Rp. 1,650")
+telkom    = ChannelType.create(partner: "Telkomsel", name: "E-Money - Telkomsel TCash", charge: "Rp. 3,300")
+xl        = ChannelType.create(partner: "XL  ", name: "E-Money - XL Tunai", charge: "Rp. 3,300")
+isat      = ChannelType.create(partner: "Indosat Dompetku", name: "E-Money - Indosat Dompetku", charge: "Rp. 3,300")
+indomaret = ChannelType.create(partner: "Indomaret", name: "Convenience Store - Indomaret", charge: "Biaya transaksi dari Indomaret")
+bbm       = ChannelType.create(partner: "BBM Money", name: "E-Money - BBM Money", charge: "3% + Rp. 1,650")
 
 #channels and required documents
 transaksi_kartu = [ktp, npwp, kerjasama, akta, sk]

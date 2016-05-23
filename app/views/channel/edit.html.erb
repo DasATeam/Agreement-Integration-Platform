@@ -1,17 +1,31 @@
 <div class="container">
 	<h3>Select Channels</h3>
-	<div class="row">
-		<div class="col-md-6">
-			<%= form_for(:form) do |f| %>
-				<% for @item in @channels %>
-					<div class="checkbox">
-						<label>
-							<%=	f.check_box(@item.id.to_s()) %> <%= @item.name %>
-						</label>
+	<%= form_for(:form) do |f| %>
+		<div class="row">
+				<% for item in @channels %>
+					<div class="col-md-6">
+						<div class="panel panel-default">
+						  <div class="panel-body">
+						  	<div class="row">
+						  		<div class="col-md-1">
+						  			<div>
+						  			<%=  f.check_box(item.id.to_s() ) %>
+						  			</div>
+							    </div>
+						  		<div class="col-md-5">
+						  			<%= image_tag('veritrans.png', class: "img-responsive") %>
+							    </div>
+						  		<div class="col-md-6">
+								    <%= item.partner %>
+								    <br>
+								    <%= item.name %>
+							    </div>
+						    </div>
+						  </div>
+						</div>
 					</div>
 				<% end %>
-				<%= f.submit "Select Channels", :class => "btn btn-primary" %>
-			<% end %>
 		</div>
-	</div>
+		<%= f.submit "Select Channels", :class => "btn btn-primary" %>
+	<% end %>	
 </div>
