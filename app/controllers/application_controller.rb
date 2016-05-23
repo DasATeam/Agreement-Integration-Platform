@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  before_filter :check_rack_mini_profiler
+  
   protect_from_forgery with: :exception
   add_flash_types :success
   helper_method :current_user
