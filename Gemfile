@@ -33,10 +33,10 @@ gem 'wkhtmltopdf-binary'
 
 gem 'pg' # etc etc
 
-gem 'rack-mini-profiler'
-gem 'flamegraph'
-gem 'stackprof' # ruby 2.1+ only
-gem 'memory_profiler'
+# gem 'rack-mini-profiler'
+# gem 'flamegraph'
+# gem 'stackprof' # ruby 2.1+ only
+# gem 'memory_profiler'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
