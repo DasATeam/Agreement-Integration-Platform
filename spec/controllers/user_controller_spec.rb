@@ -9,7 +9,6 @@ RSpec.describe UserController, type: :controller do
       test_merchant = Merchant.find_by name: "test", website: "test"
       test_merchant.destroy if test_merchant 
       test_user.destroy if test_user 
-      User.create(email: "test@email.com")
 
       @user = User.create(email: "test@email.com")
       @merchant = Merchant.new(name: "test", website: "test")
