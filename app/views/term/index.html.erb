@@ -9,14 +9,27 @@
   <div class="vertical-space" style="height:10px;"></div>
   <h2>Terms &amp; Conditions</h2>
   <p>Dengan menggunakan produk Veritrans, maka anda menyetujui ketentuan berikut:</p>
+  <div class="panel-group" id="accordion">
+  <% a = 1 %>
+    <% @term.points.each do |term_child1| %>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= a.to_s %>" ><%= term_child1.isi %></a>
+            </h4>
+          </div>
+          <div id="collapse<%= a.to_s %>" class="panel-collapse collapse <% if a == 1 then %><%="in"%><% else %><%=%><% end %>">
+            <div class="panel-body">
 
-  <% @term.points.each do |term_child1| %>
-    <h3><%= term_child1.isi %></h3>
-
-    <% term_child1.points.each do |term_child2| %>
-    	<p><%= term_child2.isi %></p>
+      <% term_child1.points.each do |term_child2| %>
+            <p><%= term_child2.isi %></p>
+      <% end %>
+            </div>
+          </div>
+        </div>
+      <% a += 1 %>
     <% end %>
-  <% end %>
+  </div>
 
   <div class="vertical-space" style="height:20px;"></div>
   <% if @agreement.has_agree %>
@@ -24,12 +37,12 @@
   <% else %>
     <%= form_for :agreement do |f| %>
       <div class="checkbox">
-          <%= check_box_tag :has_agree %> I agree to the terms & conditions %>
+          <%= check_box_tag :has_agree %> I agree to the terms & conditions
       </div>
       <div class="vertical-space" style="height:20px;"></div>
       <div>
         <%= f.submit 'Save Agreement', :class => 'btn btn-primary' %>
       </div>
-    <% end %>  
+    <% end %>
   <% end %>
 </div>

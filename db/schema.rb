@@ -59,7 +59,6 @@ ActiveRecord::Schema.define(version: 20160501220928) do
   add_index "channel_types_document_types", ["channel_type_id"], name: "index_channel_types_document_types_on_channel_type_id", using: :btree
   add_index "channel_types_document_types", ["document_type_id"], name: "index_channel_types_document_types_on_document_type_id", using: :btree
 
-
   create_table "document_links", force: :cascade do |t|
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
@@ -101,7 +100,6 @@ ActiveRecord::Schema.define(version: 20160501220928) do
 
   add_index "merchant_documents", ["agreement_id"], name: "index_merchant_documents_on_agreement_id", using: :btree
   add_index "merchant_documents", ["merchant_id"], name: "index_merchant_documents_on_merchant_id", using: :btree
-
 
   create_table "merchant_operationals", force: :cascade do |t|
     t.string  "email",        null: false
