@@ -9,13 +9,19 @@
 
 	<div class="row">
 		<div class="container">
+			<div class="alert alert-success">Please fill the information forms below.</div>	
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="container">
 			<ul class="nav nav-tabs">
-			  <li><a href="general">General</a></li>
-			  <li><a href="pic">PIC</a></li>
-			  <li class="active"><a href="owner">Owner</a></li>
-			  <li><a href="cs">Customer Support</a></li>
-			  <li><a href="operational">Operational</a></li>
-			  <li><a href="bank">Bank Account</a></li>
+			  <li><a href="general" style="<%= if @merchant.valid? then @green end%>"><%= if @merchant.valid? then content_tag(:span, nil, {class:'glyphicon glyphicon-ok', 'aria-hidden' => 'true'}) end%> General</a></li>
+			  <li><a href="pic" style="<%= if @merchant_pic.valid? then @green end%>"><%= if @merchant_pic.valid? then content_tag(:span, nil, {class:'glyphicon glyphicon-ok', 'aria-hidden' => 'true'}) end%> PIC</a></li>
+			  <li class="active"><a href="owner" style="<%= if @merchant_owner.valid? then @green end%>"><%= if @merchant_owner.valid? then content_tag(:span, nil, {class:'glyphicon glyphicon-ok', 'aria-hidden' => 'true'}) end%> Owner</a></li>
+			  <li><a href="cs" style="<%= if @merchant_cs.valid? then @green end%>"><%= if @merchant_cs.valid? then content_tag(:span, nil, {class:'glyphicon glyphicon-ok', 'aria-hidden' => 'true'}) end%> Customer Support</a></li>
+			  <li><a href="operational" style="<%= if @merchant_operational.valid? then @green end%>"><%= if @merchant_operational.valid? then content_tag(:span, nil, {class:'glyphicon glyphicon-ok', 'aria-hidden' => 'true'}) end%> Operational</a></li>
+			  <li><a href="bank" style="<%= if @bank_account.valid? then @green end%>"><%= if @bank_account.valid? then content_tag(:span, nil, {class:'glyphicon glyphicon-ok', 'aria-hidden' => 'true'}) end%> Bank Account</a></li>
 			</ul>
 		</div>
 	</div>
