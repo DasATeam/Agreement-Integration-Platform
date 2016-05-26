@@ -34,7 +34,7 @@ class SessionsController < ApplicationController
     if @user.sales?
       redirect_to '/sales/list_merchant'
     elsif @user.merchant?
-      redirect_to '/merchant/form'
+      redirect_to '/merchant/info/general'
     else
       # improper user role
       render status: :not_implemented

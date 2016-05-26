@@ -1,0 +1,48 @@
+<div class="container">
+	<ul class="nav nav-wizard">
+		<li class="active"><a href="<%= request.base_url + '/merchant/info/general' %>">1. Merchant Information Form</a></li>
+		<li><a href="<%= request.base_url + '/merchant/document' %>">2. Upload Documents</a></li>
+		<li><a>3. Terms & Conditions</a></li>
+		<li><a>4. Finish</a></li>
+	</ul>
+	<div class="vertical-space" style="height:30px;"></div>
+
+	<div class="row">
+		<div class="container">
+			<ul class="nav nav-tabs">
+			  <li><a href="general">General</a></li>
+			  <li><a href="pic">PIC</a></li>
+			  <li><a href="owner">Owner</a></li>
+			  <li><a href="cs">Customer Support</a></li>
+			  <li class="active"><a href="operational">Operational</a></li>
+			  <li><a href="bank">Bank Account</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<%= form_for :merchant do |f| %>
+			<h3>Merchant Operational</h3>
+			<%= fields_for :merchant_operational do |op|%>
+			<div class="form-group">
+			<%= op.label(:email, "Email") %><br>
+			<%= op.text_field(:email, class: "form-control", value: @merchant_operational.email, placeholder: "ex./ example.example.com") %>
+			</div>
+			<div class="form-group">
+			<%= op.label(:telephone, "Telephone") %><br>
+			<%= op.text_field(:telephone, class: "form-control", value: @merchant_operational.telephone, placeholder: "ex./ 08123456789") %>
+			</div>
+			<div class="form-group">
+			<%= op.label(:emergency, "Emergency Telephone") %><br>
+			<%= op.text_field(:emergency, class: "form-control", value: @merchant_operational.emergency, placeholder: "ex./ 08123456789") %>
+			</div>
+			<% end %>
+			<% if flash[:alert] %>
+				<div class="alert alert-danger"><%= flash[:alert] %></div>
+			<% end %>
+			<div class="col-xs-12 vertical-space" style="height:25px;"></div>
+			<%= f.submit "Next", :name => 'save_operational', :class => "btn btn-primary" %>
+			<% end %>
+		</div>
+	</div>
+</div>

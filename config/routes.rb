@@ -20,8 +20,19 @@ Rails.application.routes.draw do
 
   get 'merchant/new/:hash' => 'user#merchant_set_password' # as merchant_dashboard
   post 'merchant/new/:hash' => 'user#merchant_set_password' # as merchant_dashboard
-  get 'merchant/form' => 'merchant#edit' # as merchant_form
-  post 'merchant/form' => 'merchant#update'
+  #merchant form
+  get 'merchant/info/general' => 'merchant#edit_general'
+  post 'merchant/info/general' => 'merchant#edit_general'
+  get 'merchant/info/pic' => 'merchant#edit_pic'
+  post 'merchant/info/pic' => 'merchant#edit_pic'
+  get 'merchant/info/owner' => 'merchant#edit_owner'
+  post 'merchant/info/owner' => 'merchant#edit_owner'
+  get 'merchant/info/cs' => 'merchant#edit_customer_support'
+  post 'merchant/info/cs' => 'merchant#edit_customer_support'
+  get 'merchant/info/operational' => 'merchant#edit_operational'
+  post 'merchant/info/operational' => 'merchant#edit_operational'
+  get 'merchant/info/bank' => 'merchant#edit_bank_account'
+  post 'merchant/info/bank' => 'merchant#edit_bank_account'
 
   get 'merchant/document' => 'document#index' # as merchant_document
   post 'merchant/document' => 'document#upload'

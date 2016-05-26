@@ -15,7 +15,7 @@ class UserController < ApplicationController
         merchant.registration_link = ""
         merchant.save
 
-        redirect_to(controller: "merchantform", action: "edit")
+        redirect_to(controller: "merchant", action: "edit_general")
       end
     end
 

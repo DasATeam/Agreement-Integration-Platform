@@ -1,0 +1,83 @@
+<div class="container">
+	<ul class="nav nav-wizard">
+		<li class="active"><a href="<%= request.base_url + '/merchant/info/general' %>">1. Merchant Information Form</a></li>
+		<li><a href="<%= request.base_url + '/merchant/document' %>">2. Upload Documents</a></li>
+		<li><a>3. Terms & Conditions</a></li>
+		<li><a>4. Finish</a></li>
+	</ul>
+	<div class="vertical-space" style="height:30px;"></div>
+
+	<div class="row">
+		<div class="container">
+			<ul class="nav nav-tabs">
+			  <li class="active"><a href="general">General</a></li>
+			  <li><a href="pic">PIC</a></li>
+			  <li><a href="owner">Owner</a></li>
+			  <li><a href="cs">Customer Support</a></li>
+			  <li><a href="operational">Operational</a></li>
+			  <li><a href="bank">Bank Account</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<%= form_for :merchant do |f| %>
+				<div class="vertical-space" style="height:10px;"></div>
+				<h3>General Merchant Info</h3>
+				  <div class="form-group">
+				    <%= f.label(:name, "Name") %>
+				    <%= f.text_field(:name, class: "form-control", value: @merchant.name, placeholder: "ex./ John Doe") %>
+				  </div>
+				  <div class="form-group">
+				    <%= f.label(:website, "Website") %>
+				    <%= f.text_field(:website, class: "form-control", value: @merchant.website, placeholder: "ex./ www.shop.com") %>
+				  </div>
+				  <div class="form-group">
+				    <%= f.label(:email, "Email") %>
+				    <%= f.text_field(:email, class: "form-control", placeholder: " ex./ example@example.com", value: @merchant.email) %>
+				  </div>
+				  <div class="form-group">
+				    <%= f.label(:city, "City") %>
+				    <%= f.text_field(:city, class: "form-control", placeholder: "ex./ Jakarta", value: @merchant.city) %>
+				  </div>
+				  <div class="form-group">
+				    <%= f.label(:address, "Address") %>
+				    <%= f.text_field(:address, class: "form-control", value: @merchant.address, placeholder: "ex./ Jl. example no. 1") %>
+				  </div>
+				  <div class="form-group">
+				    <%= f.label(:office_status, "Office Status") %>
+				    <%= f.select(:office_status, options_for_select([['Milik Sendiri', 1], ['Milik Keluarga', 2], ['Kontrak', 3]], 1), {}, class: "form-control") %>
+				  </div>
+				  <div class="form-group">
+				    <%= f.label(:type_of_product, "Type of Product") %>
+				    <%= f.text_area(:type_of_product, class: "form-control", value: @merchant.type_of_product, placeholder: "ex./ Clothing Line, Food, etc") %>
+				  </div>
+				  <div class="form-group">
+				    <%= f.label(:price_range, "Price Range") %>
+				    <%= f.text_area(:price_range, class: "form-control", value: @merchant.price_range, placeholder: "ex./ 100000-3000000") %>
+				  </div>
+				  <div class="form-group">
+				    <%= f.label(:time_since_started, "Time Since Started") %>
+				    <%= f.date_field(:time_since_started, class: "form-control", value: @merchant.time_since_started, placeholder: "ex./ yyyy/mm/dd") %>
+				  </div>
+				  <div class="form-group">
+				    <%= f.label(:ownership_type, "Ownership Type") %>
+				    <%= f.select(:ownership_type, options_for_select([['Pemilik', 1], ['Perusahaan', 2], ['Partnership', 3]], 1), {}, class: "form-control") %>
+				  </div>
+				  <div class="form-group">
+				    <%= f.label(:revenues_each_month, "Revenues Per-month") %>
+				    <%= f.text_field(:revenues_each_month, value: @merchant.revenues_each_month, class: "form-control", placeholder: "30000000") %>
+				  </div>
+				  <div class="form-group">
+				    <%= f.label(:credit_card_payment_ratio, "Credit Card Payment Ratio") %>
+				    <%= f.text_field(:credit_card_payment_ratio, class: "form-control", value: @merchant.credit_card_payment_ratio, placeholder: "ex./ 500000") %>
+				  </div>
+				  <% if flash[:alert] %>
+					<div class="alert alert-danger"><%= flash[:alert] %></div>
+				  <% end %>
+				  <div class="col-xs-12 vertical-space" style="height:25px;"></div>
+				<%= f.submit "Next", :name => 'save_general', :class => "btn btn-primary" %>
+			<% end %>
+		</div>
+	</div>
+</div>
