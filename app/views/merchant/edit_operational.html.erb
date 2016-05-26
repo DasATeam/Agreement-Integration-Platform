@@ -23,6 +23,9 @@
 		<div class="col-md-6">
 			<%= form_for :merchant do |f| %>
 			<h3>Merchant Operational</h3>
+			<% if flash[:alert] %>
+				<div class="alert alert-danger"><%= flash[:alert] %></div>
+			<% end %>
 			<%= fields_for :merchant_operational do |op|%>
 			<div class="form-group">
 			<%= op.label(:email, "Email") %><br>
@@ -37,9 +40,7 @@
 			<%= op.text_field(:emergency, class: "form-control", value: @merchant_operational.emergency, placeholder: "ex./ 08123456789") %>
 			</div>
 			<% end %>
-			<% if flash[:alert] %>
-				<div class="alert alert-danger"><%= flash[:alert] %></div>
-			<% end %>
+			
 			<div class="col-xs-12 vertical-space" style="height:25px;"></div>
 			<%= f.submit "Next", :name => 'save_operational', :class => "btn btn-primary" %>
 			<% end %>

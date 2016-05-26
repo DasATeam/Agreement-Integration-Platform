@@ -24,6 +24,10 @@
 			<%= form_for :merchant do |f| %>
 				<div class="vertical-space" style="height:10px;"></div>
 				<h3>General Merchant Info</h3>
+				
+				<% if flash[:alert] %>
+					<div class="alert alert-danger"><%= flash[:alert] %></div>
+				<% end %>
 				  <div class="form-group">
 				    <%= f.label(:name, "Name") %>
 				    <%= f.text_field(:name, class: "form-control", value: @merchant.name, placeholder: "ex./ John Doe") %>
@@ -72,9 +76,6 @@
 				    <%= f.label(:credit_card_payment_ratio, "Credit Card Payment Ratio") %>
 				    <%= f.text_field(:credit_card_payment_ratio, class: "form-control", value: @merchant.credit_card_payment_ratio, placeholder: "ex./ 500000") %>
 				  </div>
-				  <% if flash[:alert] %>
-					<div class="alert alert-danger"><%= flash[:alert] %></div>
-				  <% end %>
 				  <div class="col-xs-12 vertical-space" style="height:25px;"></div>
 				<%= f.submit "Next", :name => 'save_general', :class => "btn btn-primary" %>
 			<% end %>

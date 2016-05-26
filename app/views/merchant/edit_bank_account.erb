@@ -24,6 +24,9 @@
 			<div class="tab-content">
 					<%= form_for :merchant do |f| %>
 					  <h3>Bank Account Information</h3>
+						 <% if flash[:alert] %>
+    						<div class="alert alert-danger"><%= flash[:alert] %></div>
+  						 <% end %>
 					  <%= fields_for :bank_account do |b|%>
 						  <div class="form-group">
 						    <%= b.label(:name, "Bank Name") %><br>
@@ -42,9 +45,6 @@
 						    <%= b.text_field(:acc_type, class: "form-control", value: @bank_account.acc_type, placeholder: "ex./ Silver, Gold, etc") %>
 						  </div>
 						 <% end %>
-						 <% if flash[:alert] %>
-    						<div class="alert alert-danger"><%= flash[:alert] %></div>
-  						 <% end %>
 					  <div class="col-xs-12 vertical-space" style="height:25px;"></div>
 					  <%= f.submit "Save", :name => 'save_bank_acc', :class => "btn btn-primary" %>
 					  <% end %>

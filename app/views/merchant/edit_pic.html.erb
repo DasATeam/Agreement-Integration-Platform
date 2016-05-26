@@ -23,6 +23,9 @@
 		<div class="col-md-6">
 			<%= form_for :merchant do |f| %>
 				<h3>PIC Merchant Info</h3>
+				<% if flash[:alert] %>
+					<div class="alert alert-danger"><%= flash[:alert] %></div>
+				<% end %>
 			  	<%= fields_for :merchant_pic do |p|%>
 				  	<div class="form-group">
 					    <%= p.label(:name, "Name") %>
@@ -41,9 +44,6 @@
 					    <%= p.text_field(:telephone, class: "form-control", value: @merchant_pic.telephone, placeholder: "ex./ 08123456789") %>
 						</div>
 			  	<% end %>
-			  	<% if flash[:alert] %>
-					<div class="alert alert-danger"><%= flash[:alert] %></div>
-				<% end %>
 			  	<div class="col-xs-12 vertical-space" style="height:25px;"></div>
 				<%= f.submit "Next", :name => 'save_pic', :class => "btn btn-primary" %>
 			<% end %>
