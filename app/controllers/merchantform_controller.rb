@@ -7,6 +7,7 @@ class MerchantformController < ApplicationController
 		@non_active = 'tab-pane fade'
 		@user = User.find(session[:user_id])
 		@merchant = @user.merchant
+		@is_merchant_completed = @merchant.is_completed
 		
 		@merchant_pic = @merchant.merchant_pic ? @merchant.merchant_pic : MerchantPic.new()
 		@merchant_owner = @merchant.merchant_owner ? @merchant.merchant_owner : MerchantOwner.new()
@@ -50,7 +51,7 @@ class MerchantformController < ApplicationController
   			merchant_operational.update(merchant_operational_params)
 			else
 				merchant_operational = MerchantOperational.new(merchant_operational_params)
-	  		merchant_operational.merchant = @merchant	
+	  		merchant_operational.merchant = @merchant
 			end
   			check = merchant_operational.save and check
 				@merchant_operational = merchant_operational
@@ -74,7 +75,7 @@ class MerchantformController < ApplicationController
   			merchant_owner.update(merchant_owner_params)
 			else
 				merchant_owner = MerchantOwner.new(merchant_owner_params)
-	  		merchant_owner.merchant = @merchant	
+	  		merchant_owner.merchant = @merchant
 			end
   			check = merchant_owner.save and check
   			@merchant_owner = merchant_owner
@@ -85,7 +86,7 @@ class MerchantformController < ApplicationController
   			merchant_bank_account.update(bank_account_params)
 			else
 				merchant_bank_account = BankAccount.new(bank_account_params)
-	  		merchant_bank_account.merchant = @merchant	
+	  		merchant_bank_account.merchant = @merchant
 			end
   			check = merchant_bank_account.save and check
   			@bank_account = merchant_bank_account
@@ -94,7 +95,7 @@ class MerchantformController < ApplicationController
     	redirect_to action: 'edit'
 		end
 	end
-	
+
 	def merchant_params
 	  params.require(:merchant).permit(:name, :website, :email, :city, :address, :office_status, :type_of_product, :price_range, :time_since_started, :ownership_type, :revenues_each_month, :credit_card_payment_ratio)
 	end
