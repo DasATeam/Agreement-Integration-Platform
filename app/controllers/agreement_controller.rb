@@ -65,14 +65,16 @@ class AgreementController < ApplicationController
 
 	def upload
 		@merchant_document = nil
-		params[:document].each do |id, file|
-			@merchant_document = MerchantDocument.find(id)
-			@merchant_document.file = file
-			@merchant_document.save!
-		end
+		if params[:document]
+			params[:document].each do |id, file|
+				@merchant_document = MerchantDocument.find(id)
+				@merchant_document.file = file
+				@merchant_document.save!
+			end
 
-		if @merchant_document
-			@merchant_document.merchant.document_check
+			if @merchant_document
+				@merchant_document.merchant.document_check
+			end
 		end
 
 		redirect_to action: "merchant_details", :anchor => 'documents'
