@@ -121,7 +121,7 @@ before_action :require_merchant, only: [:edit_general, :edit_pic, :edit_owner, :
     @merchant = Merchant.find(@id)
     begin
       if MerchantMailer.welcome_email(@merchant, @text).deliver_now
-        flash[:notice] = "Mail successfully sent"
+        flash[:notice] = "Mail successfully sent to" + @merchant.name
         redirect_to sales_list_merchant_url
       else
         flash[:alert] = "Mail failed to send, check your connection and try again"
