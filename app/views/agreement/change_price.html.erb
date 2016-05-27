@@ -2,7 +2,13 @@
     <div class="container">
         <div class="col-md-4">
             <h3><%= @channel.channel_type.name %></h3>
-            <h5>Current price: <%= @channel.customprice %></h5>
+            <h5>Current price:</h5>
+
+            <% if !(@channel.customprice == nil) then%>
+                <%= @channel.customprice %><br>
+            <%else%>
+                <%= @channel.channel_type.charge %><br>
+            <%end%> 
             <%= form_for(:form) do |f| %>
             <div class="form-group">
                 <%= f.label(:price, "New Price:") %>

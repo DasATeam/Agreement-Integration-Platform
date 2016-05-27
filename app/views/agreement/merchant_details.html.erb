@@ -53,8 +53,12 @@
 							    </div>
 						  		<div class="col-md-6">
 								    <%= item.name %> <br>
-				  					<%= ac.customprice %> <br>
-				  					<%= link_to "Change Price", controller: "agreement", action: "change_price", haft: item.id %>
+				  					<% if !(ac.customprice == nil) then%>
+				  						<%= ac.customprice %><br>
+				  					<%else%>
+				  						<%= item.charge %><br>
+				  					<%end%>	
+				  					<%= link_to "Change Price", controller: "agreement", action: "change_price", haft: ac.id %>
 							    </div>
 						    </div>
 						  </div>
