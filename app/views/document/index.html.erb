@@ -15,7 +15,7 @@
       <div class="vertical-space" style="height:10px;"></div>
       <div class="form-group">
         <%= f.label(:document, d.document_type.name) %>
-        <% if d.path %>
+        <% if d.file? %>
           <div class="row">
             <div class="col-md-6">
               <p><%= image_tag(d.file.url, class: "img-responsive") %></p>
