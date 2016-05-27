@@ -1,5 +1,5 @@
 class MerchantController < ApplicationController
-before_action :require_merchant, only: [:edit, :update]
+before_action :require_merchant, only: [:edit_general, :edit_pic, :edit_owner, :edit_operational, :edit_customer_support, :edit_bank_account]
 
   def edit_general
     var
