@@ -5,6 +5,5 @@ class BankAccount < ActiveRecord::Base
   validates :name, presence: true
   validates :acc_holder, presence: true
   validates :acc_type, presence: true
-  validates :merchant_id, presence: true
 
 end

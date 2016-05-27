@@ -25,8 +25,6 @@ class ChannelController < ApplicationController
 
         # Listing needed documents
         channel.documents.each do |doc|
-          puts doc
-          puts doc.class
           if !neededDocuments.has_key?(doc.id)
             neededDocuments[doc.id]=doc
           end
