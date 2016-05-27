@@ -144,6 +144,7 @@ ActiveRecord::Schema.define(version: 20160527074312) do
     t.decimal  "revenues_each_month"
     t.decimal  "credit_card_payment_ratio"
     t.string   "registration_link"
+    t.integer  "sales_id"
     t.integer  "user_id"
     t.boolean  "info_is_completed"
     t.boolean  "documents_is_completed"
