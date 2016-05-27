@@ -34,11 +34,13 @@ class ChannelController < ApplicationController
 
   # Creating each needed document to database
     neededDocuments.each_value do |doc|
-      merchantDocument = MerchantDocument.new()
-      merchantDocument.merchant = @merchant
-      merchantDocument.agreement = @agreement
-      merchantDocument.document_type = doc
-      merchantDocument.save()
+      if(!doc.is_additional)
+        merchantDocument = MerchantDocument.new()
+        merchantDocument.merchant = @merchant
+        merchantDocument.agreement = @agreement
+        merchantDocument.document_type = doc
+        merchantDocument.save()
+      end
     end
 
     redirect_to controller: "agreement", action:"sales_success_create", user_id: @user.id
