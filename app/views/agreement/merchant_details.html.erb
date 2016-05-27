@@ -35,7 +35,9 @@
 					<h3>Submitted Documents</h3><br/>
 					<% for item in @required_docs %>
 						<% if !item.document_type.is_additional then%>
-					    	<%= item.document_type.name %> <br/>
+					    	<%= item.document_type.name %> 
+					    	<%= content_tag(:span, nil, {class:'glyphicon glyphicon-ok', 'aria-hidden' => 'true', style: 'color : green'}) if item.file? %>
+					    	<br/>
 					    <%end%>
 					<% end %><br/><br/>
 				</div>
