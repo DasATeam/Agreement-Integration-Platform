@@ -10,26 +10,28 @@
   <div class="alert alert-success"><strong>Well done!</strong> Your merchant information has been saved successfuly. Now, you have to upload all required documents below before you can see the MoU in the next step.</div>
   
   <% @merchant_documents.each do |d| %>
-    <%= form_for :document do |f| %>
-      <%=  %>
-      <div class="vertical-space" style="height:10px;"></div>
-      <div class="form-group">
-        <%= f.label(:document, d.document_type.name) %>
-        <% if d.file? %>
-          <div class="row">
-            <div class="col-md-6">
-              <p><%= image_tag(d.file.url, class: "img-responsive") %></p>
+    <% if d.document_type.is_additional %>
+      <%= form_for :document do |f| %>
+        <%=  %>
+        <div class="vertical-space" style="height:10px;"></div>
+        <div class="form-group">
+          <%= f.label(:document, d.document_type.name) %>
+          <% if d.file? %>
+            <div class="row">
+              <div class="col-md-6">
+                <p><%= image_tag(d.file.url, class: "img-responsive") %></p>
+              </div>
             </div>
-          </div>
-        <% else %>
-          <p>Belum ada file yang diupload</p>
-        <% end %>
-        <p id="label_<%= d.id.to_s%>"></p>
-        <%= f.label(d.id.to_s, "Choose File", class: "btn btn-default") %>
-        <%= f.file_field(d.id.to_s, {style: "display:none;", onchange: "$('#label_#{d.id.to_s}').html($(this).val());"}) %>
+          <% else %>
+            <p>Belum ada file yang diupload</p>
+          <% end %>
+          <p id="label_<%= d.id.to_s%>"></p>
+          <%= f.label(d.id.to_s, "Choose File", class: "btn btn-default") %>
+          <%= f.file_field(d.id.to_s, {style: "display:none;", onchange: "$('#label_#{d.id.to_s}').html($(this).val());"}) %>
 
-        <%= f.submit 'Upload', :class => 'btn btn-primary' %>
-      </div>
+          <%= f.submit 'Upload', :class => 'btn btn-primary' %>
+        </div>
+      <% end %>
     <% end %>
   <% end %>
 </div>
