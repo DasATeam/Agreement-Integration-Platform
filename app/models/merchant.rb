@@ -24,7 +24,7 @@ class Merchant < ActiveRecord::Base
 	
 	def check
 		self.info_is_completed = self.valid?
-		self.save
+    self.save(validate: false)
     return self.info_is_completed
 	end
 
@@ -35,14 +35,16 @@ class Merchant < ActiveRecord::Base
 
   def document_check
     self.merchant_documents.each do |doc|
-      if !doc || doc.file?
+      puts doc.document_type.name
+      if !doc.document_type.is_additional && !doc.file?
+        puts "lala"
         self.documents_is_completed = false
-        self.save
+        self.save(validate: false)
         return self.documents_is_completed
       end
     end
     self.documents_is_completed = true
-    self.save
+    self.save(validate: false)
     return self.documents_is_completed
   end
 
