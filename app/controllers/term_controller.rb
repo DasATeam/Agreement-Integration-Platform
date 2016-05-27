@@ -77,6 +77,7 @@ class TermController < ApplicationController
 
   def agree
     @merchant = current_user.merchant
+    @agreement = @merchant.agreements.first
     @agreement.has_agree = true
     @agreement.save
 
