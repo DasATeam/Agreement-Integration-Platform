@@ -15,7 +15,7 @@ before_action :require_merchant, only: [:edit_general, :edit_pic, :edit_owner, :
           redirect_to action:"edit_pic"
         end
       else
-        flash[:alert] = 'Fill all the field in the form';
+        flash[:alert] = 'Fill all the field in the form, or check the format of the form';
       end
     end
   end
@@ -34,7 +34,7 @@ before_action :require_merchant, only: [:edit_general, :edit_pic, :edit_owner, :
           redirect_to action:"edit_owner"
         end
       else
-        flash[:alert] = 'Fill all the field in the form';
+        flash[:alert] = 'Fill all the field in the form, or check the format of the form';
       end
     end
   end
@@ -53,7 +53,7 @@ before_action :require_merchant, only: [:edit_general, :edit_pic, :edit_owner, :
           redirect_to action:"edit_customer_support"
         end
       else
-        flash[:alert] = 'Fill all the field in the form';
+        flash[:alert] = 'Fill all the field in the form, or check the format of the form';
       end
     end
   end
@@ -72,7 +72,7 @@ before_action :require_merchant, only: [:edit_general, :edit_pic, :edit_owner, :
           redirect_to action:"edit_operational"
         end
       else
-        flash[:alert] = 'Fill all the field in the form';
+        flash[:alert] = 'Fill all the field in the form, or check the format of the form';
       end
     end
   end
@@ -91,7 +91,7 @@ before_action :require_merchant, only: [:edit_general, :edit_pic, :edit_owner, :
           redirect_to action:"edit_bank_account"
         end
       else
-        flash[:alert] = 'Fill all the field in the form';
+        flash[:alert] = 'Fill all the field in the form, or check the format of the form';
       end
     end
   end
@@ -110,7 +110,7 @@ before_action :require_merchant, only: [:edit_general, :edit_pic, :edit_owner, :
           redirect_to action: 'edit_general'
         end
       else
-        flash[:alert] = 'Fill all the field in the form';
+        flash[:alert] = 'Fill all the field in the form, or check the format of the form';
       end
     end
   end
@@ -131,6 +131,10 @@ before_action :require_merchant, only: [:edit_general, :edit_pic, :edit_owner, :
       flash[:alert] = "Mail failed to send, check your connection and try again"
       redirect_to controller: "agreement", action:"sales_success_create", user_id: @merchant.user.id
     end
+  end
+
+  def finish
+
   end
 
   private def check
