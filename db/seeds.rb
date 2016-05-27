@@ -78,6 +78,11 @@ isat.documents = virtual_acc
 indomaret.documents = virtual_acc
 bbm.documents = virtual_acc
 
+bni1.documents << form_bni
+bca1.documents << form_bca
+bca2.documents << form_bca
+bca3.documents << form_bca
+
 link_bca = DocumentLink.create(link: "https://drive.google.com/open?id=0Bw3siKQNp04EcWtxNjFOSkNyVWc")
 link_bni = DocumentLink.create(link: "https://drive.google.com/open?id=0Bw3siKQNp04ESlc1LWt6bWZ0b00")
 link_bri = DocumentLink.create(link: "https://drive.google.com/open?id=0Bw3siKQNp04ENHR4Skl3TmhsM0k")
