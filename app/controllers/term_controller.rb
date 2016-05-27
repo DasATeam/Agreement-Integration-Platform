@@ -6,6 +6,9 @@ class TermController < ApplicationController
     @term = Point.first
     @merchant = current_user.merchant
     @agreement = @merchant.agreements.first
+
+    @has_agreed = @agreement.has_agree
+    render "index"
   end
 
   def doc
@@ -74,7 +77,6 @@ class TermController < ApplicationController
 
   def agree
     @merchant = current_user.merchant
-    @agreement = @merchant.agreements.first
     @agreement.has_agree = true
     @agreement.save
 

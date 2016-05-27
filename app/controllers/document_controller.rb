@@ -5,6 +5,9 @@ class DocumentController < ApplicationController
     @user = current_user
     @merchant = @user.merchant
     @merchant_documents = @merchant.merchant_documents
+    @is_document_completed = @merchant.documents_is_completed
+    @agreement = @merchant.agreements.first
+    @has_agreed = @agreement.has_agree
   end
 
   def upload
