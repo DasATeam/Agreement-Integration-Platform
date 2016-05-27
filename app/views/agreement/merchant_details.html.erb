@@ -28,7 +28,9 @@
 				<div class="col-md-4">
 					<h3>Submitted Documents</h3><br/>
 					<% for item in @required_docs %>
-					    <%= item.document_type.name %> <br/>
+						<% if !item.document_type.is_additional then%>
+					    	<%= item.document_type.name %> <br/>
+					    <%end%>
 					<% end %><br/><br/>
 				</div>
 			</div>
@@ -47,7 +49,7 @@
 						  <div class="panel-body">
 						  	<div class="row">
 						  		<div class="col-md-6">
-						  			<%= image_tag('veritrans.png', class: "img-responsive") %>
+						  			<%= image_tag('channel-logo/' + item.id.to_s, class: "img-responsive") %>
 							    </div>
 						  		<div class="col-md-6">
 								    <%= item.name %> <br>
