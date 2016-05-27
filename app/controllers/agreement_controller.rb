@@ -38,7 +38,8 @@ class AgreementController < ApplicationController
 					x.created_at.to_s[0..6] == month
 				end
 
-				@agreement = Agreement.create(pks_number: "#{agreementsThisMonth.size + 1}/PKS-M/VT/#{to_roman(date.mon)}/#{date.year}")
+				params.require(:form).permit(:implementation)
+				@agreement = Agreement.create(pks_number: "#{agreementsThisMonth.size + 1}/PKS-M/VT/#{to_roman(date.mon)}/#{date.year}", implementation: params[:form][:implementation])
 				@agreement.merchant = @merchant
 				@agreement.has_agree = false
 				@agreement.save()
