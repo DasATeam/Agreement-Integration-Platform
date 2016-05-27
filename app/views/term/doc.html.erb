@@ -592,6 +592,13 @@ Total Penjualan dengan kartu kredit: <%= @merchant.credit_card_payment_ratio %><
     </table>
 
 </div>
+<div>
+    <b>Monthly Fee Product / Month </b>
+    <input type="checkbox" <%= " checked" if @agreement.implementation == 1 %>> VT-Link
+    <input type="checkbox" <%= " checked" if @agreement.implementation == 2 %>> VT-Web
+    <input type="checkbox" <%= " checked" if @agreement.implementation == 3 %>> VT-Direct + Rp 3.190.000,-/ bulan
+</div>
+
 <br>
 <div><b><u>DATA PIC MERCHANT</u></b><br>
 Nama PIC/Jabatan: <%= @merchant.merchant_pic.name %><br>
