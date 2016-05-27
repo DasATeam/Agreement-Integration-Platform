@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get 'sales/agreement/:user_id/channel'=> 'channel#edit' # as create_new_channel
   post 'sales/agreement/:user_id/channel' => 'channel#save_channel'
   get 'sales/agreement/:user_id/info'=> 'agreement#sales_success_create' # display merchant details to send mail
-  
+
 
   get 'sales/list_merchant' => 'sales#list_merchant' # as sales dashboard
   post 'merchant/send-mail/:merchant_id' => 'merchant#send_mail'
@@ -44,6 +44,9 @@ Rails.application.routes.draw do
   post 'merchant/terms' => 'term#agree'
 
   get 'merchant/details/:merchant_id' => 'agreement#merchant_details'
+  post 'merchant/details/:merchant_id' => 'agreement#upload'
+
+  get 'merchant/details/:merchant_id/document' => 'agreement#merchant_details_document'
 
   get 'merchant/details/:merchant_id/change/:haft' => 'agreement#change_price'
   post 'merchant/details/:merchant_id/change/:haft' => 'agreement#custom_price'
