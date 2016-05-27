@@ -1,97 +1,123 @@
 class MerchantController < ApplicationController
-before_action :require_merchant, only: [:edit, :update]
+before_action :require_merchant, only: [:edit_general, :edit_pic, :edit_owner, :edit_operational, :edit_customer_support, :edit_bank_account]
 
-  def edit
-    @is_general = params[:save_general] || params[:save_pic] || params[:save_owner] || params[:save_cs] || params[:save_operational] || params[:save_bank_acc]
-    @active = 'tab-pane fade in active'
-    @non_active = 'tab-pane fade'
-    @user = User.find(session[:user_id])
-    @merchant = @user.merchant
+  def edit_general
+    var
+    styling
+    @info_completed = @merchant.information_check
     
-    @merchant_pic = @merchant.merchant_pic ? @merchant.merchant_pic : MerchantPic.new()
-    @merchant_owner = @merchant.merchant_owner ? @merchant.merchant_owner : MerchantOwner.new()
-    @merchant_operational = @merchant.merchant_operational ? @merchant.merchant_operational : MerchantOperational.new()
-    @merchant_cs = @merchant.merchant_customer_support ? @merchant.merchant_customer_support : MerchantCustomerSupport.new()
-    @bank_account = @merchant.bank_account ? @merchant.bank_account : BankAccount.new()
+    if request.post?
+      @merchant.update(merchant_params)
+      @merchant.save
+      if @merchant.check
+        if check
+          redirect_to(controller: "document", action: "index")
+        else
+          redirect_to action:"edit_pic"
+        end
+      else
+        flash[:alert] = 'Fill all the field in the form, or check the format of the form';
+      end
+    end
   end
 
-  def update
-    @is_general = params[:save_general] || params[:save_pic] || params[:save_owner] || params[:save_cs] || params[:save_operational] || params[:save_bank_acc]
-    @active = 'tab-pane fade in active'
-    @non_active = 'tab-pane fade'
-    current_user
-    check = true
-    @merchant = @current_user.merchant
+  def edit_pic
+    var
+    styling
+    @info_completed = @merchant.information_check
 
-    @merchant_pic = @merchant.merchant_pic ? @merchant.merchant_pic : MerchantPic.new()
-    @merchant_owner = @merchant.merchant_owner ? @merchant.merchant_owner : MerchantOwner.new()
-    @merchant_operational = @merchant.merchant_operational ? @merchant.merchant_operational : MerchantOperational.new()
-    @merchant_cs = @merchant.merchant_customer_support ? @merchant.merchant_customer_support : MerchantCustomerSupport.new()
-    @bank_account = @merchant.bank_account ? @merchant.bank_account : BankAccount.new()
+    if request.post?
+      @merchant_pic.assign_attributes(merchant_pic_params)
+      @merchant_pic.save
+      if @merchant_pic.check
+        if check
+          redirect_to(controller: "document", action: "index")
+        else
+          redirect_to action:"edit_owner"
+        end
+      else
+        flash[:alert] = 'Fill all the field in the form, or check the format of the form';
+      end
+    end
+  end
 
-    if params[:save_general]
-      @merchant.update(merchant_params)
-      check = @merchant.save and check
-      render "edit"
-    elsif params[:save_pic]
-      if @merchant.merchant_pic
-        merchant_pic = @merchant.merchant_pic
-        merchant_pic.update(merchant_pic_params)
+  def edit_owner
+    var
+    styling
+    @info_completed = @merchant.information_check
+
+    if request.post?
+      @merchant_owner.assign_attributes(merchant_owner_params)
+      @merchant_owner.save
+      if @merchant_owner.check
+        if check
+          redirect_to(controller: "document", action: "index")
+        else
+          redirect_to action:"edit_customer_support"
+        end
       else
-        merchant_pic = MerchantPic.new(merchant_pic_params)
-        merchant_pic.merchant = @merchant
+        flash[:alert] = 'Fill all the field in the form, or check the format of the form';
       end
-        check = merchant_pic.save and check
-        @merchant_pic = merchant_pic
-        render "edit"
-    elsif params[:save_operational]
-      if @merchant.merchant_operational
-        merchant_operational = @merchant.merchant_operational
-        merchant_operational.update(merchant_operational_params)
+    end
+  end
+
+  def edit_customer_support
+    var
+    styling
+    @info_completed = @merchant.information_check
+
+    if request.post?
+      @merchant_cs.assign_attributes(merchant_customer_support_params)
+      @merchant_cs.save
+      if @merchant_cs.check
+        if check
+          redirect_to(controller: "document", action: "index")
+        else
+          redirect_to action:"edit_operational"
+        end
       else
-        merchant_operational = MerchantOperational.new(merchant_operational_params)
-        merchant_operational.merchant = @merchant 
+        flash[:alert] = 'Fill all the field in the form, or check the format of the form';
       end
-        check = merchant_operational.save and check
-        @merchant_operational = merchant_operational
-        render "edit"
-    elsif params[:save_cs]
-      merchant_cs = nil
-      if @merchant.merchant_customer_support
-        merchant_cs = @merchant.merchant_customer_support
-        merchant_cs.update(merchant_customer_support_params)
+    end
+  end
+
+  def edit_operational
+    var
+    styling
+    @info_completed = @merchant.information_check
+
+    if request.post?
+      @merchant_operational.assign_attributes(merchant_operational_params)
+      @merchant_operational.save
+      if @merchant_operational.check
+        if check
+          redirect_to(controller: "document", action: "index")
+        else
+          redirect_to action:"edit_bank_account"
+        end
       else
-        puts merchant_customer_support_params
-        merchant_cs = MerchantCustomerSupport.create(merchant_customer_support_params)
-        merchant_cs.merchant = @merchant
+        flash[:alert] = 'Fill all the field in the form, or check the format of the form';
       end
-        check = merchant_cs.save and check
-        @merchant_cs = merchant_cs
-        render "edit"
-    elsif params[:save_owner]
-      if @merchant.merchant_owner
-        merchant_owner = @merchant.merchant_owner
-        merchant_owner.update(merchant_owner_params)
+    end
+  end
+
+  def edit_bank_account
+    var
+    styling
+    @info_completed = @merchant.information_check
+
+    if request.post?
+      @bank_account.assign_attributes(bank_account_params)
+      @bank_account.save
+      if @bank_account.valid?
+        if check
+          redirect_to(controller: "document", action: "index")
+        else
+          redirect_to action: 'edit_general'
+        end
       else
-        merchant_owner = MerchantOwner.new(merchant_owner_params)
-        merchant_owner.merchant = @merchant 
+        flash[:alert] = 'Fill all the field in the form, or check the format of the form';
       end
-        check = merchant_owner.save and check
-        @merchant_owner = merchant_owner
-        render "edit"
-    elsif params[:save_bank_acc]
-      if @merchant.bank_account
-        merchant_bank_account = @merchant.bank_account
-        merchant_bank_account.update(bank_account_params)
-      else
-        merchant_bank_account = BankAccount.new(bank_account_params)
-        merchant_bank_account.merchant = @merchant  
-      end
-        check = merchant_bank_account.save and check
-        @bank_account = merchant_bank_account
-        redirect_to controller: 'document', action: 'index'
-    else
-      redirect_to action: 'edit'
     end
   end
   
@@ -101,7 +127,7 @@ before_action :require_merchant, only: [:edit, :update]
     @merchant = Merchant.find(@id)
     begin
       if MerchantMailer.welcome_email(@merchant, @text).deliver_now
-        flash[:notice] = "Mail successfully sent"
+        flash[:notice] = "Mail successfully sent to " + @merchant.name
         redirect_to sales_list_merchant_url
       else
         flash[:alert] = "Mail failed to send, check your connection and try again"
@@ -111,6 +137,27 @@ before_action :require_merchant, only: [:edit, :update]
       flash[:alert] = "Mail failed to send, check your connection and try again"
       redirect_to controller: "agreement", action:"sales_success_create", user_id: @merchant.user.id
     end
+  end
+
+  def finish
+
+  end
+
+  private def check
+    return @merchant.valid? && @merchant_operational.valid? && @merchant_cs.valid? && @merchant_owner.valid? && @merchant_pic.valid? && @bank_account.valid?
+  end
+
+  private def styling
+    @green = 'color : green;'
+  end
+
+  private def var
+    @merchant = current_user.merchant
+    @bank_account = @merchant.bank_account ? @merchant.bank_account : BankAccount.new(merchant: @merchant)
+    @merchant_operational = @merchant.merchant_operational ? @merchant.merchant_operational : MerchantOperational.new(merchant: @merchant, is_completed: false)
+    @merchant_cs = @merchant.merchant_customer_support ? @merchant.merchant_customer_support : MerchantCustomerSupport.new(merchant: @merchant, is_completed: false)
+    @merchant_owner = @merchant.merchant_owner ? @merchant.merchant_owner : MerchantOwner.new(merchant: @merchant, is_completed: false)
+    @merchant_pic = @merchant.merchant_pic ? @merchant.merchant_pic : MerchantPic.new(merchant: @merchant, is_completed: false)
   end
 
   def merchant_params

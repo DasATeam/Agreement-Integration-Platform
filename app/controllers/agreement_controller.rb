@@ -21,6 +21,8 @@ class AgreementController < ApplicationController
 				@merchant.registration_link = link
 				sales = current_user.sales
 				sales.merchants << @merchant
+				@merchant.info_is_completed = false
+				@merchant.documents_is_completed = false
 				@merchant.save(validate: false)
 
 				# Create Agreement
@@ -38,6 +40,7 @@ class AgreementController < ApplicationController
 
 				@agreement = Agreement.create(pks_number: "#{agreementsThisMonth.size + 1}/PKS-M/VT/#{to_roman(date.mon)}/#{date.year}")
 				@agreement.merchant = @merchant
+				@agreement.has_agree = false
 				@agreement.save()
 				redirect_to controller: "channel", action:"edit", user_id: @user.id
 			end
@@ -53,10 +56,28 @@ class AgreementController < ApplicationController
 		if params[:merchant_id] != nil
 			ik = params[:merchant_id].to_i
       @merchant = Merchant.find(ik)
+			@merchant_documents = @merchant.merchant_documents
       @agreement = @merchant.agreements.first
       @channels = @agreement.agreement_channels
       @required_docs = @agreement.merchant_documents
 	  end
+	end
+
+	def upload
+		@merchant_document = nil
+		if params[:document]
+			params[:document].each do |id, file|
+				@merchant_document = MerchantDocument.find(id)
+				@merchant_document.file = file
+				@merchant_document.save!
+			end
+
+			if @merchant_document
+				@merchant_document.merchant.document_check
+			end
+		end
+
+		redirect_to action: "merchant_details", :anchor => 'documents'
 	end
 
 	def change_price

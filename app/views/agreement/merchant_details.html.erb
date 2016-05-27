@@ -1,8 +1,15 @@
 <div class="row">
 	<div class="container">
+		<%= link_to 'List Merchants', '/sales/list_merchant', class: 'btn btn-primary' %><br/>
+	</div>
+</div>
+<div class="vertical-space" style="height:30px;"></div>
+<div class="row">
+	<div class="container">
 		<ul class="nav nav-tabs">
 		  <li class="active"><a data-toggle="tab" href="#summary">Summary</a></li>
 		  <li><a data-toggle="tab" href="#channels">Channels</a></li>
+			<li><a data-toggle="tab" href="#documents">Documents</a></li>
 		  <li><a data-toggle="tab" href="#tnc">Terms and Conditions</a></li>
 		</ul>
 	</div>
@@ -28,7 +35,11 @@
 				<div class="col-md-4">
 					<h3>Submitted Documents</h3><br/>
 					<% for item in @required_docs %>
-					    <%= item.document_type.name %> <br/>
+						<% if !item.document_type.is_additional then%>
+					    	<%= item.document_type.name %> 
+					    	<%= content_tag(:span, nil, {class:'glyphicon glyphicon-ok', 'aria-hidden' => 'true', style: 'color : green'}) if item.file? %>
+					    	<br/>
+					    <%end%>
 					<% end %><br/><br/>
 				</div>
 			</div>
@@ -41,21 +52,58 @@
 				<h3>Selected Channels:</h3>
 			</div>
 			<% for ac in @channels %>
-				<div class="row" style="margin-top: 15px;">
-					<div class="col-md-3">
-					  <% item = ac.channel_type %>
+				  <% item = ac.channel_type %>
+				  <div class="col-md-6">
+						<div class="panel panel-default">
+						  <div class="panel-body">
+						  	<div class="row">
+						  		<div class="col-md-6">
+						  			<%= image_tag('channel-logo/' + item.id.to_s, class: "img-responsive") %>
+							    </div>
+						  		<div class="col-md-6">
+								    <%= item.name %> <br>
+				  					<% if !(ac.customprice == nil) then%>
+				  						<%= ac.customprice %><br>
+				  					<%else%>
+				  						<%= item.charge %><br>
+				  					<%end%>
+				  					<%= link_to "Change Price", controller: "agreement", action: "change_price", haft: ac.id %>
+							    </div>
+						    </div>
+						  </div>
+						</div>
 					</div>
-					<div class="col-md-3">
-					  <%= item.name %>
-					</div>
-					<div class="col-md-3">
-					  <%= ac.customprice %>
-					</div>
-					<div class="col-md-3">
-					  <%= link_to "Change Price", controller: "agreement", action: "change_price", haft: item.id %>
-					</div>
-				</div>
 			<% end %>
+		</div>
+	</div>
+
+	<div id="documents" class="tab-pane fade">
+		<div class="container">
+			<% @merchant_documents.each do |d| %>
+		    <% if !d.document_type.is_additional %>
+		      <%= form_for :document do |f| %>
+		        <%=  %>
+		        <div class="vertical-space" style="height:10px;"></div>
+		        <div class="form-group">
+		          <%= f.label(:document, d.document_type.name) %>
+		          <% if d.file? %>
+		            <div class="row">
+		              <div class="col-md-6">
+		                <p><%= image_tag(d.file.url, class: "img-responsive") %></p>
+		              </div>
+		            </div>
+		          <% else %>
+		            <p>Belum ada file yang diupload</p>
+		          <% end %>
+		          <p id="label_<%= d.id.to_s%>"></p>
+		          <%= f.label(d.id.to_s, "Choose File", class: "btn btn-default") %>
+		          <%= f.file_field(d.id.to_s, {style: "display:none;", onchange: "$('#label_#{d.id.to_s}').html($(this).val());"}) %>
+
+		          <%= f.submit 'Upload', :class => 'btn btn-primary' %>
+		        </div>
+		      <% end %>
+		    <% end %>
+		  <% end %>
 		</div>
 	</div>
 
@@ -72,3 +120,17 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	$(function(){
+	  var hash = window.location.hash;
+	  hash && $('ul.nav a[href="' + hash + '"]').tab('show');
+
+	  $('.nav-tabs a').click(function (e) {
+	    $(this).tab('show');
+	    var scrollmem = $('body').scrollTop() || $('html').scrollTop();
+	    window.location.hash = this.hash;
+	    $('html,body').scrollTop(scrollmem);
+	  });
+	});
+</script>

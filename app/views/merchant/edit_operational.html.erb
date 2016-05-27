@@ -1,0 +1,56 @@
+<div class="container">
+	<ul class="nav nav-wizard">
+    <li class="active"><a href="<%= request.base_url + '/merchant/info/general' %>">1. Merchant Information Form</a></li>
+    <li><a href="<%= request.base_url + '/merchant/document' %>" class="<%= 'disabled' if !@info_completed %>">2. Upload Documents</a></li>
+    <li><a href="<%= request.base_url + '/merchant/terms' %>" class="<%= 'disabled' if !@is_document_completed %>">3. Terms & Conditions</a></li>
+    <li><a href="<%= request.base_url + '/merchant/document/download' %>" class="<%= 'disabled' if !@has_agreed %>">4. Additional Document</a></li>
+    <li><a href="<%= request.base_url + '/merchant/finish' %>" class="<%= 'disabled' if !@has_agreed %>">5. Finish</a></li>
+	</ul>
+	<div class="vertical-space" style="height:30px;"></div>
+
+	<div class="row">
+		<div class="container">
+			<div class="alert alert-success">Please fill the information forms below.</div>	
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="container">
+			<ul class="nav nav-tabs">
+			  <li><a href="general" style="<%= if @merchant.valid? then @green end%>"><%= if @merchant.valid? then content_tag(:span, nil, {class:'glyphicon glyphicon-ok', 'aria-hidden' => 'true'}) end%> General</a></li>
+			  <li><a href="pic" style="<%= if @merchant_pic.valid? then @green end%>"><%= if @merchant_pic.valid? then content_tag(:span, nil, {class:'glyphicon glyphicon-ok', 'aria-hidden' => 'true'}) end%> PIC</a></li>
+			  <li><a href="owner" style="<%= if @merchant_owner.valid? then @green end%>"><%= if @merchant_owner.valid? then content_tag(:span, nil, {class:'glyphicon glyphicon-ok', 'aria-hidden' => 'true'}) end%> Owner</a></li>
+			  <li><a href="cs" style="<%= if @merchant_cs.valid? then @green end%>"><%= if @merchant_cs.valid? then content_tag(:span, nil, {class:'glyphicon glyphicon-ok', 'aria-hidden' => 'true'}) end%> Customer Support</a></li>
+			  <li class="active"><a href="operational" style="<%= if @merchant_operational.valid? then @green end%>"><%= if @merchant_operational.valid? then content_tag(:span, nil, {class:'glyphicon glyphicon-ok', 'aria-hidden' => 'true'}) end%> Operational</a></li>
+			  <li><a href="bank" style="<%= if @bank_account.valid? then @green end%>"><%= if @bank_account.valid? then content_tag(:span, nil, {class:'glyphicon glyphicon-ok', 'aria-hidden' => 'true'}) end%> Bank Account</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<%= form_for :merchant do |f| %>
+			<h3>Merchant Operational</h3>
+			<% if flash[:alert] %>
+				<div class="alert alert-danger"><%= flash[:alert] %></div>
+			<% end %>
+			<%= fields_for :merchant_operational do |op|%>
+			<div class="form-group">
+			<%= op.label(:email, "Email") %><br>
+			<%= op.text_field(:email, class: "form-control", value: @merchant_operational.email, placeholder: "ex./ example.example.com") %>
+			</div>
+			<div class="form-group">
+			<%= op.label(:telephone, "Telephone") %><br>
+			<%= op.text_field(:telephone, class: "form-control", value: @merchant_operational.telephone, placeholder: "ex./ 08123456789") %>
+			</div>
+			<div class="form-group">
+			<%= op.label(:emergency, "Emergency Telephone") %><br>
+			<%= op.text_field(:emergency, class: "form-control", value: @merchant_operational.emergency, placeholder: "ex./ 08123456789") %>
+			</div>
+			<% end %>
+			
+			<div class="col-xs-12 vertical-space" style="height:25px;"></div>
+			<%= f.submit "Next", :name => 'save_operational', :class => "btn btn-primary" %>
+			<% end %>
+		</div>
+	</div>
+</div>

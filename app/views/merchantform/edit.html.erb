@@ -1,9 +1,9 @@
 <div class="container">
 	<ul class="nav nav-wizard">
 		<li class="active"><a href="<%= request.base_url + '/merchant/form' %>">1. Merchant Information Form</a></li>
-		<li><a href="<%= request.base_url + '/merchant/document' %>">2. Upload Documents</a></li>
-		<li><a>3. Terms & Conditions</a></li>
-		<li><a>4. Finish</a></li>
+		<li><a href="<%= request.base_url + '/merchant/document' %>" onclick="return <%= @is_merchant_completed %>;">2. Upload Documents</a></li>
+		<li><a href="<%= request.base_url + '/merchant/terms' %>" onclick="return <%= @is_document_completed %>;">3. Terms & Conditions</a></li>
+		<li><a href="<%= request.base_url + '/merchant/terms' %>" onclick="return <%= @has_agreed %>;">4. Finish</a></li>
 	</ul>
 	<div class="vertical-space" style="height:30px;"></div>
 
@@ -30,13 +30,13 @@
 						    <%= f.label(:name, "Name") %>
 						    <%= f.text_field(:name, class: "form-control", value: @merchant.name, placeholder: "ex./ John Doe") %>
 						  </div>
+							<div class="form-group">
+						    <%= f.label(:email, "Email") %>
+						    <%= f.text_field(:email, class: "form-control", placeholder: " ex./ example@example.com", value: @merchant.email) %>
+						  </div>
 						  <div class="form-group">
 						    <%= f.label(:website, "Website") %>
 						    <%= f.text_field(:website, class: "form-control", value: @merchant.website, placeholder: "ex./ www.shop.com") %>
-						  </div>
-						  <div class="form-group">
-						    <%= f.label(:email, "Email") %>
-						    <%= f.text_field(:email, class: "form-control", placeholder: " ex./ example@example.com", value: @merchant.email) %>
 						  </div>
 						  <div class="form-group">
 						    <%= f.label(:city, "City") %>
@@ -78,6 +78,7 @@
 						<%= f.submit "Next", :name => 'save_general', :class => "btn btn-primary" %>
 					<% end %>
 				</div>
+
 				<div id="pic" class="<%= if params[:save_general] then @active else @non_active end%>">
 					<%= form_for :merchant do |f| %>
 						<h3>PIC Merchant Info</h3>
@@ -151,6 +152,7 @@
 					<%= f.submit "Next", :name => 'save_cs', :class => "btn btn-primary" %>
 					<% end %>
 				</div>
+
 				<div id="operational" class="<%= if params[:save_cs] then @active else @non_active end%>">
 					<%= form_for :merchant do |f| %>
 					  <h3>Merchant Operational</h3>

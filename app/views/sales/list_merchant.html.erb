@@ -18,14 +18,14 @@
       </div>
       <!--<%= (Time.current.to_date - merchant.created_at.to_date).to_i %>-->
       <div class="panel-body">
-        <%= check_box_tag :info_is_completed, '1', merchant.info_is_completed, :disabled => 'true' %>
+        <%= check_box_tag :info_is_completed, '1', merchant.info_is_completed,  onclick: 'return false' %>
         <%= label_tag :info_is_completed, 'information' %> <br/>
 
-        <%= check_box_tag :documents_is_completed, '1', merchant.documents_is_completed, :disabled => 'true' %>
+        <%= check_box_tag :documents_is_completed, '1', merchant.documents_is_completed,  onclick: 'return false' %>
         <%= label_tag :documents_is_completed, 'documents' %> <br/>
 
         <% merchant.agreements.each do |agreement| %>
-          <%= check_box_tag :has_agree,'1', agreement.has_agree, :disabled => 'true' %>
+          <%= check_box_tag :has_agree,'1', agreement.has_agree,  onclick: 'return false' %>
           <%= label_tag :has_agree, 'terms & conditions' %> <br/>
         <% end %>
 
