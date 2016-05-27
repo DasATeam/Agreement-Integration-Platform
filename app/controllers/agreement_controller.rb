@@ -21,6 +21,8 @@ class AgreementController < ApplicationController
 				@merchant.registration_link = link
 				sales = current_user.sales
 				sales.merchants << @merchant
+				@merchant.info_is_completed = false
+				@merchant.documents_is_completed = false
 				@merchant.save(validate: false)
 
 				# Create Agreement
@@ -38,6 +40,7 @@ class AgreementController < ApplicationController
 
 				@agreement = Agreement.create(pks_number: "#{agreementsThisMonth.size + 1}/PKS-M/VT/#{to_roman(date.mon)}/#{date.year}")
 				@agreement.merchant = @merchant
+				@agreement.has_agree = false
 				@agreement.save()
 				redirect_to controller: "channel", action:"edit", user_id: @user.id
 			end
