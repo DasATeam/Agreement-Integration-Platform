@@ -4,11 +4,12 @@ before_action :require_merchant, only: [:edit_general, :edit_pic, :edit_owner, :
   def edit_general
     var
     styling
+    @info_completed = @merchant.information_check
     
     if request.post?
       @merchant.update(merchant_params)
       @merchant.save
-      if @merchant.valid?
+      if @merchant.check
         if check
           redirect_to(controller: "document", action: "index")
         else
@@ -23,11 +24,12 @@ before_action :require_merchant, only: [:edit_general, :edit_pic, :edit_owner, :
   def edit_pic
     var
     styling
+    @info_completed = @merchant.information_check
 
     if request.post?
       @merchant_pic.assign_attributes(merchant_pic_params)
       @merchant_pic.save
-      if @merchant_pic.valid?
+      if @merchant_pic.check
         if check
           redirect_to(controller: "document", action: "index")
         else
@@ -42,11 +44,12 @@ before_action :require_merchant, only: [:edit_general, :edit_pic, :edit_owner, :
   def edit_owner
     var
     styling
+    @info_completed = @merchant.information_check
 
     if request.post?
       @merchant_owner.assign_attributes(merchant_owner_params)
       @merchant_owner.save
-      if @merchant_owner.valid?
+      if @merchant_owner.check
         if check
           redirect_to(controller: "document", action: "index")
         else
@@ -61,11 +64,12 @@ before_action :require_merchant, only: [:edit_general, :edit_pic, :edit_owner, :
   def edit_customer_support
     var
     styling
+    @info_completed = @merchant.information_check
 
     if request.post?
       @merchant_cs.assign_attributes(merchant_customer_support_params)
       @merchant_cs.save
-      if @merchant_cs.valid?
+      if @merchant_cs.check
         if check
           redirect_to(controller: "document", action: "index")
         else
@@ -80,11 +84,12 @@ before_action :require_merchant, only: [:edit_general, :edit_pic, :edit_owner, :
   def edit_operational
     var
     styling
+    @info_completed = @merchant.information_check
 
     if request.post?
       @merchant_operational.assign_attributes(merchant_operational_params)
       @merchant_operational.save
-      if @merchant_operational.valid?
+      if @merchant_operational.check
         if check
           redirect_to(controller: "document", action: "index")
         else
@@ -99,6 +104,7 @@ before_action :require_merchant, only: [:edit_general, :edit_pic, :edit_owner, :
   def edit_bank_account
     var
     styling
+    @info_completed = @merchant.information_check
 
     if request.post?
       @bank_account.assign_attributes(bank_account_params)
@@ -148,10 +154,10 @@ before_action :require_merchant, only: [:edit_general, :edit_pic, :edit_owner, :
   private def var
     @merchant = current_user.merchant
     @bank_account = @merchant.bank_account ? @merchant.bank_account : BankAccount.new(merchant: @merchant)
-    @merchant_operational = @merchant.merchant_operational ? @merchant.merchant_operational : MerchantOperational.new(merchant: @merchant)
-    @merchant_cs = @merchant.merchant_customer_support ? @merchant.merchant_customer_support : MerchantCustomerSupport.new(merchant: @merchant)
-    @merchant_owner = @merchant.merchant_owner ? @merchant.merchant_owner : MerchantOwner.new(merchant: @merchant)
-    @merchant_pic = @merchant.merchant_pic ? @merchant.merchant_pic : MerchantPic.new(merchant: @merchant)
+    @merchant_operational = @merchant.merchant_operational ? @merchant.merchant_operational : MerchantOperational.new(merchant: @merchant, is_completed: false)
+    @merchant_cs = @merchant.merchant_customer_support ? @merchant.merchant_customer_support : MerchantCustomerSupport.new(merchant: @merchant, is_completed: false)
+    @merchant_owner = @merchant.merchant_owner ? @merchant.merchant_owner : MerchantOwner.new(merchant: @merchant, is_completed: false)
+    @merchant_pic = @merchant.merchant_pic ? @merchant.merchant_pic : MerchantPic.new(merchant: @merchant, is_completed: false)
   end
 
   def merchant_params

@@ -1,11 +1,10 @@
 <div class="container">
 	<ul class="nav nav-wizard">
-		<li class="active"><a href="<%= request.base_url + '/merchant/info/general' %>">1. Merchant Information Form</a></li>
-		<li><a href="<%= request.base_url + '/merchant/document' %>">2. Upload Documents</a></li>
-		<li><a>3. Terms & Conditions</a></li>
-		<li><a>4. Additional Document</a></li>
-    	<li><a>5. Finish</a></li>
-	</ul>
+    <li class="active"><a href="<%= request.base_url + '/merchant/info/general' %>">1. Merchant Information Form</a></li>
+    <li><a href="<%= request.base_url + '/merchant/document' %>" class="<%= 'disabled' if !@info_completed %>">2. Upload Documents</a></li>
+    <li><a href="<%= request.base_url + '/merchant/terms' %>" class="<%= 'disabled' if !@is_document_completed %>">3. Terms & Conditions</a></li>
+    <li><a href="<%= request.base_url + '/merchant/document/download' %>" class="<%= 'disabled' if !@has_agreed %>">4. Additional Document</a></li>
+    <li><a href="<%= request.base_url + '/merchant/finish' %>" class="<%= 'disabled' if !@has_agreed %>">5. Finish</a></li>	</ul>
 	<div class="vertical-space" style="height:30px;"></div>
 
 	<div class="row">

@@ -29,7 +29,7 @@ class Merchant < ActiveRecord::Base
 	end
 
 	def information_check
-		all_complete = self.info_is_completed && self.merchant_customer_support.is_completed && self.merchant_owner.is_completed && self.merchant_pic.is_completed && self.merchant_operational.is_completed && self.merchant_operational.is_completed
+		all_complete = self.info_is_completed && self.merchant_customer_support.is_completed && self.merchant_owner.is_completed && self.merchant_pic.is_completed && self.merchant_operational.is_completed && self.merchant_operational.is_completed && self.bank_account.valid?
     return all_complete
   end
 
