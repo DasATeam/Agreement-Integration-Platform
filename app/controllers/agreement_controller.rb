@@ -56,10 +56,26 @@ class AgreementController < ApplicationController
 		if params[:merchant_id] != nil
 			ik = params[:merchant_id].to_i
       @merchant = Merchant.find(ik)
+			@merchant_documents = @merchant.merchant_documents
       @agreement = @merchant.agreements.first
       @channels = @agreement.agreement_channels
       @required_docs = @agreement.merchant_documents
 	  end
+	end
+
+	def upload
+		@merchant_document = nil
+		params[:document].each do |id, file|
+			@merchant_document = MerchantDocument.find(id)
+			@merchant_document.file = file
+			@merchant_document.save!
+		end
+
+		if @merchant_document
+			@merchant_document.merchant.document_check
+		end
+
+		redirect_to action: "merchant_details", :anchor => 'documents'
 	end
 
 	def change_price
