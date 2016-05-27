@@ -4,13 +4,14 @@ class TermController < ApplicationController
   def index
     # TODO: Should check first if merchant already fill the form
     @term = Point.first
-
+    @merchant = current_user.merchant
+    @agreement = @merchant.agreements.first
+    @has_agreed = @agreement.has_agree
     render "index"
   end
 
   def agree
     @merchant = current_user.merchant
-    @agreement = @merchant.agreements.first
     @agreement.has_agree = true
     @agreement.save
 
