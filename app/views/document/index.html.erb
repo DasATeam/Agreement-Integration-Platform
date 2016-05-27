@@ -11,7 +11,7 @@
   <div class="alert alert-success"><strong>Well done!</strong> Your merchant information has been saved successfuly. Now, you have to upload all required documents below before you can see the MoU in the next step.</div>
   
   <% @merchant_documents.each do |d| %>
-    <% if d.document_type.is_additional %>
+    <% if !d.document_type.is_additional %>
       <%= form_for :document do |f| %>
         <%=  %>
         <div class="vertical-space" style="height:10px;"></div>
