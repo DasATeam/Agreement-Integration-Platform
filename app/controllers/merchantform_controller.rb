@@ -7,8 +7,11 @@ class MerchantformController < ApplicationController
 		@non_active = 'tab-pane fade'
 		@user = User.find(session[:user_id])
 		@merchant = @user.merchant
-		@is_merchant_completed = @merchant.is_completed
-		
+		@is_merchant_completed = @merchant.info_is_completed
+		@is_document_completed = @merchant.documents_is_completed
+		@agreement = @merchant.agreements.first
+    @has_agreed = @agreement.has_agree
+
 		@merchant_pic = @merchant.merchant_pic ? @merchant.merchant_pic : MerchantPic.new()
 		@merchant_owner = @merchant.merchant_owner ? @merchant.merchant_owner : MerchantOwner.new()
 		@merchant_operational = @merchant.merchant_operational ? @merchant.merchant_operational : MerchantOperational.new()
