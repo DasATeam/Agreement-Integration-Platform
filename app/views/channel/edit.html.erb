@@ -13,7 +13,7 @@
 						  			</div>
 							    </div>
 						  		<div class="col-md-5">
-						  			<%= image_tag('veritrans.png', class: "img-responsive") %>
+						  			<%= image_tag('channel-logo/' + item.id.to_s, class: "img-responsive center-block") %>
 							    </div>
 						  		<div class="col-md-6">
 								    <%= item.partner %>
@@ -26,6 +26,6 @@
 					</div>
 				<% end %>
 		</div>
-		<%= f.submit "Select Channels", :class => "btn btn-primary" %>
+		<div><%= f.submit "Select Channels", :class => "center-block btn-primary" %></div>
 	<% end %>	
 </div>
