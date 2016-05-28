@@ -50,6 +50,8 @@ group :development, :test do
 
   # For testing user interface elements
   gem 'capybara'
+
+  gem 'simplecov' , require: false
 end
 
 group :development do
