@@ -1,5 +1,7 @@
 class ChannelController < ApplicationController
-  before_action :require_sales
+  before_action do
+    require_role 'sales'
+  end
   
   def edit
     @channels = ChannelType.all()

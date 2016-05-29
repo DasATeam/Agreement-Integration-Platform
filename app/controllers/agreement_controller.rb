@@ -1,5 +1,7 @@
 class AgreementController < ApplicationController
-	before_action :require_sales
+	before_action do
+		require_role 'sales'
+	end
 
 	def new
 	end

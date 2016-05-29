@@ -1,5 +1,7 @@
 class DocumentController < ApplicationController
-  before_action :require_merchant, only: [:index, :upload]
+  before_action do
+    require_role 'merchant'
+  end
 
   def index
     @user = current_user

@@ -1,5 +1,7 @@
 class MerchantController < ApplicationController
-before_action :require_merchant, only: [:edit_general, :edit_pic, :edit_owner, :edit_operational, :edit_customer_support, :edit_bank_account]
+before_action only: [:edit_general, :edit_pic, :edit_owner, :edit_operational, :edit_customer_support, :edit_bank_account] do
+  require_role 'merchant'
+end
 
   def edit_general
     var

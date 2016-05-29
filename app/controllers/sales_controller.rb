@@ -1,5 +1,7 @@
 class SalesController < ApplicationController
-  before_action :require_sales
+  before_action do
+    require_role 'sales'
+  end
 
   def list_merchant
     @sales = current_user.sales

@@ -1,6 +1,11 @@
 class TermController < ApplicationController
-  before_action :require_merchant, only: [:index, :doc, :agree]
-  before_action :require_sales, only: [:sales_download]
+  before_action only: [:index, :doc, :agree] do
+    require_role 'sales'
+  end
+
+  before_action only: [:sales_download] do
+    require_role 'sales'
+  end
 
   def index
     @term = Point.first
