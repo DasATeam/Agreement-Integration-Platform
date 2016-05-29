@@ -14,12 +14,8 @@ class User < ActiveRecord::Base
     return pass == BCrypt::Engine.hash_secret(input, salt)
   end
 
-  def sales?
-    self.role == 'sales'
-  end
-
-  def merchant?
-    self.role == 'merchant'
+  def role(role)
+    return self.role == role
   end
 
 end

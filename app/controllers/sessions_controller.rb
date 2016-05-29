@@ -29,9 +29,9 @@ class SessionsController < ApplicationController
   def redirect_to_dashboard
     @user = current_user
 
-    if @user.sales?
+    if @user.role 'sales'
       redirect_to '/sales/list_merchant'
-    elsif @user.merchant?
+    elsif @user.role 'merchant'
       redirect_to '/merchant/info/general'
     else
       # improper user role

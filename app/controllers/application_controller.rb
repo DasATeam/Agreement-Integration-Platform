@@ -14,6 +14,10 @@ class ApplicationController < ActionController::Base
     redirect_to 'login' unless current_user
   end
 
+  def require_role role
+    redirect_to '/' unless current_user && @current_user.role role
+  end
+
   def require_sales
     redirect_to '/' unless current_user && @current_user.sales?
   end
