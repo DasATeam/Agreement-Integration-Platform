@@ -1,13 +1,14 @@
 class DocumentController < ApplicationController
   before_action :require_merchant, only: [:index, :upload]
 
-  # Handle Request : METHOD link
+  # Handle Request : GET merchant/document
   #
-  #   description
+  #   For showing field to upload required documents
   #
   # == Returns:
-  # METHOD::
-  #   desc
+  # GET::
+  #   Webpage to show field for uploading required documents
+  #   Variables needed for the HTML view
   #   
   def index
     @user = current_user
@@ -18,13 +19,15 @@ class DocumentController < ApplicationController
     @has_agreed = @agreement.has_agree
   end
 
-  # Handle Request : METHOD link
+  # Handle Request : POST merchant/document
   #
-  #   description
+  #   For uploading required documents by merchant
   #
   # == Returns:
-  # METHOD::
-  #   desc
+  # POST::
+  #   Saving the required document
+  #   Redirect to action index at Term if merchant already uploaded all the required documents
+  #   Redirect to index action if merchant has not uploaded all the required documents
   #   
   def upload
     @merchant_document = nil
@@ -46,13 +49,14 @@ class DocumentController < ApplicationController
     redirect_to action: "index"
   end
 
-  # Handle Request : METHOD link
+  # Handle Request : GET merchant/document/download
   #
-  #   description
+  #   For showing all additional documents, so merchant can download it
   #
   # == Returns:
-  # METHOD::
-  #   desc
+  # GET::
+  #   Webpage to show additional documents
+  #   Additional documents to download
   #   
   def download
     @user = current_user
