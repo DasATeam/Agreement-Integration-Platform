@@ -2,6 +2,14 @@ class TermController < ApplicationController
   before_action :require_merchant, only: [:index, :doc, :agree]
   before_action :require_sales, only: [:sales_download]
 
+  # Handle Request : METHOD link
+  #
+  #   description
+  #
+  # == Returns:
+  # METHOD::
+  #   desc
+  #   
   def index
     @term = Point.first
     @merchant = current_user.merchant
@@ -11,6 +19,14 @@ class TermController < ApplicationController
     render "index"
   end
 
+  # Handle Request : METHOD link
+  #
+  #   description
+  #
+  # == Returns:
+  # METHOD::
+  #   desc
+  #   
   def doc
     card_channel_id = [1, 2, 3, 4, 5, 6, 11]
 
@@ -43,6 +59,14 @@ class TermController < ApplicationController
     end
   end
 
+  # Handle Request : METHOD link
+  #
+  #   description
+  #
+  # == Returns:
+  # METHOD::
+  #   desc
+  #   
   def sales_download
     card_channel_id = [1, 2, 3, 4, 5, 6, 11]
 
@@ -75,6 +99,14 @@ class TermController < ApplicationController
     end
   end
 
+  # Handle Request : METHOD link
+  #
+  #   description
+  #
+  # == Returns:
+  # METHOD::
+  #   desc
+  #   
   def agree
     @merchant = current_user.merchant
     @agreement = @merchant.agreements.first

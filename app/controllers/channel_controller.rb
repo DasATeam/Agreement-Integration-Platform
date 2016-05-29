@@ -1,10 +1,26 @@
 class ChannelController < ApplicationController
   before_action :require_sales
   
+  # Handle Request : METHOD link
+  #
+  #   description
+  #
+  # == Returns:
+  # METHOD::
+  #   desc
+  #   
   def edit
     @channels = ChannelType.all()
   end
 
+  # Handle Request : METHOD link
+  #
+  #   description
+  #
+  # == Returns:
+  # METHOD::
+  #   desc
+  #   
   def save_channel
     @user = User.find(params[:user_id])
     @merchant = @user.merchant
@@ -44,6 +60,14 @@ class ChannelController < ApplicationController
     redirect_to controller: "agreement", action:"sales_success_create", user_id: @user.id
   end
 
+  # Handle Request : METHOD link
+  #
+  #   description
+  #
+  # == Returns:
+  # METHOD::
+  #   desc
+  #   
   private
     def channel_params
       params.require(:form).permit!
