@@ -1,6 +1,14 @@
 class DocumentController < ApplicationController
   before_action :require_merchant, only: [:index, :upload]
 
+  # Handle Request : METHOD link
+  #
+  #   description
+  #
+  # == Returns:
+  # METHOD::
+  #   desc
+  #   
   def index
     @user = current_user
     @merchant = @user.merchant
@@ -10,6 +18,14 @@ class DocumentController < ApplicationController
     @has_agreed = @agreement.has_agree
   end
 
+  # Handle Request : METHOD link
+  #
+  #   description
+  #
+  # == Returns:
+  # METHOD::
+  #   desc
+  #   
   def upload
     @merchant_document = nil
     if params[:document]
@@ -30,6 +46,14 @@ class DocumentController < ApplicationController
     redirect_to action: "index"
   end
 
+  # Handle Request : METHOD link
+  #
+  #   description
+  #
+  # == Returns:
+  # METHOD::
+  #   desc
+  #   
   def download
     @user = current_user
     @merchant_documents = @user.merchant.merchant_documents

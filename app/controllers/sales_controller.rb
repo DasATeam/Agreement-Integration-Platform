@@ -1,11 +1,27 @@
 class SalesController < ApplicationController
   before_action :require_sales
 
+  # Handle Request : METHOD link
+  #
+  #   description
+  #
+  # == Returns:
+  # METHOD::
+  #   desc
+  #   
   def list_merchant
     @sales = current_user.sales
     @sales_merchants = @sales.merchants
   end
 
+  # Handle Request : METHOD link
+  #
+  #   description
+  #
+  # == Returns:
+  # METHOD::
+  #   desc
+  #   
   private def var
     @merchant = current_user.merchant
     @bank_account = @merchant.bank_account ? @merchant.bank_account : BankAccount.new(merchant: @merchant)

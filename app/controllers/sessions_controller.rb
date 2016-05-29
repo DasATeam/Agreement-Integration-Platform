@@ -1,9 +1,26 @@
 class SessionsController < ApplicationController
+
+  # Handle Request : METHOD link
+  #
+  #   description
+  #
+  # == Returns:
+  # METHOD::
+  #   desc
+  #   
   def new
     @user = current_user
     redirect_to_dashboard if @user
   end
 
+  # Handle Request : METHOD link
+  #
+  #   description
+  #
+  # == Returns:
+  # METHOD::
+  #   desc
+  #   
   def create
     @user = User.find_by_email(params[:session][:email])
 
@@ -21,11 +38,27 @@ class SessionsController < ApplicationController
     end
   end
 
+  # Handle Request : METHOD link
+  #
+  #   description
+  #
+  # == Returns:
+  # METHOD::
+  #   desc
+  #   
   def destroy
     session[:user_id] = nil
     redirect_to '/'
   end
 
+  # Handle Request : METHOD link
+  #
+  #   description
+  #
+  # == Returns:
+  # METHOD::
+  #   desc
+  #   
   def redirect_to_dashboard
     @user = current_user
 

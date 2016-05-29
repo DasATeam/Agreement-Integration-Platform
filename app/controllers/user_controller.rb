@@ -1,4 +1,13 @@
 class UserController < ApplicationController
+
+  # Handle Request : METHOD link
+  #
+  #   description
+  #
+  # == Returns:
+  # METHOD::
+  #   desc
+  #   
   def merchant_set_password
     @merchant = Merchant.find_by(registration_link: params[:hash])
     @user = User.find(@merchant.user_id)
