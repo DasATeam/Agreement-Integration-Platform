@@ -21,4 +21,13 @@
 
 .env
 
-coverage
+#ignore coverage code
+coverage/
+
+#ignore yard documentation
+.yardoc/
+erd.pdf
+diagram.pdf
+
+#ignore rdoc documentation
+doc/
