@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: merchant_owners
+#
+#  id           :integer          not null, primary key
+#  email        :string           not null
+#  name         :string
+#  address      :string
+#  telephone    :string
+#  merchant_id  :integer
+#  is_completed :boolean
+#
+
 require 'rails_helper'
 
 RSpec.describe MerchantOwner, type: :model do

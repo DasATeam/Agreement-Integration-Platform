@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: merchant_customer_supports
+#
+#  id           :integer          not null, primary key
+#  email        :string           not null
+#  telephone    :string
+#  emergency    :string
+#  merchant_id  :integer
+#  is_completed :boolean
+#
+
 FactoryGirl.define do
   factory :merchant_customer_support do |f|
     f.email 'chriscs@chris.com'
