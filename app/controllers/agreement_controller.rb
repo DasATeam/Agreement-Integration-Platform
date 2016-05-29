@@ -1,14 +1,25 @@
 class AgreementController < ApplicationController
 	before_action :require_sales
 
+	# Handle Request : GET sales/agreement/new
+	#
+	#   For Sales so can create new agreement by inputing required fields in the form
+	#
+	# == Returns:
+	# GET::
+	#   Webpage to input agreement information in the form
+	#   
 	def new
 	end
 
-	# Handle Request : POST sales/agreement/new and GET
-	# 
-	# == Returns:
-	# Redirecting to Edit in Channel
+	# Handle Request : POST sales/agreement/new
 	#
+	#    Post handler for form creating new agreement
+	#
+	# == Returns:
+	# POST::
+	#   Redirecting to Channels option for the agreement
+	#   
 	def create
 		# Create merchant and his account
 		if  @user = User.new(user_params())
@@ -52,12 +63,26 @@ class AgreementController < ApplicationController
 			end
 		end
 
+	# Handle Request : GET sales/agreement/:user_id/info
+	#
+	#   Show information about agreement that has been succesfully created
+	#
+	# == Returns:
+	# GET::
+	#   Webpage showing information about agreement
 	def sales_success_create
 		@user = User.find(params[:user_id])
 		@merchant = @user.merchant
 		@agreement = @merchant.agreements.first
 	end
 
+	# Handle Request : GET merchant/details/:merchant_id
+	#
+	#   Show detailed information about a merchant and their agreement. Providing feature to modify the agreement and merchant information
+	#
+	# == Returns:
+	# GET::
+	#   Webpage showing the information
 	def merchant_details
 		if params[:merchant_id] != nil
 			ik = params[:merchant_id].to_i
@@ -69,6 +94,14 @@ class AgreementController < ApplicationController
 	  end
 	end
 
+	# Handle Request : POST merchant/details/:merchant_id
+	#
+	#   Post handler for submitted form to modify merchant document
+	#
+	# == Returns:
+	# POST::
+	#   Redirecting to Merchant details information after succeded saving the documents
+	#   
 	def upload
 		@merchant_document = nil
 		if params[:document]
@@ -86,6 +119,13 @@ class AgreementController < ApplicationController
 		redirect_to action: "merchant_details", :anchor => 'documents'
 	end
 
+	# Handle Request : GET merchant/details/:merchant_id/change/:haft
+	#
+	#   Providing view for sales allowing them to change specific pricing for specific agrements
+	#
+	# == Returns:
+	# GET::
+	#   Webpage containing form to change channel pricing
 	def change_price
 	    if params[:haft] != nil
         @ik = params[:haft].to_i
@@ -94,6 +134,13 @@ class AgreementController < ApplicationController
       end
 	end
 
+	# Handle Request : POST merchant/details/:merchant_id/change/:haft
+	#
+	#   Post handler for submitted form to change channel pricing
+	#
+	# == Returns:
+	# POST::
+	#   Redirecting to merchant details information
 	def custom_price
 	    @editedChannel = AgreementChannel.find(params[:haft].to_i)
 	    @editedChannel.customprice = params[:form][:price]
