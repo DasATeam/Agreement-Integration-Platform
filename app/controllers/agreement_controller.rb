@@ -4,6 +4,11 @@ class AgreementController < ApplicationController
 	def new
 	end
 
+	# Handle Request : POST sales/agreement/new and GET
+	# 
+	# == Returns:
+	# Redirecting to Edit in Channel
+	#
 	def create
 		# Create merchant and his account
 		if  @user = User.new(user_params())
