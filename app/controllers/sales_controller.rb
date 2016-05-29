@@ -10,8 +10,8 @@ class SalesController < ApplicationController
   #   desc
   #   
   def list_merchant
-    @sales = current_user.sales
-    @sales_merchants = @sales.merchants
+    @sales = User.find_by(id: session[:user_id])
+    @sales_merchants = Merchant.includes(:agreements).where(sales_id: @sales.id)
   end
 
   # Handle Request : METHOD link

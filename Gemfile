@@ -83,6 +83,14 @@ group :production do
   # Use aws fog for uploading
   gem "fog-aws"
 end
+
 gem 'puma'
+
+# For software profiling
+gem "bullet", :group => "development"
+gem 'rack-mini-profiler'
+gem 'flamegraph'
+gem 'stackprof'
+gem 'memory_profiler'
 
 ruby "2.3.0"

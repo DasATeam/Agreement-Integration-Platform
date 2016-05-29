@@ -1,4 +1,13 @@
+##
+# This class is used to manage everything regarding session and user authentication
+
 class SessionsController < ApplicationController
+
+  ##
+  # Show the login page
+  #
+  # User will be redirected to the appropriate page if they are already logged in
+
 
   # Handle Request : METHOD link
   #
@@ -13,6 +22,15 @@ class SessionsController < ApplicationController
     redirect_to_dashboard if @user
   end
 
+  ##
+  # Log the user in
+  #
+  # It will first search the database for the appropriate user,
+  # and will match the stored email with user's input.
+  #
+  # They will be redirected if they successfully logged in,
+  # and proper flash message will be shown if they are not .
+  #
   # Handle Request : METHOD link
   #
   #   description
@@ -38,6 +56,15 @@ class SessionsController < ApplicationController
     end
   end
 
+  ##
+  # Log the user out
+  #
+  # By removing `user_id` from the session, the app will recognized that the user
+  # has logged out/not logged in.
+  #
+  # A safer way would be to destroy all session, but unwanted things
+  # might happen if done so.
+
   # Handle Request : METHOD link
   #
   #   description
@@ -50,6 +77,12 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     redirect_to '/'
   end
+
+  ##
+  # Redirect the user
+  #
+  # User will be redirected to the appropriate page depending on their role
+  # and whether they are logged in or not.
 
   # Handle Request : METHOD link
   #

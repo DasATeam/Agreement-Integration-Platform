@@ -5,7 +5,7 @@ class CreateMerchants < ActiveRecord::Migration
 		  t.string :name
 		  t.string :website
 		  t.string :email
-		  t.string :city	
+		  t.string :city
 		  t.string :address
 		  t.integer :office_status
 		  t.string :type_of_product
@@ -16,5 +16,6 @@ class CreateMerchants < ActiveRecord::Migration
 		  t.decimal :credit_card_payment_ratio
 		  t.string :registration_link
     end
+    add_reference(:merchants, :sales)
   end
 end
