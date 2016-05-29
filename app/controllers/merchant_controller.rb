@@ -1,6 +1,17 @@
 class MerchantController < ApplicationController
 before_action :require_merchant, only: [:edit_general, :edit_pic, :edit_owner, :edit_operational, :edit_customer_support, :edit_bank_account]
 
+  # Handle Request : POST merchant/info/pic and GET merchant/info/pic
+  #
+  #   For inputting merchant general information
+  # == Returns:
+  # GET::
+  #   Webpage to input information for merchant general
+  #
+  # POST::
+  #   Redirecting to action edit_pic if merchant has not input all the information
+  #   
+  #   Redirecting to action index at Document if merchant input all the information
   def edit_general
     var
     styling
@@ -21,6 +32,17 @@ before_action :require_merchant, only: [:edit_general, :edit_pic, :edit_owner, :
     end
   end
 
+  # Handle Request : POST merchant/info/owner and GET merchant/info/owner
+  #
+  #   For inputting merchant pic information
+  # == Returns:
+  # GET::
+  #   Webpage to input information for merchant pic
+  #
+  # POST::
+  #   Redirecting to action edit_owner if merchant has not input all the information
+  #   
+  #   Redirecting to action index at Document if merchant input all the information
   def edit_pic
     var
     styling
@@ -41,6 +63,17 @@ before_action :require_merchant, only: [:edit_general, :edit_pic, :edit_owner, :
     end
   end
 
+  # Handle Request : POST merchant/info/owner and GET merchant/info/owner
+  #
+  #   For inputting merchant owner information
+  # == Returns:
+  # GET::
+  #   Webpage to input information for merchant owner
+  #
+  # POST::
+  #   Redirecting to action edit_customer_support if merchant has not input all the information
+  #   
+  #   Redirecting to action index at Document if merchant input all the information
   def edit_owner
     var
     styling
@@ -61,6 +94,17 @@ before_action :require_merchant, only: [:edit_general, :edit_pic, :edit_owner, :
     end
   end
 
+  # Handle Request : POST merchant/info/cs and GET merchant/info/cs
+  #
+  #   For inputting merchant customer support information
+  # == Returns:
+  # GET::
+  #   Webpage to input information for merchant customer support
+  #
+  # POST::
+  #   Redirecting to action edit_operational if merchant has not input all the information
+  #   
+  #   Redirecting to action index at Document if merchant input all the information
   def edit_customer_support
     var
     styling
@@ -81,6 +125,17 @@ before_action :require_merchant, only: [:edit_general, :edit_pic, :edit_owner, :
     end
   end
 
+  # Handle Request : POST merchant/info/operational and GET merchant/info/operational
+  #
+  #   For inputting merchant operational information
+  # == Returns:
+  # GET::
+  #   Webpage to input information for merchant operational
+  #
+  # POST::
+  #   Redirecting to action edit_bank_account if merchant has not input all the information
+  #   
+  #   Redirecting to action index at Document if merchant input all the information
   def edit_operational
     var
     styling
@@ -101,6 +156,17 @@ before_action :require_merchant, only: [:edit_general, :edit_pic, :edit_owner, :
     end
   end
 
+  # Handle Request : POST merchant/info/bank and GET merchant/info/bank
+  #
+  #   For inputting merchant bank account information
+  # == Returns:
+  # GET::
+  #   Webpage to input information for merchant bank account
+  #
+  # POST::
+  #   Redirecting to action edit_general if merchant has not input all the information
+  #   
+  #   Redirecting to action index at Document if merchant input all the information
   def edit_bank_account
     var
     styling
@@ -120,7 +186,15 @@ before_action :require_merchant, only: [:edit_general, :edit_pic, :edit_owner, :
       end
     end
   end
-  
+
+  # Handle Request : POST merchant/send-mail/:merchant_id
+  #
+  #   For sending email from sales to merchant
+  # == Returns:
+  # POST::
+  #   Delivering email to merchant with inputted content text
+  #   Redirecting to sales/list_merchant if succeed
+  #   Redirecting to action sales_success_create at Agreement if failed sending mail or catch exception
   def send_mail
     @text = params[:content]
     @id = params[:merchant_id]
@@ -139,6 +213,12 @@ before_action :require_merchant, only: [:edit_general, :edit_pic, :edit_owner, :
     end
   end
 
+  # Handle Request : GET merchant/finish
+  #
+  #   For giving information to merchant what to do next after finished all steps
+  # == Returns:
+  # GET::
+  #   Webpage to show information for merchant when finished all steps
   def finish
 
   end
