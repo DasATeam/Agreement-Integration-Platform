@@ -1,2 +1,5 @@
+--exclude app/helpers/
+--exclude app/mailers/
 -
 UML.md
+ERD.md

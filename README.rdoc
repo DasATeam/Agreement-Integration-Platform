@@ -39,15 +39,17 @@ untuk mac:
 <tt>brew install Graphviz</tt>
 untuk ubuntu:
 <tt>sudo aptitude install graphviz</tt>
+- Jalankan annotate untuk anotasi tabel ERD pada model
+<tt>annotate</tt>
 - Jalankan gem erd untuk generate erd
-<tt>rake erd attributes=primary_keys,foreign_keys,content filetype=png filename=doc/ERD</tt>
-- Terakhir jalankan yard untuk mengenerate seluruh dokumentasi
+<tt>rake erd attributes=primary_keys,foreign_keys,content filetype=png filename=ERD</tt>
+- Jalankan yard untuk mengenerate seluruh dokumentasi
 <tt>yard</tt>
 - Jalankan graph yard untuk generate UML
-<tt>yard graph --full | dot -T png -o doc/UML.png </tt>
+<tt>yard graph --full | dot -T png -o UML.png </tt>
 - Dokumentasi berada di folder doc/index.html atau juga dapat dilihat dengan menjalankan
 <tt>yard server</tt>
-Dokumentasi akan muncul di localhost:8088
+Dokumentasi akan muncul di localhost:8808
 
 ==== To-do
 

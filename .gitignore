@@ -26,8 +26,8 @@ coverage/
 
 #ignore yard documentation
 .yardoc/
-erd.pdf
-diagram.pdf
+UML.png
+ERD.png
 
 #ignore rdoc documentation
 doc/
