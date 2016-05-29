@@ -31,13 +31,6 @@ gem 'wicked_pdf'
 #wkhtmltopdf program
 gem 'wkhtmltopdf-binary'
 
-gem 'pg' # etc etc
-
-gem 'rack-mini-profiler'
-gem 'flamegraph'
-gem 'stackprof' # ruby 2.1+ only
-gem 'memory_profiler'
-
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
@@ -54,13 +47,6 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.4.2'
   # for feeding test data to the test suite
   gem 'factory_girl_rails'
-
-
-
-  # For testing user interface elements
-  gem 'capybara'
-
-  gem 'simplecov' , require: false
 end
 
 group :development do
@@ -74,8 +60,16 @@ group :development do
   gem 'web-console', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-end
+  gem 'bullet'
 
+  gem 'capybara'
+  gem 'simplecov' , require: false
+
+  gem 'rack-mini-profiler'
+  gem 'flamegraph'
+  gem 'stackprof' # ruby 2.1+ only
+  gem 'memory_profiler'
+end
 
 group :production do
   # For deploying in Heroku
@@ -84,13 +78,7 @@ group :production do
   gem "fog-aws"
 end
 
+# using puma webserver
 gem 'puma'
 
-# For software profiling
-gem "bullet", :group => "development"
-gem 'rack-mini-profiler'
-gem 'flamegraph'
-gem 'stackprof'
-gem 'memory_profiler'
-
-ruby "2.3.0"
+ruby '2.3.0'
