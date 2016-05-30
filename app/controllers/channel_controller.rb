@@ -1,25 +1,25 @@
 class ChannelController < ApplicationController
   before_action :require_sales
   
-  # Handle Request : METHOD link
+  # Handle Request : GET sales/agreement/:user_id/channel
   #
-  #   description
+  #   Used to edit the channel
   #
   # == Returns:
-  # METHOD::
-  #   desc
+  # GET::
+  #   The edit page for the channels
   #   
   def edit
     @channels = ChannelType.all()
   end
 
-  # Handle Request : METHOD link
+  # Handle Request : POST sales/agreement/:user_id/channel
   #
-  #   description
+  #   Used to save the channels
   #
   # == Returns:
-  # METHOD::
-  #   desc
+  # POST::
+  #   Redirect to the initial page
   #   
   def save_channel
     @user = User.find(params[:user_id])
@@ -60,14 +60,6 @@ class ChannelController < ApplicationController
     redirect_to controller: "agreement", action:"sales_success_create", user_id: @user.id
   end
 
-  # Handle Request : METHOD link
-  #
-  #   description
-  #
-  # == Returns:
-  # METHOD::
-  #   desc
-  #   
   private
     def channel_params
       params.require(:form).permit!
