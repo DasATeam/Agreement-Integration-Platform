@@ -3,7 +3,7 @@ require 'pp'
 
 RSpec.describe SessionsController, type: :controller do
   before :all do
-    @sales = User.create(email: 'john@veritrans.com', role: 'sales')
+    @sales = User.create(email: 'johnsession@veritrans.com', role: 'sales')
     @sales.set_password('ppl')
 
     @merchant = User.create(email: 'rahnna@tokowinnetou.com', role: 'merchant')
@@ -23,7 +23,7 @@ RSpec.describe SessionsController, type: :controller do
     end
 
     it 'should redirect sales if they already logged in' do
-      post(:create, session: { email: 'john@veritrans.com', password: 'ppl' })
+      post(:create, session: { email: 'johnsession@veritrans.com', password: 'ppl' })
 
       expect(response).to redirect_to '/sales/list_merchant'
     end
@@ -39,7 +39,7 @@ RSpec.describe SessionsController, type: :controller do
   describe 'create' do
     it 'should redirect the user back to login page if they enter email that does not exist' do
       get(:destroy)
-      post(:create, session: {email: 'john@bogusmail.com', password: 'ppl'})
+      post(:create, session: {email: 'johnsession@bogusmail.com', password: 'ppl'})
 
       expect(session[:user_id]).to be_nil
       expect(response).to redirect_to '/login'
@@ -48,7 +48,7 @@ RSpec.describe SessionsController, type: :controller do
     it 'should redirect the user back to login page if they enter
         correct email but incorrect password' do
       get(:destroy)
-      post(:create, session: {email: 'john@veritrans.com', password: 'boguspassword'})
+      post(:create, session: {email: 'johnsession@veritrans.com', password: 'boguspassword'})
 
       expect(session[:user_id]).to be_nil
       expect(response).to redirect_to '/login'
@@ -56,7 +56,7 @@ RSpec.describe SessionsController, type: :controller do
 
     it 'should redirect sales if they enter the correct email and password' do
       get(:destroy)
-      post(:create, session: {email: 'john@veritrans.com', password: 'ppl'})
+      post(:create, session: {email: 'johnsession@veritrans.com', password: 'ppl'})
 
       expect(session[:user_id]).not_to be_nil
       expect(response).to redirect_to '/sales/list_merchant'
@@ -73,7 +73,7 @@ RSpec.describe SessionsController, type: :controller do
 
   describe 'destroy' do
     it 'should log the user out after they are logged in' do
-      post(:create, session: {email: 'john@veritrans.com', password: 'ppl'})
+      post(:create, session: {email: 'johnsession@veritrans.com', password: 'ppl'})
       expect(session[:user_id]).not_to be_nil
 
       get(:destroy)

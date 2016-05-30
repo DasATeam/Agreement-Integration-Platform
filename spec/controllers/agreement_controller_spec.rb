@@ -19,7 +19,7 @@ RSpec.describe AgreementController, type: :controller do
 
   describe 'new' do
     it 'should return new agreement page' do
-      session[':user_id'] = @user_sales.id
+      session[:user_id] = @user_sales.id
       get(:new)
 
       expect(response).to render_template('new')
@@ -28,6 +28,7 @@ RSpec.describe AgreementController, type: :controller do
 
   describe 'sales_success_create' do
     it 'should return information about new agreement if successfully made' do
+      session[:user_id] = @user_sales.id
       get :sales_success_create, { user_id: @user_merchant.id }
 
       expect(response).to render_template(:sales_success_create)
@@ -36,6 +37,7 @@ RSpec.describe AgreementController, type: :controller do
 
   describe 'change_price' do
     it 'should return the page to change channel pricing' do
+      session[:user_id] = @user_sales.id
       get :change_price, { haft: @agreement_channels.id, merchant_id: @merchant.id }
 
       expect(response).to render_template(:change_price)

@@ -5,11 +5,10 @@ require 'pp'
 RSpec.describe UserController, type: :controller do
   before :all do
     @user = User.create(id: 8, email: 'test@email.com', role: 'sales')
-    @merchant = Merchant.create(name: 'test', website: 'test')
+    @merchant = Merchant.new(user_id: @user.id, name: 'test', website: 'test.com')
     @link = Digest::MD5.hexdigest(@user.email)
     @merchant.registration_link = @link
-    @merchant.user = @user
-    @merchant.save
+    @merchant.save(validate: false)
   end
 
   render_views

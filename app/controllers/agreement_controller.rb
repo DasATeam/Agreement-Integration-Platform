@@ -8,7 +8,7 @@ class AgreementController < ApplicationController
 	# == Returns:
 	# GET::
 	#   Webpage to input agreement information in the form
-	#   
+	#
 	def new
 	end
 
@@ -19,7 +19,7 @@ class AgreementController < ApplicationController
 	# == Returns:
 	# POST::
 	#   Redirecting to Channels option for the agreement
-	#   
+	#
 	def create
 		# Create merchant and his account
 		if  @user = User.new(user_params())
@@ -101,7 +101,7 @@ class AgreementController < ApplicationController
 	# == Returns:
 	# POST::
 	#   Redirecting to Merchant details information after succeded saving the documents
-	#   
+	#
 	def upload
 		@merchant_document = nil
 		if params[:document]
@@ -127,11 +127,11 @@ class AgreementController < ApplicationController
 	# GET::
 	#   Webpage containing form to change channel pricing
 	def change_price
-	    if params[:haft] != nil
-        @ik = params[:haft].to_i
-        @channel = AgreementChannel.find(@ik)
-        @merchant = Merchant.find(params[:merchant_id].to_i)
-      end
+    if params[:haft] != nil
+      @ik = params[:haft].to_i
+      @channel = AgreementChannel.find(@ik)
+      @merchant = Merchant.find(params[:merchant_id].to_i)
+    end
 	end
 
 	# Handle Request : POST merchant/details/:merchant_id/change/:haft
