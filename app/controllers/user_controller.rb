@@ -1,12 +1,12 @@
 class UserController < ApplicationController
 
-  # Handle Request : METHOD link
+  # Handle Request : GET merchant/new/:hash
   #
-  #   description
+  #   The method used to set the password of a newly created merchant
   #
   # == Returns:
-  # METHOD::
-  #   desc
+  # GET::
+  #   The view for password setting
   #   
   def merchant_set_password
     @merchant = Merchant.find_by(registration_link: params[:hash])
