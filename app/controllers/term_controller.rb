@@ -2,13 +2,13 @@ class TermController < ApplicationController
   before_action :require_merchant, only: [:index, :doc, :agree]
   before_action :require_sales, only: [:sales_download]
 
-  # Handle Request : METHOD link
+  # Handle Request : GET merchant/terms
   #
-  #   description
+  #   Merchant can see terms & conditions
   #
   # == Returns:
-  # METHOD::
-  #   desc
+  # GET::
+  #   Terms & Condition that a merchant has to agree
   #   
   def index
     @term = Point.first
@@ -19,13 +19,13 @@ class TermController < ApplicationController
     render "index"
   end
 
-  # Handle Request : METHOD link
+  # Handle Request : GET merchant/document/download
   #
-  #   description
+  #   Merchant can download pdf MoU
   #
   # == Returns:
-  # METHOD::
-  #   desc
+  # GET::
+  #   MoU pdf that's ready to download
   #   
   def doc
     card_channel_id = [1, 2, 3, 4, 5, 6, 11]
@@ -59,13 +59,13 @@ class TermController < ApplicationController
     end
   end
 
-  # Handle Request : METHOD link
+  # Handle Request : GET merchant/document/download
   #
-  #   description
+  #   Sales can download pdf MoU
   #
   # == Returns:
-  # METHOD::
-  #   desc
+  # GET::
+  #   MoU pdf that's ready to download
   #   
   def sales_download
     card_channel_id = [1, 2, 3, 4, 5, 6, 11]
@@ -99,13 +99,13 @@ class TermController < ApplicationController
     end
   end
 
-  # Handle Request : METHOD link
+  # Handle Request : POST merchant/terms
   #
-  #   description
+  #   Merchant agrees to terms & condition
   #
   # == Returns:
-  # METHOD::
-  #   desc
+  # POST::
+  #   Redirects to merchant index page after merchant has agreed
   #   
   def agree
     @merchant = current_user.merchant
