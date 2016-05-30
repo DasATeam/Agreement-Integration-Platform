@@ -10,6 +10,10 @@ RSpec.describe SessionsController, type: :controller do
     @merchant.set_password('kampungutan')
   end
 
+  after :all do
+    ActiveRecord::Base.subclasses.each(&:delete_all)
+  end
+
   describe 'new' do
     it 'should show the login page if the user is not logged in' do
       get(:destroy)

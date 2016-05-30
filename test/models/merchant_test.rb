@@ -18,6 +18,7 @@
 #  revenues_each_month       :decimal(, )
 #  credit_card_payment_ratio :decimal(, )
 #  registration_link         :string
+#  sales_id                  :integer
 #  user_id                   :integer
 #  info_is_completed         :boolean
 #  documents_is_completed    :boolean

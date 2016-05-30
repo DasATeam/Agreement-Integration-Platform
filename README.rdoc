@@ -51,9 +51,5 @@ untuk ubuntu:
 <tt>yard server</tt>
 Dokumentasi akan muncul di localhost:8808
 
-==== To-do
-
-Hal yang perlu dilakukan ke depannya untuk dokumentasi ini:
-
-- Cara menjalankan test suite
-- Services yang digunakan (job queues, cache servers, search engines, dll)
+==== Menjalankan Test Suite
+Aplikasi ini menggunakan RSpec untuk melakukan testing. Untuk melakukan testing, jalankan <tt>rspec</tt> di Terminal.
