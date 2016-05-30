@@ -7,7 +7,7 @@ class UserController < ApplicationController
   # == Returns:
   # GET::
   #   The view for password setting
-  #   
+  #
   def merchant_set_password
     @merchant = Merchant.find_by(registration_link: params[:hash])
     @user = User.find(@merchant.user_id)
