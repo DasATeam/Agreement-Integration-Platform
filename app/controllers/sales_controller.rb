@@ -1,27 +1,19 @@
 class SalesController < ApplicationController
   before_action :require_sales
 
-  # Handle Request : METHOD link
+  # Handle Request : GET sales/list_merchant
   #
-  #   description
+  #   Used to display the list of merchants handled by a specific sales
   #
   # == Returns:
-  # METHOD::
-  #   desc
+  # GET::
+  #   The list of merchants handled by a specific sales
   #   
   def list_merchant
     @sales = User.find_by(id: session[:user_id])
     @sales_merchants = Merchant.includes(:agreements).where(sales_id: @sales.id)
   end
 
-  # Handle Request : METHOD link
-  #
-  #   description
-  #
-  # == Returns:
-  # METHOD::
-  #   desc
-  #   
   private def var
     @merchant = current_user.merchant
     @bank_account = @merchant.bank_account ? @merchant.bank_account : BankAccount.new(merchant: @merchant)
