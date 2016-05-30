@@ -6,7 +6,7 @@
       <strong>Well done!</strong> <%= flash[:notice] %>
     </div>
   <% end %>
-  
+
   <div class="row">
     <%= link_to 'Create New agreement', 'agreement/new', class: 'btn btn-primary' %>
     <h1>Current Merchant</h1>
@@ -29,7 +29,8 @@
           <%= label_tag :has_agree, 'terms & conditions' %> <br/>
         <% end %>
 
-        <%= link_to 'Details', '/merchant/details/' + merchant.id.to_s , class: 'btn btn-primary' %><br/>
+        <div class="vertical-space" style="height:15px;"></div>
+        <%= link_to 'Details', '/merchant/details/' + merchant.id.to_s , class: 'btn btn-primary' %>
       </div>
     </div>
     <% end %>
