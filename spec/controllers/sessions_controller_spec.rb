@@ -3,7 +3,11 @@ require 'pp'
 
 RSpec.describe SessionsController, type: :controller do
   before :all do
-    @user = User.find_by email: 'john@veritrans.com'
+    @sales = User.create(email: 'john@veritrans.com', role: 'sales')
+    @sales.set_password('ppl')
+
+    @merchant = User.create(email: 'rahnna@tokowinnetou.com', role: 'merchant')
+    @merchant.set_password('kampungutan')
   end
 
   describe 'new' do
@@ -11,29 +15,55 @@ RSpec.describe SessionsController, type: :controller do
       get(:destroy)
       get(:new)
 
-      expect(response).to render_template("new")
+      expect(response).to render_template('new')
     end
 
     it 'should redirect sales if they already logged in' do
-      session[:user_id] = @user
-      get(:new)
+      post(:create, session: { email: 'john@veritrans.com', password: 'ppl' })
 
       expect(response).to redirect_to '/sales/list_merchant'
-    end    
+    end
+
+    it 'should redirect merchant if they are already logged in' do
+      post(:create, session: {email: 'rahnna@tokowinnetou.com', password: 'kampungutan'})
+
+      expect(response).to redirect_to '/merchant/info/general'
+    end
   end
 
 
   describe 'create' do
-    it 'should log the user in when they enter the correct email and password' do
-      post(:create, session: {email: 'john@veritrans.com', password: 'ppl'})
+    it 'should redirect the user back to login page if they enter email that does not exist' do
+      get(:destroy)
+      post(:create, session: {email: 'john@bogusmail.com', password: 'ppl'})
 
-      expect(session[:user_id]).not_to be_nil
+      expect(session[:user_id]).to be_nil
+      expect(response).to redirect_to '/login'
+    end
+
+    it 'should redirect the user back to login page if they enter
+        correct email but incorrect password' do
+      get(:destroy)
+      post(:create, session: {email: 'john@veritrans.com', password: 'boguspassword'})
+
+      expect(session[:user_id]).to be_nil
+      expect(response).to redirect_to '/login'
     end
 
     it 'should redirect sales if they enter the correct email and password' do
+      get(:destroy)
       post(:create, session: {email: 'john@veritrans.com', password: 'ppl'})
 
+      expect(session[:user_id]).not_to be_nil
       expect(response).to redirect_to '/sales/list_merchant'
+    end
+
+    it 'should redirect merchant if they enter the correct email and password' do
+      get(:destroy)
+      post(:create, session: {email: 'rahnna@tokowinnetou.com', password: 'kampungutan'})
+
+      expect(session[:user_id]).not_to be_nil
+      expect(response).to redirect_to '/merchant/info/general'
     end
   end
 
